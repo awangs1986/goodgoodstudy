@@ -1,0 +1,38 @@
+.english-track-nav { display:flex; flex-wrap:wrap; gap:.65rem; padding:1rem; background:#1a2534; border-radius:16px; margin-bottom:1rem; }
+.english-track-nav button { min-height:44px; }
+.english-track-nav [aria-current="page"] { background:#edba63; color:#17202a; border-color:#edba63; }
+.english-track-status:empty { display:none; }
+.life-course { max-width:1100px; margin:auto; }
+.life-course h1,.life-course h2,.life-course h3 { line-height:1.4; }
+.life-course header { padding:1.5rem; background:linear-gradient(125deg,#1d4050,#27364c); border:1px solid #557487; border-radius:18px; }
+.life-tools,.life-actions { display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0; }
+.life-tools button,.life-actions button,.life-answer button { min-height:44px; }
+.life-stage { margin:1.5rem 0; padding:1rem; border:1px solid #526375; border-radius:16px; }
+.life-stage p,.life-note { color:var(--muted,#b8c6d3); line-height:1.65; }
+.life-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:.65rem; }
+.life-grid button { text-align:left; padding:.9rem; min-height:76px; line-height:1.5; }
+.life-grid button small { display:block; opacity:.85; }
+.life-panel { padding:1.2rem; margin:1rem 0; border:1px solid #516275; background:#1a2535; border-radius:14px; line-height:1.8; }
+.life-panel p { white-space:pre-line; }
+.life-passage { font-size:1.1rem; line-height:1.9; }
+.life-vocabulary { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:.7rem; }
+.life-word { padding:1rem; background:#152838; border:1px solid #456277; border-radius:12px; }
+.life-word strong { display:block; font-size:1.15rem; color:#f3d198; }
+.life-word p { margin:.45rem 0; }
+.life-question { border:1px solid #536578; border-radius:12px; padding:1rem; margin:1.2rem 0; min-width:0; }
+.life-question legend { padding:0 .5rem; line-height:1.6; }
+.life-choice { display:flex; align-items:flex-start; gap:.6rem; padding:.7rem; cursor:pointer; }
+.life-choice input { margin-top:.35rem; }
+.life-answer input[type="text"],.life-answer textarea { width:100%; box-sizing:border-box; font-size:1rem; padding:.75rem; }
+.life-feedback { padding:.7rem; border-left:4px solid #e4ac62; white-space:pre-line; }
+.life-feedback:empty { display:none; }
+.life-feedback.correct { border-color:#83caa9; }
+.life-picture { max-width:300px; margin:1rem auto; }
+.life-picture svg { width:100%; height:auto; }
+.life-masked { font-size:1.7rem; letter-spacing:.18rem; font-weight:700; text-align:center; overflow-wrap:anywhere; }
+.life-summary { padding:1rem; border:1px solid #8dccae; border-radius:12px; background:#17372f; }
+.life-source { font-size:.85rem; line-height:1.6; color:#b5c4d0; }
+.life-source a { color:#b9dcff; }
+.life-status { min-height:1.5em; }
+.life-course button:focus-visible,.life-course input:focus-visible,.english-track-nav button:focus-visible { outline:3px solid #efbc6b; outline-offset:3px; }
+@media(max-width:600px) { .life-course header { padding:1rem; } .life-panel { padding:.8rem; } .life-grid,.life-vocabulary { grid-template-columns:1fr; } .life-question { padding:.7rem; } .english-track-nav button { flex:1 1 180px; } }

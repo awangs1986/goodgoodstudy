@@ -10,11 +10,14 @@ export function normalizeProgress(value, lessons, language = 'zh-CN') {
     drafts: map('drafts'), inputs: map('inputs'), responses: map('responses'), attempts: map('attempts'),
     // Older saves may carry a retired companionId field; it is dropped here and nothing else changes.
     battles: map('battles'),
+    // Independent post-lesson word checks; existing completions are never removed.
+    languageVocabulary: map('languageVocabulary'),
     // Optional per-course game state (geography voyage: gold, ship, supplies, location, log). Plain JSON object.
     voyage: record(value?.voyage),
     scores: map('scores'), assisted: map('assisted'), hints: map('hints'),
     // F1's first-answer assessment is separate from legacy learn-then-quiz progress.
     ...(value?.assessment ? { assessment: record(value.assessment) } : {}),
+    ...(value?.nce2Practice ? { nce2Practice: record(value.nce2Practice) } : {}),
     answerReveals: [...new Set((Array.isArray(value?.answerReveals) ? value.answerReveals : []).filter(id => ids.has(id)))],
     consecutiveFailures: map('consecutiveFailures'),
     mapChapter: Number.isInteger(value?.mapChapter) && value.mapChapter >= 0 ? Math.min(value.mapChapter, lessons.at(-1).chapterIndex) : 0,
