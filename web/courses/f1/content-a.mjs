@@ -5,8 +5,8 @@ import { car, scene, flags, gantry, gridScene, tower, barChart, info, drive, pit
 
 const sideBySide = () => `<svg class="rc-svg" viewBox="0 0 640 230" role="img" aria-label="2026 年赛车尺寸示意" xmlns="http://www.w3.org/2000/svg"><rect width="640" height="230" rx="14" fill="#0f1726"/>
  <g transform="translate(320 110) scale(2.6)">${car({ livery: 'teal' })}</g>
- <path d="M178 196H468" stroke="#ffc533" stroke-width="2"/><path d="M178 188V204M468 188V204" stroke="#ffc533" stroke-width="2"/>
- <text x="323" y="222" text-anchor="middle" font-size="13" fill="#ffc533" font-family="'Noto Sans SC',system-ui">轴距 ≤ 3400 mm（C2）· 车宽约 1900 mm（中心线两侧各 ≤ 950 mm）</text>
+ <g data-dimension="wheelbase" data-axles="231.6 398"><path d="M231.6 154V204M398 154V204" stroke="#90a3b7" stroke-width="1" stroke-dasharray="3 4"/><path d="M231.6 196H398M231.6 188V204M398 188V204" stroke="#ffc533" stroke-width="2"/><path d="M231.6 196l6 -3v6ZM398 196l-6 -3v6Z" fill="#ffc533"/></g>
+ <text x="323" y="222" text-anchor="middle" font-size="17" fill="#ffc533" font-family="'Noto Sans SC',system-ui">轴距 ≤ 3400 mm（C2）</text>
  <text x="20" y="30" font-size="16" font-weight="800" fill="#fff" font-family="'Noto Sans SC',system-ui">2026 新车：更短、更窄、更轻</text></svg>`;
 
 export const unitsA = [
@@ -150,7 +150,7 @@ export const unitsA = [
     why: '旗语是赛道上最快、最直接的安全语言：车手在 300 km/h 时也能一眼看懂。',
     scenario: '排位赛最后一圈，前车在 8 号弯失控。后面的车手看到双黄旗，必须明显减速——他的这一圈注定无法刷新成绩。',
     ref: 'ISC 附录 H；Section B 第 B1.8 条', diagrams: [
-      { svg: flags([{ type: 'yellow', t: '单黄旗' }, { type: 'yellow', t: '双黄旗（挥两面）' }, { type: 'green', t: '绿旗' }]), cap: '动画：黄旗与绿旗', anim: 'yellow-flag' },
+      { svg: flags([{ type: 'yellow', t: '单黄旗' }, { type: 'double-yellow', t: '双黄旗（挥两面）' }, { type: 'green', t: '绿旗' }]), cap: '动画：黄旗与绿旗', anim: 'yellow-flag' },
       { svg: scene({ cars: [{ x: 160, y: 150, livery: 'purple', n: 12 }, { x: 300, y: 150, livery: 'yellow', n: 30 }, { x: 520, y: 118, livery: 'silver', rot: 40, n: 7 }], labels: [{ x: 300, y: 270, t: '黄旗区：禁止超车' }], extra: '' }), cap: '黄旗区禁止超车' }] }, [
     mc('f104-01-q1', '车手在黄旗区超越了前车。', ['违规：黄旗区禁止超车', '合法，如果更快', '合法，只要不碰撞', '只在正赛违规'], '黄旗代表危险，禁止超车。', '黄旗的意思是？'),
     mc('f104-01-q2', '双黄旗与单黄旗的区别？', ['危险更大：大幅减速并准备停车', '可以超车', '代表比赛结束', '代表进维修区'], '双黄旗要求大幅减速、做好停车准备。', '更严重。'),
@@ -163,7 +163,7 @@ export const unitsA = [
     scenario: '一辆被套圈的车连续三个弯都没让开，蓝旗不停挥动。赛后干事判他 5 秒罚时。',
     ref: 'ISC 附录 H；Section B 第 B5.14、B5.16 条', diagrams: [
       { svg: flags([{ type: 'blue', t: '蓝旗：让路' }, { type: 'red', t: '红旗：中止' }, { type: 'chequered', t: '方格旗：结束' }]), cap: '动画：蓝旗、红旗、方格旗', anim: 'blue-red-flag' },
-      { svg: scene({ anim: m => `${drive({ livery: 'red', n: 1, values: '40 150;600 120', dur: 4 })}${drive({ livery: 'silver', n: 22, values: '200 150;470 182', dur: 4 })}`, labels: [{ x: 320, y: 40, t: '蓝旗：被套圈的车让出位置', fc: '#fff', bg: 'rgba(31,111,224,.9)' }], alt: '蓝旗让车动画' }), cap: '动画：慢车让出位置', anim: 'blue-flag-move' }] }, [
+      { svg: scene({ anim: m => `${drive({ livery: 'red', n: 1, values: '40 150;600 120', still: [488, 126], dur: 4 })}${drive({ livery: 'silver', n: 22, values: '200 150;470 182', still: [416, 175.6], dur: 4 })}`, labels: [{ x: 320, y: 40, t: '蓝旗：被套圈的车让出位置', fc: '#fff', bg: 'rgba(31,111,224,.9)' }], alt: '蓝旗让车动画' }), cap: '动画：慢车让出位置', anim: 'blue-flag-move' }] }, [
     mc('f104-02-q1', '正赛中蓝旗向谁展示？', ['即将被套圈的车手', '领跑者', '所有车手', '维修区人员'], '蓝旗提示慢车让领先者通过。', '谁要“让路”？'),
     mc('f104-02-q2', '红旗出现后，车手应该？', ['禁止超车，减速驶入维修区', '加速冲线', '停在原地', '继续比赛'], 'B5.14.2：红旗后禁止超车，所有车减速进入维修区。', '比赛被“暂停”了。'),
     mc('f104-02-q3', '方格旗表示？', ['比赛结束', '最后一圈', '安全车', '赛道湿滑'], '方格旗是结束信号。', '冲线时看到。')
@@ -205,7 +205,7 @@ export const unitsA = [
     why: '安全车把车队“压”在一起，让工作人员可以在车速很低的情况下处理事故。',
     scenario: '安全车进站，领跑者在最后一个弯突然加速。后车不能在控制线之前超越——过线以后才能真正开始争夺。',
     ref: 'Section B 第 B5.13、B5.15 条', diagrams: [
-      { svg: scene({ anim: m => `${drive({ livery: 'yellow', n: 'SC', values: '80 150;600 150', dur: 6 })}${drive({ livery: 'red', n: 1, values: '-40 150;480 150', dur: 6 })}${drive({ livery: 'blue', n: 2, values: '-160 150;360 150', dur: 6 })}`, lines: [{ x: 560, t: '控制线', c: '#fff', wd: 6 }], labels: [{ x: 320, y: 270, t: '安全车期间排队、禁止超车' }], alt: '安全车带队动画' }), cap: '动画：安全车带队', anim: 'safety-car' },
+      { svg: scene({ anim: m => `${drive({ kind: 'safety', livery: 'silver', n: 'SC', values: '80 150;600 150', still: [392, 150], dur: 6 })}${drive({ livery: 'red', n: 1, values: '-40 150;480 150', still: [272, 150], dur: 6 })}${drive({ livery: 'blue', n: 2, values: '-160 150;360 150', still: [152, 150], dur: 6 })}`, lines: [{ x: 560, t: '控制线', c: '#fff', wd: 6 }], labels: [{ x: 320, y: 270, t: '安全车期间排队、禁止超车' }], alt: '安全车带队动画' }), cap: '动画：安全车带队', anim: 'safety-car' },
       { svg: tower([{ code: 'RED', gap: '领先', c: 'red' }, { code: 'BLU', gap: '+0.6', c: 'blue' }, { code: 'GRN', gap: '套圈', c: 'green', tag: '可超车回圈' }], { status: 'SC', title: '安全车：车距被压缩' }), cap: '套圈车可以被允许“解套”' }] }, [
     mc('f105-02-q1', '安全车在本圈进站，后车可以从什么时候开始超车？', ['通过控制线之后', '安全车熄灯那一刻', '安全车驶入维修区入口时', '任何时候'], 'B5.15 / B5.13：通过控制线之前禁止超车。', '有一条“线”。'),
     mc('f105-02-q2', '“LAPPED CARS MAY NOW OVERTAKE”的意思是？', ['被套圈的车可以超越领先圈车辆和安全车', '所有车都可以超车', '比赛结束', '领跑者可以加速'], 'B5.13：被套圈车辆可以超车，回到队尾。', '解开“套圈”。'),

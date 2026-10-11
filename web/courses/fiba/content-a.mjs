@@ -3,9 +3,9 @@
 import { mc, stage } from '../shared/rules-course.mjs';
 import { court, referee, clocks, steps, table, moving } from './art.mjs';
 
-const arrowBoard = (dir, note) => `<svg class="rc-svg" viewBox="0 0 420 150" role="img" aria-label="交替拥有箭头指向${dir === 'r' ? '右' : '左'}" xmlns="http://www.w3.org/2000/svg"><rect width="420" height="150" rx="16" fill="#101826"/><text x="210" y="30" text-anchor="middle" font-size="15" fill="#9fb3c8" font-family="'Noto Sans SC',system-ui">记录台 · 交替拥有箭头</text>
- <g transform="translate(210 82) ${dir === 'r' ? '' : 'scale(-1 1)'}"><path d="M-110 -14H50V-40L110 0L50 40V14H-110Z" fill="#ffc533"><animate attributeName="opacity" values="1;.55;1" dur="1.6s" repeatCount="indefinite"/></path></g>
- <text x="210" y="138" text-anchor="middle" font-size="14" fill="#f2f6fb" font-family="'Noto Sans SC',system-ui">${note}</text></svg>`;
+const arrowBoard = (dir, note) => `<svg class="rc-svg animated" data-kind="possession" viewBox="0 0 420 150" role="img" aria-label="交替拥有箭头指向${dir === 'r' ? '右' : '左'}" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="fb-possession-case" x2="0" y2="1"><stop stop-color="#2d4256"/><stop offset="1" stop-color="#0f1e2c"/></linearGradient><pattern id="fb-possession-led" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.3" fill="#ffe5a0" opacity=".55"/></pattern></defs><rect x="2" y="2" width="416" height="146" rx="14" fill="url(#fb-possession-case)" stroke="#6c8193" stroke-width="1.5"/><path d="M18 8H402" stroke="#a9bdcc" opacity=".3"/><text x="210" y="28" text-anchor="middle" font-size="15" fill="#b1c3d0" font-family="'Noto Sans SC',system-ui">记录台 · 交替拥有箭头</text><rect x="70" y="40" width="280" height="82" rx="8" fill="#091521" stroke="#506477"/>
+ <g transform="translate(210 81) ${dir === 'r' ? '' : 'scale(-1 1)'}"><g><path d="M-110 -12H50V-32L108 0L50 32V12H-110Z" fill="#e5ad3c" stroke="#ffd783" stroke-width="1.2"/><path d="M-110 -12H50V-32L108 0L50 32V12H-110Z" fill="url(#fb-possession-led)"/><animate attributeName="opacity" values="1;.55;1" dur="1.6s" repeatCount="indefinite"/></g></g>
+ ${[[12,13],[408,13],[12,137],[408,137]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2.5" fill="#5a7081"/><path d="M${x-1} ${y}h2" stroke="#adbdc9" stroke-width=".7"/>`).join('')}<text x="210" y="139" text-anchor="middle" font-size="13" fill="#d9e4ec" font-family="'Noto Sans SC',system-ui">${note}</text></svg>`;
 
 export const unitsA = [
 { id: 'fb01', icon: '🏟', title: '球场、球篮与球队', stages: [
@@ -15,7 +15,7 @@ export const unitsA = [
     why: '统一的尺寸让全世界的比赛公平可比：在北京投进的三分，和在巴黎投进的三分是同一个距离。',
     scenario: '比赛中解说常说“他的脚尖压线了，只能算两分”——就是因为三分线本身属于两分区。下面这张半场图里，你能找到三分线、限制区和无撞人半圆区吗？',
     ref: 'OBR 2026 第 2 条 球场', diagrams: [
-      { svg: court({ hl: ['three', 'paint', 'nocharge'], labels: [{ x: 7.5, y: 7.6, text: '罚球线 · 距端线 5.80 m', w: 5.2 }, { x: 3.2, y: 10.4, text: '三分线 6.75 m', w: 3.4 }, { x: 11.6, y: 2.1, text: '无撞人半圆区 1.25 m', w: 4.4 }, { x: 7.5, y: 4.4, text: '限制区 4.90 m 宽', w: 3.9 }], alt: '半场示意图：三分线、限制区、无撞人半圆区' }), cap: '半场俯视图（按 OBR 2026 第 2 条比例绘制）' }
+      { svg: court({ hl: ['three', 'paint', 'nocharge'], labels: [{ x: 7.5, y: 9.5, text: '罚球线 · 5.80 m', w: 4.8, anchor: [7.5, 5.8] }, { x: 3.0, y: 11.8, text: '三分线 6.75 m', w: 3.4, anchor: [2.1, 5.625] }, { x: 11.9, y: 3.6, lines: ['无撞人半圆区', '1.25 m'], text: '无撞人半圆区 1.25 m', w: 3.4, anchor: [8.53, 2.28] }, { x: 3, y: 3.4, lines: ['限制区', '宽 4.90 m'], text: '限制区 4.90 m 宽', w: 3.4, anchor: [5.05, 3.4] }], alt: '半场示意图：三分线、限制区、无撞人半圆区' }), cap: '半场俯视图（按 OBR 2026 第 2 条比例绘制）' }
     ] }, [
     mc('fb01-01-q1', '一名队员在三分线外起跳投篮，但起跳时脚尖踩在三分线上。球进了，算几分？', ['2 分：三分线属于两分区', '3 分：脚大部分在线外', '1 分', '由投篮人自己选择'], '三分线本身属于两分区，起跳时踩线就是在两分区投篮，进球得 2 分。', '想一想：线本身属于哪一边？'),
     mc('fb01-01-q2', '运球队员的脚后跟碰到了边线，但球一直在场内。裁判应该怎么判？', ['出界违例，球判给对方', '不算出界，因为球在场内', '技术犯规', '继续比赛，只是提醒'], '边线本身属于界外。队员身体任何部分碰到界线或界外地面，他就处于界外；持球（运球）队员出界，球判给对方。', '界线属于场内还是场外？'),
@@ -73,7 +73,7 @@ export const unitsA = [
     why: '真实跳球时高个子永远占便宜，交替拥有让球权轮流，更公平，也让比赛更快恢复。',
     scenario: '红蓝两名队员同时死死抱住球，裁判鸣哨、双手拇指向上做“跳球”手势，然后看记录台：箭头指向红队进攻方向——红队掷球入界，箭头随即转向蓝队。',
     ref: 'OBR 2026 第 12 条', diagrams: [
-      { svg: court({ full: true, hl: ['centre'], tokens: [{ x: 13.3, y: 7.5, t: 'a', n: 15 }, { x: 14.7, y: 7.5, t: 'b', n: 14 }, { x: 14, y: 4.2, t: 'ref' }], balls: [{ x: 14, y: 6.4 }], anim: m => moving(m, 'ball', 'M14 7.2L14 5.4L14 7.2', 1.6, { kp: '0;.5;1', kt: '0;.5;1' }), labels: [{ x: 14, y: 12.6, text: '第 1 节开始：中圈跳球', w: 5.4 }], alt: '中圈跳球动画' }), cap: '动画：第 1 节开始的中圈跳球', anim: 'jump-ball' },
+      { svg: court({ full: true, hl: ['centre'], tokens: [{ x: 13.3, y: 7.5, t: 'a', n: 15 }, { x: 14.7, y: 7.5, t: 'b', n: 14 }, { x: 14, y: 4.2, t: 'ref' }], anim: m => moving(m, 'ball', 'M14 7.2L14 5.4L14 7.2', 1.6, { still: [14, 5.4], kp: '0;.5;1', kt: '0;.5;1' }), labels: [{ x: 14, y: 12.6, text: '第 1 节开始：中圈跳球', w: 5.4 }], alt: '中圈跳球动画' }), cap: '动画：第 1 节开始的中圈跳球', anim: 'jump-ball' },
       { svg: arrowBoard('r', '下一次跳球情况：箭头指向的一方获得球权'), cap: '交替拥有箭头' }
     ] }, [
     mc('fb02-02-q1', '第 3 节比赛中两名对手同时紧握球，谁都抢不走。裁判怎么恢复比赛？', ['按交替拥有箭头，由箭头指向的一队掷球入界', '在最近的圆圈重新跳球', '由主队掷球', '由刚才控球的一队掷球'], '除第 1 节开始外，所有跳球情况都用交替拥有程序。', '真实跳球一场只有一次。'),
@@ -133,7 +133,7 @@ export const unitsA = [
     why: '出手的动作已经完成，结果不能被一声铃“抹掉”；这样最后一投才有悬念。',
     scenario: '决赛最后一投！红 11 号出手 0.1 秒后计时钟归零，球在空中划出弧线，刷网而入——裁判示意进球有效，红队绝杀。',
     ref: 'OBR 2026 第 9、16、29 条', diagrams: [
-      { svg: court({ tokens: [{ x: 4.2, y: 8.8, t: 'a', n: 11 }], extra: '', anim: m => moving(m, 'ball', 'M4.6 8.4Q5.4 1.2 7.5 1.6', 2.4, { kp: '0;1;1', kt: '0;.85;1' }), labels: [{ x: 7.5, y: 12.4, text: '先出手，后响铃 → 进球有效', w: 6.2 }], alt: '绝杀：出手后铃响，球进有效' }), cap: '动画：出手在先、铃声在后', anim: 'buzzer-beater' },
+      { svg: court({ tokens: [{ x: 4.2, y: 8.8, t: 'a', n: 11 }], extra: '', anim: m => moving(m, 'ball', 'M4.6 8.4Q5.4 1.2 7.5 1.6', 2.4, { still: [6.1, 3.2], kp: '0;1;1', kt: '0;.85;1' }), labels: [{ x: 7.5, y: 12.4, text: '先出手，后响铃 → 进球有效', w: 6.2 }], alt: '绝杀：出手后铃响，球进有效' }), cap: '动画：出手在先、铃声在后', anim: 'buzzer-beater' },
       { svg: clocks({ game: '0:00.0', shot: 7, period: '第 4 节', note: '铃响时球已离手' }), cap: '铃响时球已在空中' }
     ] }, [
     mc('fb03-03-q1', '球离手后比赛计时钟信号响，球随后进篮。', ['进球有效', '进球无效', '重赛最后 1 秒', '算 1 分'], '出手在先，铃响在后，球进有效。', '关键是“先后顺序”。'),
@@ -167,7 +167,7 @@ export const unitsA = [
     why: '在活球时换人会让场上短暂出现 6 个人，造成混乱；统一的窗口让比赛有序。',
     scenario: '第 4 节 1:20，蓝队得分停表，红队教练想换人。记录台发出信号，裁判招手，红队完成替换；此时蓝队也换了一名防守好的队员上场。',
     ref: 'OBR 2026 第 19 条', diagrams: [
-      { svg: court({ full: true, tokens: [{ x: 14, y: 16, t: 'a', n: 21, tag: '替补' }, { x: 13.4, y: 13.8, t: 'a', n: 8, tag: '下场' }, { x: 14.6, y: 12.3, t: 'ref' }], arrows: [{ d: 'M14 15.3L14 14.6' }, { d: 'M13.2 13.2L12.8 15.6', kind: 'run' }], labels: [{ x: 14, y: 10.6, text: '死球 + 停表 → 招手换人', w: 5.4 }], alt: '在记录台前换人' }), cap: '替补队员在记录台前等待裁判招手' }
+      { svg: court({ full: true, padding: { bottom: 3.4 }, bench: true, tokens: [{ x: 14, y: 16, t: 'a', n: 21, tag: '替补' }, { x: 13.4, y: 13.8, t: 'a', n: 8, tag: '下场' }, { x: 14.6, y: 12.3, t: 'ref' }], arrows: [{ d: 'M14 15.3L14 14.6' }, { d: 'M13.2 13.2L12.8 15.6', kind: 'run' }], labels: [{ x: 14, y: 10.6, text: '死球 + 停表 → 招手换人', w: 5.4 }], alt: '在记录台前换人' }), cap: '替补队员在记录台前等待裁判招手' }
     ] }, [
     mc('fb04-02-q1', '活球正在进行中，替补队员自己跑进场换下队友。', ['不允许：只能在替换机会且裁判招手后进场', '允许，只要很快', '允许，但要告诉对方', '只在最后 2 分钟允许'], '替换只能在替换机会，由裁判示意后进行。', '“窗口”是什么时候？'),
     mc('fb04-02-q2', '第 4 节最后 2:00，红队投篮命中停表。哪一队可以主动请求替换？', ['蓝队（失分方）', '红队（得分方）', '两队都不行', '只有主队'], '最后 2:00 投篮命中后，失分方有替换机会；若失分方换人，得分方也可以换。', '谁“吃亏”谁先有机会。'),
@@ -201,7 +201,7 @@ export const unitsA = [
     scenario: '红 7 号运球突破，在右脚落地的同时把球收稳（零步），接着左脚第 1 步、右脚第 2 步起跳上篮——合法。如果再多踩一步，就是走步。',
     ref: 'OBR 2026 第 25 条', diagrams: [
       { svg: steps([{ l: 'R', ball: 'hold', txt: '收球：零步', head: '第 0 步' }, { l: 'L', ball: 'hold', txt: '第 1 步', head: '第 1 步' }, { l: 'R', ball: 'air', txt: '第 2 步起跳', head: '第 2 步' }, { l: 'L', ball: 'hold', txt: '再落地＝走步', head: '多一步', bad: true }], { alt: '收球零步与两步分解' }), cap: '脚步分解：收球时着地的脚不算步' },
-      { svg: court({ tokens: [{ x: 11.5, y: 8.5, t: 'a', n: 7 }], anim: m => moving(m, 'token', 'M11.5 9.5L10.2 6.2L9.1 4.3L8.3 2.9', 3.2, { n: 7, ball: true, kp: '0;1;1', kt: '0;.8;1' }), labels: [{ x: 7.5, y: 12.4, text: '运球 → 收球 → 两步上篮', w: 5.8 }], alt: '突破上篮的路线动画' }), cap: '动画：两步上篮的路线', anim: 'euro-step' }
+      { svg: court({ anim: m => moving(m, 'token', 'M11.5 9.5L10.2 6.2L9.1 4.3L8.3 2.9', 3.2, { n: 7, ball: true, still: [9.1, 4.3], kp: '0;1;1', kt: '0;.8;1' }), labels: [{ x: 7.5, y: 12.4, text: '运球 → 收球 → 两步上篮', w: 5.8 }], alt: '突破上篮的路线动画' }), cap: '动画：两步上篮的路线', anim: 'euro-step' }
     ] }, [
     mc('fb05-01-q1', '队员运球后，右脚着地的瞬间把球收稳，接着左脚、右脚两步后起跳投篮。', ['合法：收球时着地的脚是“零步”', '走步：一共踩了三下', '两次运球', '技术犯规'], '收球时正在地上的脚不算步；之后左、右两步合法。', '先找“零步”。'),
     mc('fb05-01-q2', '双脚站立接球，抬起左脚后，右脚就是中枢脚。他想开始运球，必须？', ['在右脚离地之前让球离手', '先跳一下', '先换中枢脚', '随时都可以'], '要开始运球，中枢脚离地前球必须离手。', '中枢脚什么时候能离地？'),

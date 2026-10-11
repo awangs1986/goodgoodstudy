@@ -3,11 +3,25 @@
 export const mc = (id, prompt, options, explanation, hint, svg) => ({ id, type: 'choice', prompt, options, answer: options[0], explanation, hint, ...(svg ? { svg } : {}) });
 // stage(): one "teach first, then test" stage. teach = { hook, rule: [], why, scenario, ref, diagrams: [{ svg, cap, anim? }], caution? }
 export const stage = (id, title, teach, quiz) => ({ id, title, teach, quiz });
+// The moving part declares a deliberate, readable still frame. Removing SMIL alone
+// leaves objects authored at the origin in the top-left corner of the quiz image.
+// These SVG strings are bundled course artwork, never untrusted input.
+export function staticDiagram(svg) {
+  return String(svg)
+    .replace(/<animate\w*\b[^>]*\/>/g, '')
+    .replace(/<animate\w*\b[^>]*>[\s\S]*?<\/animate\w*>/g, '')
+    .replace(/<[^>]+\sdata-static-transform="([^"]*)"[^>]*>/g, (tag, transform) => {
+      const clean = tag.replace(/\sdata-static-transform="[^"]*"/, '').replace(/\stransform="[^"]*"/, '');
+      return clean.replace(/(\/?>)$/, ` transform="${transform}" data-static-frame="true"$1`);
+    })
+    .replace(/class="([^"]*)"/g, (_, value) => `class="${value.split(/\s+/).filter(name => name !== 'animated').join(' ')}"`);
+}
 export function buildCourse(units, prefix) {
   const chapters = units.map((unit, chapterIndex) => {
     const stageLessons = unit.stages.map((s, localIndex) => {
       // Scenario picture for the first quiz question: reuse the stage's scenario diagram (static copy) unless the question brings its own.
-      const scene = [...(s.teach.diagrams ?? [])].reverse().find(d => !d.svg.includes('data-kind="info"'))?.svg?.replace(/class="rc-svg animated"/, 'class="rc-svg"').replace(/<animate\w*\b[^>]*\/>/g, '').replace(/<animate\w*\b[^>]*>[\s\S]*?<\/animate\w*>/g, '');
+      const diagram = [...(s.teach.diagrams ?? [])].reverse().find(d => !d.svg.includes('data-kind="info"'))?.svg;
+      const scene = diagram ? staticDiagram(diagram) : undefined;
       // Only attach it to a question whose answer the picture does not give away.
       const target = scene ? s.quiz.findIndex(q => !q.svg && !q.options.slice(0).some(o => o.length > 1 && scene.includes(o))) : -1;
       const quiz = s.quiz.map((q, i) => (i === target ? { ...q, svg: scene } : q));
