@@ -1,4 +1,4 @@
-// F1 赛车规则课：先学规则（图解 + 真实情景）→ 再当干事（情景选择题）。
+// F1 赛车规则课：测试模式先答题后看讲解，学习模式可自由查看全部内容。
 // 稳定 ID：阶段 f105-02、单元测试 f105-exam；题目 f105-02-q1、f105-exam-1。存档按这些 ID 记录。
 import { buildCourse } from '../shared/rules-course.mjs';
 import { unitsA } from './content-a.mjs';

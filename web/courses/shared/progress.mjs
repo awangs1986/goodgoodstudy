@@ -13,6 +13,8 @@ export function normalizeProgress(value, lessons, language = 'zh-CN') {
     // Optional per-course game state (geography voyage: gold, ship, supplies, location, log). Plain JSON object.
     voyage: record(value?.voyage),
     scores: map('scores'), assisted: map('assisted'), hints: map('hints'),
+    // F1's first-answer assessment is separate from legacy learn-then-quiz progress.
+    ...(value?.assessment ? { assessment: record(value.assessment) } : {}),
     answerReveals: [...new Set((Array.isArray(value?.answerReveals) ? value.answerReveals : []).filter(id => ids.has(id)))],
     consecutiveFailures: map('consecutiveFailures'),
     mapChapter: Number.isInteger(value?.mapChapter) && value.mapChapter >= 0 ? Math.min(value.mapChapter, lessons.at(-1).chapterIndex) : 0,
