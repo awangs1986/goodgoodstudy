@@ -1,5 +1,6 @@
 import { chapter as day01Meta, lessons as day01Source } from './lessons.mjs';
 import { solutions as day01Solutions } from './solutions.mjs';
+import { day00 } from './day00.mjs';
 import { day02 } from './day02.mjs';
 import { day03 } from './day03.mjs';
 import { day04 } from './day04.mjs';
@@ -21,7 +22,7 @@ const day01 = {
   }))
 };
 
-export const chapters = [day01, day02, day03, day04, day05, day06, day07];
+export const chapters = [day00, day01, day02, day03, day04, day05, day06, day07];
 // Positions are derived after assembly; IDs (the save-file key) are fixed in each lesson's source.
 chapters.forEach((chapter, chapterIndex) => {
   chapter.total = chapter.lessons.length;

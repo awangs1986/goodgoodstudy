@@ -4,8 +4,20 @@ const prelude = 'using System;\nusing System.Collections.Generic;\n\n';
 const linqPrelude = 'using System;\nusing System.Collections.Generic;\nusing System.Linq;\n\n';
 const t = (id, title, topic, teach, objective, code, output, options = {}) => ({ id, title, topic, teach, objective, solution: (options.linq ? linqPrelude : prelude) + code, tests: [{ input: '', output }], ...options });
 const inputTests = (...pairs) => pairs.map(([input, output]) => ({ input, output }));
+// Predict-the-output lesson: the shown snippet is the solution, so the reference runner proves the marked answer.
+const predict = (id, title, topic, teach, objective, code, choices, answer, options = {}) => t(id, title, topic, teach, objective, code, choices[answer], { type: 'predict', choices, answer, ...options });
 
 export const chapters = [
+  {
+    id: 'cs00', title: '第 0 课 · 启程码头', subtitle: '程序是什么、编译与运行、读懂报错',
+    introduction: '还没写过一行代码？从这里开始。程序就是写给计算机的任务清单，计算机从上到下一条条照做。你写的 C# 源代码要先经过编译器检查和翻译，才能变成能运行的程序；屏幕上显示的文字叫输出。写错时编译器会报错，并告诉你第几行出了什么问题。',
+    lessons: [
+      t('cs00-01', '你的第一个程序', '程序的结构', 'Program.cs 里写的每一行都是给计算机的指令，从上到下依次执行。Console.WriteLine("...") 会把引号里的文字显示到屏幕上，并换到下一行。using System; 让我们能直接使用 Console。这一题不用写代码：先点“运行”看看输出，再点“提交”。', '不修改代码，先运行，再提交。程序应输出 Hello, Adventurer!。', 'Console.WriteLine("Hello, Adventurer!");', 'Hello, Adventurer!\n', { teachFigure: 'pipeline', starter: prelude + 'Console.WriteLine("Hello, Adventurer!");\n', hints: ['这一题不用改代码，直接点“▶ 运行”。', '运行结果会显示在下方，应该能看到 Hello, Adventurer!。', '确认输出正确后点“◆ 提交符文试炼”。'] }),
+      predict('cs00-02', '从源代码到屏幕', '编译与运行', '按下运行时，编译器先通读整份源代码，检查拼写和语法；全部合格才把它翻译成程序并运行。程序严格从上到下执行：先执行第一条 WriteLine，再执行第二条。每条 WriteLine 输出后都会换行。这一题先别运行，在脑子里当一回计算机，选出程序的输出。', '阅读下面的程序，选出它运行后完整的输出。', 'Console.WriteLine("Lamp on");\nConsole.WriteLine("Ship in");', ['Lamp on\nShip in\n', 'Ship in\nLamp on\n', 'Lamp onShip in\n', 'Console.WriteLine("Lamp on");\n'], 0, { teachFigure: 'pipeline', hints: ['程序从第一行开始，一行一行往下执行。', '第一条输出 Lamp on 并换行，第二条接着在下一行输出。', '引号和 Console.WriteLine 本身不会出现在输出里。'] }),
+      t('cs00-03', '读懂第一条报错', '编译报错与行号', '写错是学编程的日常。C# 的每条语句都要以分号 ; 结尾。下面的代码故意漏了一个分号：先运行，读报错。报错形如 (4,40): error CS1002: ; expected，括号里第一个数字是行号，第二个是列号，CS1002 是错误编号，后面是原因“这里需要分号”。只修第一条报错，再运行一次。', '先运行，读懂报错的行号和原因；补好代码，让程序输出 Hello, Adventurer!。', 'Console.WriteLine("Hello, Adventurer!");', 'Hello, Adventurer!\n', { type: 'fix', starter: prelude + 'Console.WriteLine("Hello, Adventurer!")\n', hints: ['先运行一次，找到报错里括号中的行号。', '报错说 ; expected：那一行末尾少了东西。', '在 WriteLine(...) 的右括号后面加上分号。'] }),
+      t('cs00-04', '一个字母的错误', '拼写与大小写', 'C# 区分大小写：WriteLine 写成 Writeline，编译器就找不到这个方法，会报 CS0117（“Console 不包含 Writeline 的定义”）。看到“找不到名字/不包含定义”的报错，第一反应就是逐个字母检查拼写和大小写。', '修好拼写错误，让程序依次输出 Map found 和 Gate open 两行。', 'Console.WriteLine("Map found");\nConsole.WriteLine("Gate open");', 'Map found\nGate open\n', { type: 'fix', starter: prelude + 'Console.WriteLine("Map found");\nConsole.Writeline("Gate open");\n', hints: ['报错里提到了哪个名字找不到？', '对比两行：哪一行的 WriteLine 大小写不一样？', '把 Writeline 改成 WriteLine（L 大写）。'] })
+    ]
+  },
   {
     id: 'cs01', title: '雾港启程', subtitle: '输出、变量与表达式',
     introduction: '程序按从上到下的顺序执行。C# 区分大小写，语句通常以分号结束。Console.WriteLine(...) 输出一行文字；字符串放在双引号中。我们采用 C# 的顶层语句写法，不必先背诵 Main 方法。变量是有名字、有类型的储物格：int 存整数，string 存文字。',
@@ -251,8 +263,8 @@ chapters.at(-1).lessons.push(t(
 
 export const lessons = chapters.flatMap((chapter, chapterIndex) => chapter.lessons.map((lesson, localIndex) => Object.assign(lesson, {
   chapterId: chapter.id, chapterIndex, localIndex,
-  starter: lesson.starter ?? (lesson.linq ? linqPrelude : prelude) + '// 先阅读知识说明，再在这里完成任务。\n',
-  hints: [
+  starter: lesson.starter ?? (lesson.type === 'predict' ? lesson.solution : null) ?? (lesson.linq ? linqPrelude : prelude) + '// 先阅读知识说明，再在这里完成任务。\n',
+  hints: lesson.hints ?? [
     lesson.hint ?? `先确定本题要使用的知识点：${lesson.topic}。`,
     lesson.tests.some(test => test.input) ? '每次 ReadLine 读取一行。先把输入存入变量，再计算、更新状态，最后输出。' : '按任务要求逐项声明数据和执行动作；检查大小写、分号和输出顺序。',
     '用示例输入手算一次结果。遇到循环，检查初始值、继续条件和每轮更新；遇到分支，检查边界是否包含等号。'
