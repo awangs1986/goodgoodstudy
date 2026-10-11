@@ -6,7 +6,18 @@ import { r, T } from './teach/helpers.mjs';
 const p = (body, helpers = '', headers = '#include <stdio.h>') => cProgram(body, helpers, headers);
 const at = id => ({ id, title: '', scene: '' });
 const lesson = (chapterId, spec) => makeLesson(at(chapterId), spec);
+const reviewEn = {
+  'D2-R01': ['Review: Echoes in the Fog Harbor', 'printf and variables'],
+  'D3-R01': ['Review: The Market Ledger', 'Arithmetic and integer division'],
+  'D4-R01': ['Review: The Forest Fork', 'if / else-if'],
+  'D5-R01': ['Review: Counting Echoes', 'Loops and break'],
+  'D6-R01': ['Review: The Spell Scroll', 'Functions and return values'],
+  'D6-R02': ['Review: Star Map Cells', 'Arrays and strings'],
+  'D7-R01': ['Review: Struct Records', 'Structs'],
+  'D7-R02': ['Review: The Address Box', 'Pointer basics']
+};
 const review = (chapterId, id, title, knowledge, teach, hints, code, choices, answer) => lesson(chapterId, {
+  en: { title: reviewEn[id][0], topic: reviewEn[id][1] },
   id, difficulty: '★☆☆ 入门', title, knowledge, type: 'predict', review: true, minutes: 5,
   ...T(teach, undefined, hints), task: '复习：预测输出。', objective: '复习上一章：阅读编辑器里的程序，选出它<b>完整的输出</b>（·表示空格，↵表示换行）。',
   choices, answer, solution: code
