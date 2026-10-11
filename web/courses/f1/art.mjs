@@ -111,13 +111,13 @@ export function tower(rows, o = {}) {
 }
 export function barChart(values, o = {}) {
   const W = o.w ?? 600, H = 230, bw = (W - 40) / values.length, max = Math.max(...values.map(v => v.v));
-  return `<svg class="rc-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.alt ?? '柱状图')}" xmlns="http://www.w3.org/2000/svg"><rect width="${W}" height="${H}" rx="14" fill="#0f1726"/>
+  return `<svg class="rc-svg" data-kind="info" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.alt ?? '柱状图')}" xmlns="http://www.w3.org/2000/svg"><rect width="${W}" height="${H}" rx="14" fill="#0f1726"/>
    <text x="20" y="30" font-size="16" font-weight="800" fill="#fff" ${FONT}>${esc(o.title ?? '')}</text>
    ${values.map((v, i) => { const bh = v.v / max * 140, x = 20 + i * bw; return `<rect x="${x + 4}" y="${200 - bh}" width="${bw - 8}" height="${bh}" rx="4" fill="${v.c ?? (i === 0 ? C.gold : '#4f86ff')}"/><text x="${x + bw / 2}" y="${194 - bh}" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="system-ui">${v.v}</text><text x="${x + bw / 2}" y="218" text-anchor="middle" font-size="12" fill="#c9d4e5" ${FONT}>${esc(v.k)}</text>`; }).join('')}</svg>`;
 }
 export function info(rows, o = {}) {
   const h = 46, w = o.w ?? 600;
-  return `<svg class="rc-svg" viewBox="0 0 ${w} ${rows.length * h + (o.title ? 50 : 10)}" role="img" aria-label="${esc(o.title ?? '规则表')}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="100%" rx="14" fill="#0f1726"/><g ${FONT}>
+  return `<svg class="rc-svg" data-kind="info" viewBox="0 0 ${w} ${rows.length * h + (o.title ? 50 : 10)}" role="img" aria-label="${esc(o.title ?? '规则表')}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="100%" rx="14" fill="#0f1726"/><g ${FONT}>
    ${o.title ? `<text x="18" y="32" font-size="17" font-weight="800" fill="#fff">${esc(o.title)}</text>` : ''}
    ${rows.map((r, i) => { const y = (o.title ? 44 : 6) + i * h; return `<rect x="10" y="${y}" width="${w - 20}" height="${h - 6}" rx="9" fill="${i % 2 ? '#162036' : '#1b2640'}"/><rect x="10" y="${y}" width="8" height="${h - 6}" rx="3" fill="${r.c ?? C.gold}"/><text x="30" y="${y + 26}" font-size="15" font-weight="800" fill="#fff">${esc(r.k)}</text><text x="${o.split ?? 210}" y="${y + 26}" font-size="14" fill="#c9d4e5">${esc(r.v)}</text>`; }).join('')}</g></svg>`;
 }
