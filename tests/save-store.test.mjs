@@ -4,7 +4,7 @@ import { emptySave, normalizeSave } from '../web/courses/c/save-store.mjs';
 
 test('new saves use JSON schema version 2', () => {
   assert.equal(emptySave().version, 2);
-  assert.equal(Object.keys(emptySave().answerTokens).length, 7);
+  assert.equal(Object.keys(emptySave().answerTokens).length, 10);
   assert.equal(emptySave().answerTokens.day07, 3);
   assert.equal(emptySave().aiTutorUses.day07, false);
   assert.deepEqual(emptySave().consecutiveFailures, {});

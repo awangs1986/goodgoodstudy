@@ -40,7 +40,7 @@ export const csharpExtras = [
     '修好程序：读取一个整数，输出它加 1 的结果。', 'int age = Console.ReadLine() ?? "0";\nConsole.WriteLine(age + 1);\n', 'int age = int.Parse(Console.ReadLine() ?? "0");\nConsole.WriteLine(age + 1);', '',
     ['读报错 CS0029：哪种类型不能变成哪种类型？', 'ReadLine 返回 string，需要转换成 int。', '写成 int.Parse(Console.ReadLine() ?? "0")。'], { tests: [{ input: '18\n', output: '19\n' }, { input: '0\n', output: '1\n' }], required: ['int.Parse'] }),
   // ----- cs03 -----
-  review('cs03', 'cs03-r1', '复习：集市的账本', '复习输入与整数运算', '复习第 2 章：整数除法会丢掉小数，% 求余数。',
+  review('cs03', 'cs03-r1', '复习：集市的账本', '复习输入与整数运算', '复习第 2 章：整数除法会丢掉小数，% 求余数。例如 17 / 3 得 5，17 % 3 得 2。先算出每个变量的值，再看输出格式。',
     'int gold = 17;\nConsole.WriteLine($"{gold / 3} {gold % 3}");', ['5 2\n', '5.6 2\n', '5 1\n', '6 2\n'],
     ['17 除以 3 商几？', '整数除法不保留小数。', '17 = 3 × 5 + 2。']),
   predict('cs03', 'cs03-03', 'cs03-p1', '预测：阶梯从上往下', '预测输出：else if 的顺序', 'else if 阶梯从上往下检查，第一个成立的分支执行后，后面的都跳过。所以条件的顺序会改变结果。',
@@ -53,7 +53,7 @@ export const csharpExtras = [
     '把 ____ 换成正确的运算符：金币大于或等于 8 时输出 Buy，否则输出 Save。', 'int gold = int.Parse(Console.ReadLine() ?? "0");\nif (gold ____ 8) Console.WriteLine("Buy");\nelse Console.WriteLine("Save");\n', 'int gold = int.Parse(Console.ReadLine() ?? "0");\nif (gold >= 8) Console.WriteLine("Buy");\nelse Console.WriteLine("Save");', '',
     ['金币正好是 8 时应该买。', '需要“大于或等于”。', '填 >=。'], { tests: [{ input: '8\n', output: 'Buy\n' }, { input: '7\n', output: 'Save\n' }, { input: '20\n', output: 'Buy\n' }] }),
   // ----- cs04 -----
-  review('cs04', 'cs04-r1', '复习：森林的路标', '复习条件与逻辑', '复习第 3 章：&& 要求两边都成立；! 取反。',
+  review('cs04', 'cs04-r1', '复习：森林的路标', '复习条件与逻辑', '复习第 3 章：&& 要求两边都成立；! 取反。先把每个比较算成 true 或 false，再按 && 和 ! 的规则组合，最后看输出的是哪一行。',
     'int level = 3;\nbool hasKey = false;\nif (level >= 3 && !hasKey) Console.WriteLine("Find the key");\nelse Console.WriteLine("Go");', ['Find the key\n', 'Go\n', 'Find the key\nGo\n', '（没有输出）\n'],
     ['level >= 3 成立吗？', '!hasKey 是 !false，也就是 true。', '两边都成立，执行 if 分支。']),
   predict('cs04', 'cs04-08', 'cs04-p1', '预测：台阶有几级', '预测输出：嵌套循环', '嵌套循环里，外层每走一步，内层都要完整跑一遍。这题内层的次数跟着外层变化（c <= r）。',

@@ -15,9 +15,9 @@ test('a new save defaults to English and preserves a valid language', () => {
   assert.equal(normalizeSave({ ...emptySave(), language: 'invalid' }).language, EN);
 });
 
-test('all 7 chapters and 140 lessons have complete English presentation text', () => {
-  assert.equal(chapters.length, 7);
-  assert.equal(lessons.length, 140);
+test('all 10 chapters and 184 lessons have complete English presentation text', () => {
+  assert.equal(chapters.length, 10);
+  assert.equal(lessons.length, 184);
   for (const chapter of chapters) {
     const visible = localizeChapter(chapter, EN);
     assert.doesNotMatch([visible.rune, visible.title, visible.subtitle, visible.description, visible.scene].join(' '), chinese, chapter.id);
