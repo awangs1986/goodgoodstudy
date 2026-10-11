@@ -35,7 +35,7 @@ function arrow(m, a) {
     dribble: `stroke="${C.ink}" stroke-width=".06" stroke-dasharray=".08 .1" marker-end="url(#${m}run)"`, bad: `stroke="${C.bad}" stroke-width=".08" marker-end="url(#${m}bad)"`, shot: `stroke="${C.ball}" stroke-width=".06" stroke-dasharray=".05 .12" stroke-linecap="round" marker-end="url(#${m}pass)"` }[a.kind ?? 'run'];
   return `<path d="${a.d}" fill="none" stroke-linecap="round" ${style}/>`;
 }
-const label = l => `<g><rect x="${l.x - (l.w ?? l.text.length * .3) / 2}" y="${l.y - .36}" width="${l.w ?? l.text.length * .3}" height=".52" rx=".14" fill="${l.bg ?? 'rgba(31,36,51,.86)'}"/><text x="${l.x}" y="${l.y}" text-anchor="middle" font-size=".3" font-weight="700" fill="${l.fg ?? '#fff'}" font-family="'Noto Sans SC','PingFang SC',system-ui,sans-serif">${esc(l.text)}</text></g>`;
+const label = l => { const w = Math.max(l.w ?? 0, l.text.length * .4 + .5); return `<g><rect x="${l.x - w / 2}" y="${l.y - .44}" width="${w}" height=".64" rx=".18" fill="${l.bg ?? 'rgba(31,36,51,.88)'}"/><text x="${l.x}" y="${l.y + .02}" text-anchor="middle" font-size=".38" font-weight="700" fill="${l.fg ?? '#fff'}" font-family="'Noto Sans SC','PingFang SC',system-ui,sans-serif">${esc(l.text)}</text></g>`; };
 
 // Half-court lines (portrait, basket at top). y = distance from the end line, x across the 15 m width.
 function halfLines(hl = []) {
@@ -119,7 +119,7 @@ export function clocks(o = {}) {
   return `<svg class="rc-svg" viewBox="0 0 ${o.fouls ? 440 : 330} 140" role="img" aria-label="${esc(o.alt ?? `比赛计时 ${o.game ?? '10:00'}，进攻计时 ${shot} 秒`)}" xmlns="http://www.w3.org/2000/svg">
    <rect x="2" y="2" width="${o.fouls ? 436 : 326}" height="136" rx="16" fill="#101826" stroke="#3a4b63" stroke-width="2"/>
    <text x="24" y="34" fill="#9fb3c8" font-size="14" font-family="system-ui">${esc(o.period ?? '第 4 节')} · 比赛计时</text>
-   <text x="24" y="92" font-size="48" font-weight="800" fill="#f2f6fb" font-family="ui-monospace,Menlo,monospace">${esc(o.game ?? '10:00')}</text>
+   <text x="24" y="92" font-size="${String(o.game ?? '10:00').length > 5 ? 38 : 48}" font-weight="800" fill="#f2f6fb" font-family="ui-monospace,Menlo,monospace" ${String(o.game ?? '10:00').length > 5 ? 'textLength="160" lengthAdjust="spacingAndGlyphs"' : ''}>${esc(o.game ?? '10:00')}</text>
    <rect x="196" y="22" width="112" height="96" rx="12" fill="#1b2638" stroke="${warn ? '#ff5a4e' : '#ffc533'}" stroke-width="2"/>
    <text x="252" y="40" text-anchor="middle" fill="#9fb3c8" font-size="12" font-family="system-ui">进攻计时</text>${anim}
    ${tf}<text x="24" y="124" fill="#7d8ea3" font-size="13" font-family="'Noto Sans SC',system-ui">${esc(o.note ?? '')}</text></svg>`;
