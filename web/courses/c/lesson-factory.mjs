@@ -43,7 +43,7 @@ export function makeLesson(chapter, rawSpec) {
     difficulty: spec.difficulty,
     knowledge: spec.knowledge,
     minutes: spec.minutes ?? defaultMinutes(spec.difficulty),
-    quote: spec.quote ?? `“${spec.title}不是障碍，而是第${chapter.day}枚符文留下的考验。”`,
+    quote: spec.quote ?? (Number.isInteger(chapter.day) && chapter.day > 0 ? `“${spec.title}不是障碍，而是第${chapter.day}枚符文留下的考验。”` : `“${spec.title}不是障碍，而是${chapter.title || "王冠之路"}上留下的考验。”`),
     story: spec.story ?? `${chapter.scene}${spec.task}`,
     objective,
     rules: `输入：${spec.input ? `<code>${spec.inputLabel ?? spec.input.trim()}</code>` : '无'}<br>核心知识：<code>${spec.knowledge}</code><br>建议在 ${spec.minutes ?? defaultMinutes(spec.difficulty)} 分钟内完成`,
