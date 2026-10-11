@@ -24,4 +24,4 @@
 .choice pre { margin: 0; font: 13px/1.55 Consolas, ui-monospace, monospace; white-space: pre-wrap; }
 .lesson-figure { margin: 10px 0; padding: 8px; border-radius: 12px; background: #fff; border: 1px dashed var(--lp-border); }
 .lesson-figure svg { display: block; width: 100%; height: auto; }
-.lesson-figure figcaption { font-size: 12.5px; text-align: center; color: #5a5470; }
+.lesson-figure figcaption { font-size: 14px; text-align: center; color: #5a5470; }

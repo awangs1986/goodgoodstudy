@@ -68,3 +68,14 @@
 .course-card[data-course-id="physics"] h2 { font-family: Georgia, "Songti SC", "Noto Serif SC", serif; }
 .course-card[data-course-id="olympiad"] { --card-accent: #ffc58a; --card-accent-2: #e8730c; background-image: radial-gradient(rgba(255,197,138,.18) 1px, transparent 1.4px); background-size: 16px 16px; }
 .course-card[data-course-id="olympiad"] .course-emblem::before { content: "∑"; font-size: 26px; font-weight: 800; }
+/* The course navigation bar is sticky at the top of the page. Every "scroll to the start of the lesson"
+   (scrollIntoView / anchors / focus) must stop below it, otherwise the first row of a lesson page — the
+   "← 返回…地图" button — ends up half hidden under the bar. One shared offset fixes it for every course. */
+:root { --course-nav-h: 52px; }
+.course-navigation { box-sizing: border-box; height: var(--course-nav-h); min-height: 0; }
+html { scroll-padding-top: calc(var(--course-nav-h) + 12px); }
+/* Course views that fill the window (C map / challenge screen) must leave room for that same bar,
+   otherwise the page is exactly one bar taller than the window and scrolls their top bar under it. */
+#courseRoot .view { min-height: calc(100vh - var(--course-nav-h)); }
+#courseRoot .challenge-shell { height: calc(100vh - 64px - var(--course-nav-h)); }
+#courseRoot .map-scene { min-height: calc(100vh - 64px - var(--course-nav-h)); }
