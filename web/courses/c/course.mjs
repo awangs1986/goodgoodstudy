@@ -7,6 +7,16 @@ import { day04 } from './day04.mjs';
 import { day05 } from './day05.mjs';
 import { day06 } from './day06.mjs';
 import { day07 } from './day07.mjs';
+import teachDay01 from './teach/day01.mjs';
+import teachDay02 from './teach/day02.mjs';
+import teachDay03 from './teach/day03.mjs';
+import teachDay04 from './teach/day04.mjs';
+import teachDay05 from './teach/day05.mjs';
+import teachDay06 from './teach/day06.mjs';
+import teachDay07 from './teach/day07.mjs';
+
+// Per-lesson teach text, minimal example and (for D2–D7) three tiered hints, keyed by fixed lesson ID.
+const teaching = { ...teachDay01, ...teachDay02, ...teachDay03, ...teachDay04, ...teachDay05, ...teachDay06, ...teachDay07 };
 
 const day01 = {
   ...day01Meta,
@@ -23,6 +33,7 @@ const day01 = {
 };
 
 export const chapters = [day00, day01, day02, day03, day04, day05, day06, day07];
+for (const chapter of chapters) for (const lesson of chapter.lessons) if (teaching[lesson.id]) Object.assign(lesson, teaching[lesson.id]);
 // Positions are derived after assembly; IDs (the save-file key) are fixed in each lesson's source.
 chapters.forEach((chapter, chapterIndex) => {
   chapter.total = chapter.lessons.length;

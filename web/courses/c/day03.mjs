@@ -20,11 +20,14 @@ export const day03 = buildChapter(meta, [
     else if (hp > 0) printf("Critical\n");
     else printf("Fallen\n");`) },
   { id:'D3-Q04', difficulty:'★★☆ 基础', title:'无法破防的石像鬼', knowledge:'最低伤害分支', task:'攻击8、防御12时，实际伤害最低仍为1。', expected:'Damage: 1', solution:p(String.raw`    int attack = 8, defense = 12;
-    int damage = attack > defense ? attack - defense : 1;
+    int damage = attack - defense;
+    if (damage < 1) damage = 1;
     printf("Damage: %d\n", damage);`) },
   { id:'D3-Q05', difficulty:'★★☆ 基础', title:'两座摇晃的吊桥', knowledge:'多条件判断', task:'队伍重60，两桥承重80和50，输出每座桥是否可走。', expected:['Bridge A: safe','Bridge B: unsafe'], solution:p(String.raw`    int weight = 60, a = 80, b = 50;
-    printf("Bridge A: %s\n", a >= weight ? "safe" : "unsafe");
-    printf("Bridge B: %s\n", b >= weight ? "safe" : "unsafe");`) },
+    if (a >= weight) printf("Bridge A: safe\n");
+    else printf("Bridge A: unsafe\n");
+    if (b >= weight) printf("Bridge B: safe\n");
+    else printf("Bridge B: unsafe\n");`) },
   { id:'D3-Q06', difficulty:'★★☆ 基础', title:'毒雾警报', knowledge:'逻辑或 ||', task:'中毒或生命低于20时发出 DANGER。', expected:'DANGER', must:[[/\|\|/,'请使用逻辑或 ||。']], solution:p(String.raw`    int poisoned = 0, hp = 16;
     if (poisoned || hp < 20) printf("DANGER\n");
     else printf("Safe\n");`) },
@@ -44,9 +47,10 @@ export const day03 = buildChapter(meta, [
     } else {
         printf("Not enough gold\n");
     }`) },
-  { id:'D3-Q10', difficulty:'★★☆ 基础', title:'命运硬币', knowledge:'三目运算符', task:'luck=63时用三目运算选择幸运路线。', expected:'Lucky route', must:[[/\?[\s\S]*:/,'请使用三目运算符，分支写法和变量名称可以自定。']], solution:p(String.raw`    int luck = 63;
-    const char *route = luck >= 50 ? "Lucky route" : "Cursed route";
-    printf("%s\n", route);`) },
+  { id:'D3-Q10', difficulty:'★★☆ 基础', title:'命运硬币', knowledge:'三目运算符', task:'luck=63时用三目运算选择幸运路线：幸运（luck≥50）走3步，否则走7步。', expected:['Lucky route','Steps: 3'], must:[[/\?[\s\S]*:/,'请使用三目运算符，分支写法和变量名称可以自定。']], solution:p(String.raw`    int luck = 63;
+    int steps = luck >= 50 ? 3 : 7;
+    printf(luck >= 50 ? "Lucky route\n" : "Cursed route\n");
+    printf("Steps: %d\n", steps);`) },
   { id:'D3-Q11', difficulty:'★★☆ 基础', title:'猫头鹰的方向谜语', knowledge:'switch 字符分支', task:'方向字符d应翻译为 East。', expected:'East', must:[[/\bswitch\s*\(/,'请使用 switch。']], solution:p(String.raw`    char direction = 'd';
     switch (direction) {
         case 'w': printf("North\n"); break;
