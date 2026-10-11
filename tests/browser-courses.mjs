@@ -13,6 +13,7 @@ import { lessons as phLessons } from '../web/courses/physics/course.mjs';
 import { lessons as omLessons } from '../web/courses/olympiad/course.mjs';
 import { lessons as fibaLessons } from '../web/courses/fiba/course.mjs';
 import { lessons as f1Lessons } from '../web/courses/f1/course.mjs';
+import { lessons as geoLessons } from '../web/courses/geography/course.mjs';
 import { gradeCode } from '../web/courses/csharp/judge.mjs';
 
 const root=process.cwd();
@@ -320,6 +321,33 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
     await backToLibrary();save=JSON.parse(await readFile(path.join(evidence,'save/progress.json'),'utf8'));
     assert.deepEqual(save.courses[id].completed,[first.id]);assert.ok(save.courses.olympiad.completed.length>0,'other progress untouched');
     pass(`${id}: teach diagram, quiz locked until read, scenario diagram, explanation, progress saved.`);
+  }
+
+  {
+    const card=page.locator('.course-card[data-course-id="geography-voyage"]');await card.scrollIntoViewIfNeeded();await card.locator('button').click();
+    await page.locator('.geo-voyage .gv-teach').waitFor();await page.addStyleTag({content:'#courseNavigation{position:static!important}'});
+    assert.equal(await page.locator('.gv-q').count(),0,'geo quiz locked before reading');
+    const c01=geoLessons[0];await page.locator('.gv-read').click();await page.locator('.gv-q').first().waitFor();
+    await page.locator(`[data-question-id="${c01.questions[0].id}"] input[value="${c01.questions[0].options[1]}"]`).check();
+    for(const q of c01.questions.slice(1))await page.locator(`[data-question-id="${q.id}"] input[value="${q.answer}"]`).check();
+    await page.locator('.gv-submit').click();await page.locator('.gv-summary.retry').waitFor();
+    await page.locator(`[data-question-id="${c01.questions[0].id}"] input[value="${c01.questions[0].answer}"]`).check();await page.locator('.gv-submit').click();await page.locator('.gv-summary.pass').waitFor();
+    await page.locator('.gv-tab[data-tab="port"]').click();await page.locator('.gv-hero-img').evaluate(img=>img.complete&&img.naturalWidth>0?1:new Promise((ok,fail)=>{img.onload=ok;img.onerror=fail;}));
+    await page.locator('.gv-climo img').evaluate(img=>img.complete&&img.naturalWidth>0?1:new Promise((ok,fail)=>{img.onload=ok;img.onerror=fail;}));
+    await page.screenshot({path:path.join(rulesShots,'geo-port.png'),fullPage:true});
+    await page.locator('.gv-read').click();const sh=geoLessons[1];for(const q of sh.questions)await page.locator(`[data-question-id="${q.id}"] input[value="${q.answer}"]`).check();
+    await page.locator('.gv-submit').click();await page.locator('.gv-summary.pass').waitFor();
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.locator('.gv-tab[data-tab="map"]').click();await page.locator('.gv-chart canvas').waitFor();await page.waitForTimeout(400);
+    await page.screenshot({path:path.join(rulesShots,'geo-map.png'),fullPage:true});
+    await page.locator('.gv-dest[data-port="busan"]').click();await page.locator('.gv-sail').click();await page.locator('.gv-hero-cap h2',{hasText:'釜山'}).waitFor();
+    await page.emulateMedia({reducedMotion:'no-preference'});
+    await page.locator('.gv-tab[data-tab="market"]').click();await page.screenshot({path:path.join(rulesShots,'geo-market.png'),fullPage:true});
+    await page.locator('.gv-tab[data-tab="finds"]').click();assert.ok(await page.locator('.gv-find.got').count()===1,'discovery collected');
+    const blank=await page.locator('.gv-chart canvas').count();assert.equal(blank,0);
+    await backToLibrary();save=JSON.parse(await readFile(path.join(evidence,'save/progress.json'),'utf8'));
+    const g=save.courses['geography-voyage'];assert.deepEqual(g.completed,['geo-c01','geo-shanghai']);assert.equal(g.voyage.at,'busan');assert.ok(g.voyage.gold>200,'quiz reward');assert.ok(g.voyage.day>0);
+    pass('Geography: teach-then-quiz, PNG chart + port art + climograph load, sailing to Busan consumes days, discovery + reward saved.');
   }
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(evidence,'06-mobile.png'),fullPage:true});
   assert.deepEqual(errors,[]);pass('No uncaught browser errors.');
