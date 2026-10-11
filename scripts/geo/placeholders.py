@@ -13,8 +13,7 @@ def card(lat, lon, title, sub, size, path, zoom=1.0):
     ov = Image.new('RGBA', size, (0, 0, 0, 0)); d = ImageDraw.Draw(ov)
     for i in range(size[1]):
         a = int(170 * max(0, (i / size[1] - .45) / .55)); d.line([(0, i), (size[0], i)], fill=(8, 18, 40, a))
-    d.text((size[0] * .05, size[1] * .68), title, font=font(int(size[1] * .1)), fill=(255, 226, 150))
-    d.text((size[0] * .05, size[1] * .82), sub, font=font(int(size[1] * .045)), fill=(220, 230, 245))
+    d.text((size[0] * .03, size[1] * .04), f'{title} · {sub}', font=font(int(size[1] * .04)), fill=(255, 236, 190, 200))
     Image.alpha_composite(im.convert('RGBA'), ov).convert('RGB').save(path, quality=82)
 for p in data['ports']:
     card(p['lat'], p['lon'], p['name'], '港口插画生成中（占位图）', (1280, 720), f"{root}/ports/{p['id']}.webp", 1.6)
