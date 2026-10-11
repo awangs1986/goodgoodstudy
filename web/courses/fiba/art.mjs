@@ -163,7 +163,7 @@ export function sideView(kind, o = {}) {
 // Simple info card diagram: big icons/rows (e.g. foul ladder, penalty table).
 export function table(rows, o = {}) {
   const h = 46, w = o.w ?? 560;
-  return `<svg class="rc-svg" viewBox="0 0 ${w} ${rows.length * h + (o.title ? 50 : 10)}" role="img" aria-label="${esc(o.title ?? '规则表')}" xmlns="http://www.w3.org/2000/svg"><g font-family="'Noto Sans SC','PingFang SC',system-ui,sans-serif">
+  return `<svg class="rc-svg" data-kind="info" viewBox="0 0 ${w} ${rows.length * h + (o.title ? 50 : 10)}" role="img" aria-label="${esc(o.title ?? '规则表')}" xmlns="http://www.w3.org/2000/svg"><g font-family="'Noto Sans SC','PingFang SC',system-ui,sans-serif">
    ${o.title ? `<text x="16" y="32" font-size="18" font-weight="800" fill="${C.ink}">${esc(o.title)}</text>` : ''}
    ${rows.map((r, i) => { const y = (o.title ? 44 : 6) + i * h; return `<rect x="6" y="${y}" width="${w - 12}" height="${h - 6}" rx="10" fill="${i % 2 ? '#f6f8fb' : '#fff'}" stroke="#dfe4ec"/><rect x="6" y="${y}" width="10" height="${h - 6}" rx="4" fill="${r.c ?? C.b}"/><text x="28" y="${y + 26}" font-size="15" font-weight="800" fill="${C.ink}">${esc(r.k)}</text><text x="${o.split ?? 200}" y="${y + 26}" font-size="14" fill="#3b4252">${esc(r.v)}</text>`; }).join('')}
   </g></svg>`;

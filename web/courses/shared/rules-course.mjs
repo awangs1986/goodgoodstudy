@@ -7,8 +7,10 @@ export function buildCourse(units, prefix) {
   const chapters = units.map((unit, chapterIndex) => {
     const stageLessons = unit.stages.map((s, localIndex) => {
       // Scenario picture for the first quiz question: reuse the stage's scenario diagram (static copy) unless the question brings its own.
-      const scene = s.teach.diagrams?.at(-1)?.svg?.replace(/class="rc-svg animated"/, 'class="rc-svg"').replace(/<animate\w*\b[^>]*\/>/g, '').replace(/<animate\w*\b[^>]*>[\s\S]*?<\/animate\w*>/g, '');
-      const quiz = s.quiz.map((q, i) => (i === 0 && !q.svg && scene ? { ...q, svg: scene } : q));
+      const scene = [...(s.teach.diagrams ?? [])].reverse().find(d => !d.svg.includes('data-kind="info"'))?.svg?.replace(/class="rc-svg animated"/, 'class="rc-svg"').replace(/<animate\w*\b[^>]*\/>/g, '').replace(/<animate\w*\b[^>]*>[\s\S]*?<\/animate\w*>/g, '');
+      // Only attach it to a question whose answer the picture does not give away.
+      const target = scene ? s.quiz.findIndex(q => !q.svg && !q.options.slice(0).some(o => o.length > 1 && scene.includes(o))) : -1;
+      const quiz = s.quiz.map((q, i) => (i === target ? { ...q, svg: scene } : q));
       return { ...s, quiz, kind: 'stage', questions: quiz, chapterId: unit.id, chapterIndex, localIndex };
     });
     const exam = { id: `${unit.id}-exam`, kind: 'exam', title: `${unit.title} · 单元测试`, questions: unit.exam, chapterId: unit.id, chapterIndex, localIndex: stageLessons.length, recap: stageLessons.map(s => s.title) };

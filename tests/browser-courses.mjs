@@ -303,8 +303,8 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
     await page.locator('.rc-teach').screenshot({path:path.join(rulesShots,`${key}-teach.png`)});
     assert.equal(await page.locator('.rc-question').count(),0,'quiz locked before reading');
     await page.locator('.rc-finish-teach').click();await page.locator('.rc-question').first().waitFor();
-    const first=list[0];assert.ok(await page.locator(`[data-question-id="${first.questions[0].id}"] .rc-qfig svg`).count()===1,'quiz scenario diagram');
-    await page.locator(`[data-question-id="${first.questions[0].id}"]`).screenshot({path:path.join(rulesShots,`${key}-quiz.png`)});
+    const first=list[0],withFig=first.questions.find(q=>q.svg);assert.ok(await page.locator(`[data-question-id="${withFig.id}"] .rc-qfig svg`).count()===1,'quiz scenario diagram');
+    await page.locator(`[data-question-id="${withFig.id}"]`).screenshot({path:path.join(rulesShots,`${key}-quiz.png`)});
     await page.locator(`[data-question-id="${first.questions[0].id}"] input[value="${first.questions[0].options[1]}"]`).check();
     for(const q of first.questions.slice(1))await page.locator(`[data-question-id="${q.id}"] input[value="${q.answer}"]`).check();
     await page.locator('.rc-submit').click();await page.locator('.rc-summary.retry').waitFor();
