@@ -1,22 +1,22 @@
 // "第 0 课" shared by the C and C# courses: what a program is, how source code becomes a
 // running program, and how to read a compiler error. Each course supplies its own code.
 
-const box = (x, label, sub, cls) => `<g class="lz-step ${cls}"><rect x="${x}" y="34" width="132" height="72" rx="12"/><text x="${x + 66}" y="64" class="lz-title">${label}</text><text x="${x + 66}" y="88" class="lz-sub">${sub}</text></g>`;
-const arrow = (x, cls) => `<g class="lz-arrow ${cls}"><line x1="${x}" y1="70" x2="${x + 34}" y2="70"/><path d="M${x + 34} 63 L${x + 44} 70 L${x + 34} 77 Z"/></g>`;
+const box = (x, label, sub, cls) => `<g class="lz-step ${cls}"><rect x="${x}" y="24" width="150" height="86" rx="12"/><text x="${x + 75}" y="60" class="lz-title">${label}</text><text x="${x + 75}" y="92" class="lz-sub">${sub}</text></g>`;
+const arrow = (x, cls) => `<g class="lz-arrow ${cls}"><line x1="${x}" y1="67" x2="${x + 18}" y2="67"/><path d="M${x + 16} 59 L${x + 28} 67 L${x + 16} 75 Z"/></g>`;
 
 /** Animated SVG: source code → compiler → program → output. `compiler` names the real tool. */
 export function pipelineFigure({ file = 'main.c', compiler = 'Clang 编译器', output = 'Hello!' } = {}) {
-  return `<figure class="lesson-figure lz-figure"><svg viewBox="0 0 720 150" role="img" aria-label="源代码经过编译器变成程序，运行后产生输出">
+  return `<figure class="lesson-figure lz-figure"><svg viewBox="0 0 720 196" role="img" aria-label="源代码经过编译器变成程序，运行后产生输出">
 <style>
-.lz-step rect{fill:#fff8e8;stroke:#5b4a32;stroke-width:2.5}.lz-title{font:700 17px system-ui,sans-serif;fill:#3b2f20;text-anchor:middle}.lz-sub{font:13px ui-monospace,monospace;fill:#7a6248;text-anchor:middle}
+.lz-step rect{fill:#fff8e8;stroke:#5b4a32;stroke-width:2.5}.lz-title{font:700 24px system-ui,sans-serif;fill:#3b2f20;text-anchor:middle}.lz-sub{font:24px ui-monospace,monospace;fill:#6b543b;text-anchor:middle}
 .lz-arrow line{stroke:#c0782e;stroke-width:4}.lz-arrow path{fill:#c0782e}
 .lz-step,.lz-arrow{opacity:.25;animation:lz-glow 8s infinite}
 .s2{animation-delay:1.3s}.a2{animation-delay:2s}.s3{animation-delay:2.7s}.a3{animation-delay:3.4s}.s4{animation-delay:4.1s}.a1{animation-delay:.6s}
 @keyframes lz-glow{0%{opacity:.25}8%,70%{opacity:1}90%,100%{opacity:.25}}
 @media (prefers-reduced-motion:reduce){.lz-step,.lz-arrow{animation:none;opacity:1}}
 </style>
-${box(8, '① 源代码', file, 's1')}${arrow(146, 'a1')}${box(194, '② 编译', compiler, 's2')}${arrow(332, 'a2')}${box(380, '③ 程序', '计算机能执行', 's3')}${arrow(518, 'a3')}${box(566, '④ 运行输出', output, 's4')}
-<text x="360" y="136" class="lz-sub">编译器先检查你写的代码；有错就报错并停下，没有错才生成能运行的程序。</text>
+${box(4, '① 源代码', file, 's1')}${arrow(158, 'a1')}${box(190, '② 编译', compiler, 's2')}${arrow(344, 'a2')}${box(376, '③ 程序', '计算机能执行', 's3')}${arrow(530, 'a3')}${box(562, '④ 运行输出', output, 's4')}
+<text x="360" y="148" class="lz-sub">编译器先检查你写的代码：有错就报错并停下，</text><text x="360" y="180" class="lz-sub">没有错才生成能运行的程序。</text>
 </svg><figcaption>源代码 → 编译 → 程序 → 运行输出</figcaption></figure>`;
 }
 

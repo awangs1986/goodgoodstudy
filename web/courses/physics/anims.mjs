@@ -62,10 +62,11 @@ export const animations = {
   'tug-of-war': { title: '拔河：力的平衡', caption: '两边力一样大时，绳子中点不动（二力平衡）；拖动滑块让右队力气更大，绳子就会被拉向右边。', duration: 4, still: 2.5,
     slider: { label: '右队拉力', min: 200, max: 400, step: 50, value: 300, unit: 'N' },
     frame(t, right = 300) {
-      const left = 300, d = clamp((right - left) / 100 * 22 * t * t, -40, 40), c = 200 + d;
+      // Teams sit within ±135 of the rope centre and the centre moves at most ±30, so both teams stay inside the 400-wide frame.
+      const left = 300, d = clamp((right - left) / 100 * 22 * t * t, -30, 30), c = 200 + d;
       return `<rect width="${W}" height="${H}" fill="#f4f7fb"/>${ground(170)}<line x1="200" x2="200" y1="150" y2="180" stroke="#888" stroke-dasharray="4 3"/>` +
-        `<line x1="${f(c - 150)}" y1="130" x2="${f(c + 150)}" y2="130" stroke="#8b5a2b" stroke-width="5"/><rect x="${f(c - 4)}" y="118" width="8" height="24" fill="#c0392b"/>` +
-        person(c - 140, 170, -14, '#1f5fa8') + person(c - 115, 170, -14, '#1f5fa8') + person(c + 140, 170, 14, '#1d7a4c') + person(c + 115, 170, 14, '#1d7a4c') +
+        `<line x1="${f(c - 130)}" y1="130" x2="${f(c + 130)}" y2="130" stroke="#8b5a2b" stroke-width="5"/><rect x="${f(c - 4)}" y="118" width="8" height="24" fill="#c0392b"/>` +
+        person(c - 122, 170, -14, '#1f5fa8') + person(c - 97, 170, -14, '#1f5fa8') + person(c + 122, 170, 14, '#1d7a4c') + person(c + 97, 170, 14, '#1d7a4c') +
         arrow(c - 6, 100, c - 6 - left / 4, 100, '#1f5fa8') + arrow(c + 6, 100, c + 6 + right / 4, 100, '#1d7a4c') +
         txt(c - 50, 90, `${left} N`, 'text-anchor="middle" font-size="13" fill="#1f5fa8"') + txt(c + 50, 90, `${right} N`, 'text-anchor="middle" font-size="13" fill="#1d7a4c"') +
         txt(200, 30, right === left ? '两边力相等 → 平衡，不动' : right > left ? '右边力大 → 向右加速' : '左边力大 → 向左加速', 'text-anchor="middle" font-size="15"');
