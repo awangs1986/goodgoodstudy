@@ -1,0 +1,811 @@
+{
+  "version": 1,
+  "created": "2026-10-11",
+  "purpose": "Original commercial-cartoon French A1 illustration layer",
+  "total_files": 80,
+  "total_bytes": 7806441,
+  "processing": "ImageMagick resize, aspect-ratio framing, transparent padding and PNG compression only; backgrounds use an optimized 256-color palette. No SVG-to-PNG replacement artwork.",
+  "assets": [
+    {
+      "path": "characters/anne.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Anne, an elderly woman with light warm skin #f3cfb0, white hair #f2f2f2 in a neat bun, round eyeglasses, a rose-pink casual blouse #ff8fb1, a muted gray-purple below-knee skirt #7a6a8a, and simple dark shoes. Kindly elderly face with subtle age lines, warm easy smile.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 150599,
+      "sha256": "dfbcecbaef3b59210d62abc5da3c0cd77d9ffc6ed51f95ef2b9361b8d8fec287"
+    },
+    {
+      "path": "characters/camille.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Camille, an adult chef with light warm skin #f1c79a, short black hair #1d1a26, a classic white chef hat, a white chef shirt, a cream apron #f4efe4, dark plum-black trousers #2a2440, and simple dark shoes. Friendly easy smile. Apron must be cream and separate from white shirt.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 138600,
+      "sha256": "abfc41b5ee36b51581e7681a36d71cb49c6a6da9a23d06521e7c34612e316dd5"
+    },
+    {
+      "path": "characters/gribouille.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Gribouille, an entirely original friendly mischievous purple ink-blob creature, with a rich purple rounded organic body, two small expressive arms and hands, two short legs and feet, expressive eyes, and a sly friendly crooked smile. He wears a dark purple French beret. His silhouette looks like a rounded, softly irregular ink drop brought to life. Invent an original design, no franchise resemblance. No clothes except dark-purple beret, no accessories, no props. Use the same refined illustrated material and expressive rendering as the human style reference, while remaining clearly a whimsical nonhuman mascot.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 222275,
+      "sha256": "30bf54cc30df4fd274e491a2d9a0fac678beb7d2cffbe70523ef956151498157"
+    },
+    {
+      "path": "characters/hugo.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Hugo, a young adult man with warm tan skin #e9b48a, short spiky nearly-black hair #2b2b3a, golden-yellow casual sweater #ffd23f, blue trousers #3b5bdb and simple dark shoes. Friendly masculine face, warm easy smile. No hat and no glasses.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 141723,
+      "sha256": "ec8e225991b1d548ef241358aac56b8243c291d6b480c1a3c771b5c2941ff15e"
+    },
+    {
+      "path": "characters/ines.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Inès, a young adult woman with medium warm brown skin #d9a77c, nearly-black hair #2b1a12 in a ponytail, a fresh leaf-green casual top #7bc96f, a purple knee-length skirt #9b6ad6, and simple dark shoes. Warm easy smile. Preserve medium brown skin and distinct ponytail.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "correction_prompt": "Use case: precise-object-edit. Edit target: the supplied full-body transparent Inès character sprite. Make ONE precise change only: replace her current loose wavy hairstyle with unmistakably BLACK HAIR TIED INTO A CLEAR PONYTAIL. Make the crown hair smoothly pulled back to one visible tied base at the back of her head, with a single substantial ponytail flowing down behind her viewer-left shoulder. The gathered ponytail and hair tie must be visibly legible; do not leave a curtain of loose hair around her neck. Preserve her face and facial identity, expression, eye color, warm medium-brown skin tone, body shape, exact standing pose, green shirt, purple skirt, shoes, hands, limb positions, full-body proportions, framing, foot baseline, and refined painted commercial cartoon/gouache rendering exactly. Do not change any other part of the image. Preserve genuine alpha transparency everywhere outside the character. No backdrop, no shadow, no glow, no text, no added objects. Entire body and shoes remain visible on a portrait 1024x1536 canvas with the same composition.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 144713,
+      "sha256": "d69b041a20c6a880d12491fdb3e514aa6eec62544fd2ec5e0662231199d19c89"
+    },
+    {
+      "path": "characters/lea.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: production transparent PNG character sprite for a premium French A1 learning app, one original recurring lead character, Léa.\nPrimary request: a polished commercial cartoon illustration, contemporary French picture-book editorial art, elegant expressive draftsmanship, fine warm brown outlines with varied line weight, softly painted gouache texture, restrained watercolor grain, rich carefully controlled colors, professional illustration agency quality, not a primitive vector icon.\nSubject: full body cheerful young adult French woman with warm peach skin, chestnut brown shoulder-length hair, red beret, royal blue long-sleeved shirt, navy knee-length skirt, low dark shoes. Her identity must retain the red beret + blue shirt + navy skirt. Friendly expressive face, small natural nose, clear eyes, tasteful rosy cheeks. Adult proportions stylized about four heads tall. No text.\nPose: 3/4 front view looking very slightly toward viewer's right, relaxed standing, one hand gently lifted with open palm in greeting, other hand at side. Complete hands and feet, all body fully within frame. Nothing in her hands.\nComposition: single isolated character exactly centered, 10% clear padding around the silhouette. Tall canvas 1024x1536. Genuine transparent alpha background, no backdrop, no floor, no drop shadow, no frame, no logo, no labels, no lettering. Crisp clean separated silhouette, refined fabric folds and subtle shading.",
+      "width": 400,
+      "height": 600,
+      "bytes": 150304,
+      "sha256": "1318520a2acccd6c0312ea60691b0d34952b2fb5dde74017b1a1d72a59f39a0f"
+    },
+    {
+      "path": "characters/luc.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Luc, an older man with light warm skin #f3cfb0, neatly side-parted gray hair #9aa0aa, a short gray mustache and beard, round eyeglasses, a warm brown casual sweater #7a5a3a, dark blue-gray trousers #3a3f66, and simple dark shoes. Kindly elderly face with subtle age lines.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "correction_prompt": "Use case: precise-object-edit. Edit target: the supplied full-body transparent Luc character sprite. Make ONE precise change only: REMOVE ALL FACIAL HAIR FROM HIS CHIN, JAW, LOWER CHEEKS AND BELOW HIS LOWER LIP, so the chin and jaw are fully clean-shaven natural light warm aged skin. KEEP ONLY HIS SMALL GRAY MOUSTACHE ABOVE THE UPPER LIP. No beard, no goatee, no gray stubble on chin, no whiskers below mouth. Preserve his face and facial identity, kind expression, age lines, eyeglasses, gray head hair, light warm skin tone, body shape, exact standing pose, brown sweater, collar, dark blue-gray trousers, shoes, hands, limb positions, full-body proportions, framing, foot baseline, and refined painted commercial cartoon/gouache rendering exactly. Do not change any other part of the image. Preserve genuine alpha transparency everywhere outside the character. No backdrop, no shadow, no glow, no text, no added objects. Entire body and shoes remain visible on a portrait 1024x1536 canvas with the same composition.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 146215,
+      "sha256": "1a5f30858d8e481b9aa24c2b0324c0f36c95549cdece5247ac723f9da5c8ae9e"
+    },
+    {
+      "path": "characters/marie.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Marie, an adult woman with warm light tan skin #efbf8e, a neat brown bob haircut #7a4a2a, round eyeglasses, a lavender-purple casual top #9b6ad6, charcoal-gray trousers #4a4a5a, and simple dark shoes. Friendly smart face, gentle easy smile.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 141558,
+      "sha256": "f4957306fe430d0654523fe812d1b0348957dcdd0416ab53b1ebf5bb374f9cd7"
+    },
+    {
+      "path": "characters/paul.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Paul, a little boy about 8 years old with light warm skin #f6c9a0, short brown hair #3a2a1a under a bright orange baseball cap, a warm red casual shirt #c23b3d, dark navy trousers #1f2a52, and simple dark shoes. Cheerful curious smile. Clearly a child with age-appropriate child proportions and innocent appearance. Keep the FULL CHILD filling the same safe artwork area; UI will scale him down afterward.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 148638,
+      "sha256": "c6dc1613621ac17cfb271e84f115288cfcb4cafdf9ffb256782f63799298f33d"
+    },
+    {
+      "path": "characters/zoe.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: one polished full-body transparent character PNG sprite for a premium French-learning website.\nInput image 1 is STYLE REFERENCE ONLY, not an edit target. Match its refined commercial cartoon/gouache illustration style: subtly textured painted surfaces, thin warm-colored contours, delicate facial modeling, warm soft light ON THE CHARACTER only, expressive eyes, clean professional character design. Do not reproduce the person, clothes, pose, backdrop, or halo from the reference.\nSubject: Zoé, a young adult woman with rich deep brown skin #a8714a, rounded voluminous curly nearly-black hair #2b1a12, teal-green casual top #2bb3a3, brown trousers #5c4033, and simple dark shoes. Warm confident easy smile. Preserve deep brown skin and clearly curly black hair.\nComposition: portrait 1024x1536 canvas, exactly one complete character centered. Entire head/hat/hair and both shoes/feet inside frame. Character spans about 84% of image height, top at 8% and feet baseline at 92%, generous transparent safety margin on every side. Relaxed upright standing pose in a very slight three-quarter view toward viewer's right, face glancing pleasantly toward viewer. Both arms naturally resting at sides, hands visible and anatomically natural. Consistent straight-on camera and scale across character series.\nScene/backdrop: genuine alpha transparency with sharp clean soft-antialiased cutout edge; all canvas outside character must be fully transparent. NO painted background, NO colored glow, NO aura or halos, NO cast or ground shadow, NO background gradient, NO checkerboard painted into image.\nConstraints: exactly one character, no text, no letters, no logos, no watermark, no other objects, no held objects, no labels, no ground. No cut-off head or feet. Not simplistic vector art, not clipart, not pixel art, not 3D plastic, not a photograph.",
+      "style_reference": "characters/lea.png",
+      "width": 400,
+      "height": 600,
+      "bytes": 146572,
+      "sha256": "79bb8a264d56b8a2b6696c5827c8195e7aff80f7246b4de228d7ab68c19191fe"
+    },
+    {
+      "path": "places/appartement.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: A cozy Paris apartment living room, blush-cream walls, French blue sofa at far left, large sunlit tall window at rear right overlooking gray mansard roofs and a tiny distant Eiffel Tower, warm oak parquet floor, delicate curtains and a houseplant at edge. Clear spacious lower foreground.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 272293,
+      "sha256": "c69903b5908bbcd761bdab6f963ae81838b9aeb3ed807c1f8f460bd685d2b819"
+    },
+    {
+      "path": "places/boulangerie.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: A refined small Parisian bakery shopfront, deep French blue painted wood frames and cream stonework, large display window with softly painted background bread loaves and croissants on shelving, brass handles, blank cream signboard. Clear pavement in foreground, no freestanding sign.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 323953,
+      "sha256": "b94ba418f6b7050c5aea565f7e4a38c9ec4cf978d7364aa740b1fb51f88fac24"
+    },
+    {
+      "path": "places/cafe.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: premium French learning app illustrated background plate, PNG, horizontal 8:5 composition, ideally 1600x1000. Primary request: A charming Parisian sidewalk café exterior with elegant burgundy wooden storefront, striped cream-and-muted-red fabric awning, large inviting glazed windows, tiny brass details, two empty bistro chairs and round table only far right. Empty blank signboard over the windows.\nStyle: match the reference character's polished commercial cartoon picture-book aesthetic in a location background ONLY. Fine warm expressive outlines, hand-painted gouache texture, softly modeled volume, delicate architectural details, beautiful warm daylight, rich sophisticated colors, charming premium travel editorial illustration. Not primitive SVG, not photorealistic, not 3D.\nComposition: eye-level straight-on theatre-like setting for two characters to be overlaid later at 23% and 78% horizontal. Horizon at 66% height, broad completely clear foreground across lower 32%, central rear area calm and uncluttered. Architectural detail mainly upper half/edges; preserve breathing space for UI speech at top left. Edge-to-edge painted background, no card frame. \nConstraints: NO people, NO animals, NO characters from reference, NO silhouettes, NO text, NO letters, NO numbers, NO logos, NO readable signs. Any shop signs and boards are blank solid panels, reference image is style only. No foreground food, medicines, vehicles, loose objects that could change the teaching question.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 285881,
+      "sha256": "4e7cb7d790b375b68e9debdb9b3a80ee69bf48eff15a7665fa08ba80c4bfb0ea"
+    },
+    {
+      "path": "places/ecole.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: premium French learning app illustrated background plate, PNG, horizontal 8:5 composition, ideally 1600x1000. Primary request: A bright French primary-school classroom with warm cream plaster walls, broad dark green chalkboard on rear wall, small blue-white-red French flag at upper left, wooden chalk ledge, tall sunlit side windows, one empty wooden schooldesk far right. Board completely blank. Empty spacious wooden classroom floor.\nStyle: match the reference character's polished commercial cartoon picture-book aesthetic in a location background ONLY. Fine warm expressive outlines, hand-painted gouache texture, softly modeled volume, delicate architectural details, beautiful warm daylight, rich sophisticated colors, charming premium travel editorial illustration. Not primitive SVG, not photorealistic, not 3D.\nComposition: eye-level straight-on theatre-like setting for two characters to be overlaid later at 23% and 78% horizontal. Horizon at 66% height, broad completely clear foreground across lower 32%, central rear area calm and uncluttered. Architectural detail mainly upper half/edges; preserve breathing space for UI speech at top left. Edge-to-edge painted background, no card frame. \nConstraints: NO people, NO animals, NO characters from reference, NO silhouettes, NO text, NO letters, NO numbers, NO logos, NO readable signs. Any shop signs and boards are blank solid panels, reference image is style only. No foreground food, medicines, vehicles, loose objects that could change the teaching question.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 218220,
+      "sha256": "13fa3608413aacceca9f7e66ca29878b6f8204e316cfa217b28f6f3ff9874378"
+    },
+    {
+      "path": "places/gare.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: An elegant Paris railway station interior with a great pale-blue glazed iron-vault roof, softly lit warm stone, blank dark departures panel, a white and muted-red streamlined passenger train stationary in rear midground. Wide empty warm gray platform foreground, no luggage, no clock numerals.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 318654,
+      "sha256": "b99a9f9fec1507270ec101d83f48352041baf5ee9ab045855bfc6f73f90d1f47"
+    },
+    {
+      "path": "places/jardin.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: Luxembourg Gardens in Paris, symmetrical leafy chestnut trees at left and right, low clipped hedges, elegant distant central stone fountain and reflecting basin, two small dark-green park chairs near edges, soft blue sky and pale golden gravel path. Clear empty broad gravel foreground.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 331994,
+      "sha256": "34af6b7aec54ba173636fef8846da8a4c86f571ad69bfd4a661dc96b70bd384b"
+    },
+    {
+      "path": "places/marche.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: A charming Paris open-air produce market with three stalls across background under green-and-cream, terracotta-and-cream and blue-and-cream awnings, soft painterly produce mounds integrated on distant counters, cream Haussmann architecture above. Wide completely clear stone plaza foreground.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 323152,
+      "sha256": "04afcc5e1b2c0cf4d979b60c56b54d780e5cb7abf627be7b7785ea800e803549"
+    },
+    {
+      "path": "places/metro.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: An empty Paris Métro platform, warm white beveled tiles, arched green iron entry detail, blank green signboard, a calm classic muted-blue metro train stationary across background with simple windows and yellow safety line. Wide empty platform foreground.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 281789,
+      "sha256": "9fc97b536e636b1fdb3ab51e0c5ed0beb4d09674f5fd3d18337183967fa32fee"
+    },
+    {
+      "path": "places/pharmacie.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: A welcoming French pharmacy interior, pale sage-green walls, one luminous GREEN pharmacy cross mounted upper left, blank forest-green sign panel upper right, organized small blank medicine cartons on far rear shelves, clean pale counter far right. Wide clear cream terrazzo floor foreground. Green cross, never a red cross.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 266154,
+      "sha256": "27a21457418619f98b3b222dca11f157ee55769b25bd6d46054013a0591abd8e"
+    },
+    {
+      "path": "places/poste.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: A French neighborhood post office interior, warm cream walls, clean dark-French-blue counter across rear, yellow mailbox set against right wall, blank yellow-and-blue sign panel above rear counter, tall left window. Wide clear tiled floor foreground, no letters/parcels in foreground.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 264769,
+      "sha256": "1ef90e60c83707c93ec3582f99e53b1a0242321bdea1c92b475b12b219271f04"
+    },
+    {
+      "path": "places/rue.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: An elegant quiet Paris street corner with cream Haussmann buildings, blue-gray mansard roofs, wrought iron balconies, one traditional streetlamp, tiny distant Eiffel Tower on the right horizon. Soft blue sky. Spacious pale cobbled pavement in foreground.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 318626,
+      "sha256": "8cfd74522d91afd38c77fad84b3160a339a504bd07cb46e53d184d159c9e45d0"
+    },
+    {
+      "path": "places/seine.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: commercial illustrated PNG background plate for a French learning app. Horizontal 8:5 canvas, ideally 1600x1000.\nPrimary request: A peaceful Paris riverside quay, lovely soft blue Seine through middle background, cream stone arch bridge in distance, tiny distant Eiffel Tower left, elegant plane trees at edges, low stone parapet and a few green bouquiniste bookstalls only in far background. Wide completely clear cream-stone promenade foreground.\nStyle: same cohesive premium cartoon picture-book gouache style as reference, refined warm fine linework, luminous daylight, subtle textured brushwork, softly modeled forms, cinematic color harmony, handcrafted professional commercial illustration, not photorealism or primitive vector art.\nComposition: eye-level theatre-like setting. Horizon at 65% image height. Lower 32% is broad empty walkable space for characters later overlaid at left and right. Keep important architecture in rear upper half and details near edges; do not place tall features in foreground. Calm breathing space at upper left for UI speech. Edge-to-edge background painting.\nConstraints: reference image is ART STYLE ONLY, never copy its person. Absolutely NO people, NO animals, NO extra characters, NO silhouettes, NO letters, NO numbers, NO logos, NO signage text; all signboards blank. No watermarks, no card borders, no freestanding foreground props. Keep scene spatially plausible.",
+      "style_reference": "characters/lea.png",
+      "width": 960,
+      "height": 600,
+      "bytes": 274709,
+      "sha256": "327e9f3ba1a91c76787779407c215514f8b4b926793f94680574a723d51484fd"
+    },
+    {
+      "path": "props/apple.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One ripe red apple with a short brown stem and one small green leaf, soft realistic painted skin highlights. Single fruit.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 59686,
+      "sha256": "6bca7421d6d5d2ee4c4ac555f696463e32d0df4cb1573dbe07b6f72c8553b9ee"
+    },
+    {
+      "path": "props/bag.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One mustard-yellow leather suitcase, rounded rectangular form, little leather handle and brass latches, slight three-quarter view, fully closed. Only the suitcase.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 56267,
+      "sha256": "7e73fe1d921cab65e8e0235e17ddfe7c28f3a78941cc5a92f6f07d891465e928"
+    },
+    {
+      "path": "props/baguette.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One single golden-brown French baguette, long narrow loaf with five scored slashes and crisp flour-dusted crust, set diagonally from lower left to upper right. Only one baguette, no bag or plate.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 39068,
+      "sha256": "e32fbb182c6f4771cae1ee3a3df4343ee76082d3db21092f74472a4869b05dd7"
+    },
+    {
+      "path": "props/ball.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One classic white and dark navy football/soccer ball with correct pentagonal-and-hexagonal panel structure, softly rounded and shaded. Single ball, no motion marks.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 48760,
+      "sha256": "dbd6e22cbf1540f049c34ef6c210417e8a2129a1690c00fecca63ee96edebe5c"
+    },
+    {
+      "path": "props/bed.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One complete cozy single bed, warm wooden headboard and legs, white pillow and soft pale blue duvet. Isolated entire furniture item, no room or floor.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 46851,
+      "sha256": "473706c80f508f3ca0bb445fa8a4e768b475411b57988ae598fea2c26d8427e3"
+    },
+    {
+      "path": "props/bell.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One charming golden-yellow brass bell with a small rounded top loop and visible clapper, front three-quarter view. No stand, ribbon, text, or surrounding symbols.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 48120,
+      "sha256": "cfc60a7dea75ec66321f2dc7d30856c665bf872b46efeda290fd658105490301"
+    },
+    {
+      "path": "props/bike.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One elegant teal-blue city bicycle with two correctly aligned equal-sized wheels, brown leather saddle, black tires and silver spokes, shown in complete side profile. One bicycle only, no rider and no basket contents.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 57274,
+      "sha256": "7c2e3585d79115f41729e1768f40ce6b6481b6372d8da2b31ebf53d7c3e1f77e"
+    },
+    {
+      "path": "props/boat.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One small charming wooden sailboat with a warm terracotta-red hull, a single mast, two cream-white triangular sails. Entire boat in three-quarter side view, floating in empty transparent space without water.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 51817,
+      "sha256": "862098237bc53d78b260539e6e3666f9bb4a783cd7bb73cd76ab2188a726ca5f"
+    },
+    {
+      "path": "props/book.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One natural group of two closed hardcover books, one coral red and one blue, neatly stacked and slightly offset, visible ivory page edges, no text or markings on covers.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50817,
+      "sha256": "be8178487177e5c5ff1f17fd8106684900fa7e4d8315fa323164484cd1d89011"
+    },
+    {
+      "path": "props/bread.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One golden-brown artisan bread loaf with three clear shallow scoring marks and believable baked crust. Entire loaf, no sliced pieces or plate.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 60155,
+      "sha256": "25dae67a2211e4cbabadda414e3c7e6e3e044f5f4fb1619d6ddb27e5c30ab58b"
+    },
+    {
+      "path": "props/bus.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One cheerful golden-yellow city bus, side three-quarter view, pale blue windows and black tires, simple recognizably bus silhouette. Whole vehicle, no passengers, destination text or scenery.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 49795,
+      "sha256": "9088765ce4ae0a5569695019c70d83a08a6d6c71dc3ba1d1638c7ef155508c5e"
+    },
+    {
+      "path": "props/calendar.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One standing paper calendar with a red top binding, two binder rings and a clean empty seven-column rectangular date grid. The grid is blank, with no dates, weekdays, numerals or text.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 51985,
+      "sha256": "5dd89fd2108f763daa8a9842621b5a54d78c53e14abb188909d412ba243835bb"
+    },
+    {
+      "path": "props/camera.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One compact vintage-style camera with dark navy body, cream-silver upper section and one large glass lens, slight three-quarter angle. No strap, no labels, no letters or brand markings.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 70183,
+      "sha256": "8032e058a6ff4007a14ce8f3457600d8a98169d99ae0be9b0804a280bdd284cf"
+    },
+    {
+      "path": "props/car.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One small classic French-inspired red compact city car, complete three-quarter front-side view, cream windows and silver trims, correctly formed wheels. Friendly rounded design, no driver, no logo, blank number plate, no roadway.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 59350,
+      "sha256": "705447a1bdcae0db4d3ab1f94e2f74fb909f2e9c650b539dd2c2b2d57aa71570"
+    },
+    {
+      "path": "props/cat.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One adorable adult gray tabby cat, sitting upright with tail curled around its paws, facing slightly right, soft silver-gray fur, lively golden-green eyes, gentle intelligent expression, correct natural anatomy. Complete cat including ears and tail, no collar or accessories.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 53475,
+      "sha256": "75eef37cdee290f61250d199e8fdf183915d76dd7ff164fb798db756a95caee9"
+    },
+    {
+      "path": "props/chair.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One simple warm honey-brown wooden dining chair, complete in three-quarter view, curved slat back, flat seat and four sturdy legs. No upholstery, no cushions, no floor and no shadow.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40903,
+      "sha256": "ebc4e76d523cf44df2f98983c242492d9f998d3fe6164407fe0caf406e8a965a"
+    },
+    {
+      "path": "props/clock.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One round wall clock with a gently weathered warm ivory face, slim deep teal rim and dark hour and minute hands showing ten past ten. Use twelve short tick marks without any numerals or words. Straight-on front view, complete circular clock, no mounting wall.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 68276,
+      "sha256": "51236374f2ef2cdce49dc1f9d02927717904f6c7bccca5bee4d0c18bd8089deb"
+    },
+    {
+      "path": "props/coat.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One lavender-purple knee-length winter coat, clear lapel collar, long sleeves and dark buttons, natural front view with gentle fabric folds. No mannequin, person, hanger or extra clothing.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50292,
+      "sha256": "3e69380b22f7ca735e7c22f29de82d05df6348b6c4a720a71681e082c9e16f07"
+    },
+    {
+      "path": "props/computer.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One open laptop computer, complete three-quarter frontal view, slim silver-gray body, clear dark keyboard keys without symbols, screen filled with simple soft light-blue gradient and subtle reflection. No logos, no letters, no interface, no desk.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 47353,
+      "sha256": "64ef1d7d6d06596f6c2f9825224d7d90167e03549ad52784c2a421fb86e7d8b9"
+    },
+    {
+      "path": "props/croissant.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One single golden flaky butter croissant, familiar crescent shape, rich laminated pastry layers and subtly toasted tips, appetizing warm highlights. Three-quarter view. Only the croissant, no plate, wrapper, crumbs or utensils.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 59936,
+      "sha256": "d0323f623135b64c10959787f1ccac623bb0a57a78c2453243101864bd87b3d2"
+    },
+    {
+      "path": "props/cup.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One warm ivory ceramic cup with a curved handle, visible dark tea surface inside, elegant simple form. Single cup only, no saucer, steam, spoon or added objects.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40088,
+      "sha256": "ebe69e23fbfcbfc21452298a9b3871b16731e8b4dbe496f99e2222561e79daa3"
+    },
+    {
+      "path": "props/dog.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One friendly warm-brown medium-sized dog sitting upright, floppy darker brown ears, cream muzzle and chest, bright gentle eyes, subtly wagging-looking curved tail held beside body. Entire dog including paws, correct natural canine anatomy. No collar, no accessories.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 57103,
+      "sha256": "07140fd84e42d71f5606d19d812d02fa61c1122b3c9145d086433bfd21847489"
+    },
+    {
+      "path": "props/dress.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One rose-pink sleeveless knee-length dress with a fitted waist and softly flaring skirt, natural fabric folds and tasteful simple style. No body, mannequin, hanger or accessories.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40107,
+      "sha256": "110f0d22e1aab93c8065f2af447c9c71802b86557608acba62e390cbb795a16d"
+    },
+    {
+      "path": "props/egg.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: A simple two-part egg illustration: one sunny-side-up fried egg with golden yolk and softly browned irregular white, beside one complete uncracked pale cream eggshell standing upright. Together a single compact centered composition. No pan, plate, fork, crumbs, or extra eggs.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50668,
+      "sha256": "70d934826c2ba77d1416cdd515f9f837e3ae596948e3794c1a61d1012c003fe7"
+    },
+    {
+      "path": "props/flower.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One single delicate pink five-petaled blossom with golden-yellow center, on a slender green stem bearing two leaves. Complete flower from petals to end of stem, diagonally graceful. No pot, bouquet, vase, ribbon, background, or extra blooms.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 44892,
+      "sha256": "1f90383113dcb90492fda6c2ed1e36dbf91ce3e7f42c84ff43f43e2ff05fa680"
+    },
+    {
+      "path": "props/fromage.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One wedge of golden French cheese, pale creamy cut face with a few small holes, slightly darker golden rind. Single cheese wedge, no plate or garnish.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 42254,
+      "sha256": "1ef8ebc93cf3e386aabc4f510558a54f98f919857150e07e2126ef6d3a06dbd9"
+    },
+    {
+      "path": "props/gift.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One lavender gift box tied with a golden ribbon and a graceful bow on top, three-quarter view, gently textured paper. Single box with bow, no confetti or tags.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 60080,
+      "sha256": "53dc78fb209ab80138afa3860aa9901d228f28ddcd22469d7469ff068ee70ac4"
+    },
+    {
+      "path": "props/glasses.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One pair of elegant round eyeglasses with thin dark warm-brown tortoiseshell frames, two equal round pale blue clear lenses, delicate bridge and two temples opened, slight three-quarter view. Full pair visible, no face, no case or accessories.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 25393,
+      "sha256": "d40bf98df6667f2620f4ed4b3ceabacb2b7f54ae0b4ea485500b5801d076f952"
+    },
+    {
+      "path": "props/guitar.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One full acoustic guitar, honey-brown wood body, dark sound hole, six strings and dark wood neck with headstock, slightly tilted diagonal. Entire guitar with all six tuning pegs, no strap or case.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 41148,
+      "sha256": "ee78eb79442a7953161639a4cfcb34d860802135fd72ef6269a9d52f1813e383"
+    },
+    {
+      "path": "props/hat.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One classic deep navy gentleman's top hat, tall cylindrical crown, softly curved brim, elegant rich-red ribbon band around crown. Three-quarter view, full hat including brim. No head, person, feather, label or symbols.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 43778,
+      "sha256": "d7a6a487f22e337ae4823d2b3cfebd45ffcd5f2792b390b45973826ccba0ca63"
+    },
+    {
+      "path": "props/house.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One charming compact cream-walled French cottage with terracotta pitched roof, blue windows and wooden front door. Entire house only, no people, no path or ground.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 62859,
+      "sha256": "2a7978dc77d477877c36fc6b3a5f480849d519bc756e4039c3d83230e0e434ee"
+    },
+    {
+      "path": "props/icecream.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One single scoop of strawberry-pink ice cream sitting on a golden waffle cone, gently rounded textured scoop and crisp crisscross waffle texture. Complete cone including pointed tip, upright centered, no cherry, sprinkles, wrapper, multiple scoops, hands or lettering.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40801,
+      "sha256": "533893d1acc8622c1e7e523bbf1382de14bed151119e6b9dc12d4ec09a2a6876"
+    },
+    {
+      "path": "props/key.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One golden-brass old-fashioned household key with a round bow, long shaft and clear two-tooth bit, shown diagonally. Subtle metallic highlights. Only one key, no key ring, tag, text or additional objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 28227,
+      "sha256": "b967458d4486f5792b7bbe01f60b3fe025f2c751144a757a19b6e95d2140d716"
+    },
+    {
+      "path": "props/letter.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One cream paper postal envelope, gentle three-quarter angle, visible folded flap and a small blank coral postage stamp; no writing anywhere.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 42178,
+      "sha256": "072f5ac378bf192ce6d414f9b34775bed51095ca85f1d9388d18fc60b212aeac"
+    },
+    {
+      "path": "props/map.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One unfolded accordion-fold paper street map, warm cream paper, softly colored simple street blocks and a clearly visible red route line. No letters, words, markers or extra objects.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 61007,
+      "sha256": "441f3bb915fe7e711fee25095688a951cba0e82d60cd32155147e9f074a2ef18"
+    },
+    {
+      "path": "props/medicine.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One small white medicine bottle, coral-red screw cap, a subtle coral plus-sign symbol only on its front. No letters or words; no loose pills or extra boxes.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 30708,
+      "sha256": "de68de2ed8757d06f0a9de076a72f953fa5fbaa1f6adcb1e20db8983fd4a3062"
+    },
+    {
+      "path": "props/metroTicket.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One single small rectangular blue-and-white paper metro ticket, slight diagonal three-quarter angle, rounded corners. Design has a broad cobalt-blue stripe, a few fine abstract pale-blue rules and a simple navy horizontal magnetic strip. Entire ticket visible. Absolutely no readable or fake letters, numbers, words, logos, barcodes or QR codes.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 45549,
+      "sha256": "a8fb6c943848029d2ad5f4e882080bbf20b026be740d12c4abf7f42f29a5661e"
+    },
+    {
+      "path": "props/milk.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One clear glass milk bottle filled with white milk, simple blue cap, plain blue label band with no words. Single bottle only.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 28498,
+      "sha256": "6cdf8a13a4be45cdbb36d08cbbf683eab8e8da2a4e8cba700ad72df31bf9c774"
+    },
+    {
+      "path": "props/money.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One natural group representing money: a single green banknote and two gold coins partly overlapping one corner. Subtle decorative geometric engraving only, with absolutely no currency symbols, letters, numbers, portraits or words.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 58919,
+      "sha256": "d594852794242da250a3eefd85c7b02c64f35e0c9fc9d6c62274def903571d38"
+    },
+    {
+      "path": "props/newspaper.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One single neatly folded off-white newspaper, slight three-quarter angle, a broad fold and layered paper edges. Printed design is only dark-gray straight horizontal rules grouped in tidy columns and one small blank gray rectangular image block. Absolutely no text, letters, words, numerals, masthead lettering, or recognizable people.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 53363,
+      "sha256": "da0e126b7c7c24447cace1f8dab37a73374636fb90dc078009994fec1263ba2f"
+    },
+    {
+      "path": "props/pen.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One elegant blue fountain pen, with clearly recognizable metallic nib and gold details, placed on a gentle diagonal. Single pen only.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 22803,
+      "sha256": "ffc068a3d404bcca30638e9013532febd6764da08807ef62dd78b8277244ed9c"
+    },
+    {
+      "path": "props/phone.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One modern unbranded dark navy smartphone, gently angled three-quarter view, glossy pale blue blank screen, clear recognizably phone silhouette.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 33443,
+      "sha256": "744781dded36ee7692d2dcc29e25d8c3d8bf0cd1287a4de1d840b289aa8fe00e"
+    },
+    {
+      "path": "props/plane.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One single white commercial passenger jet airplane, complete three-quarter side view flying diagonally upward, soft pale-blue window reflections and a small understated navy tail accent. Both wings, engines and tail correctly formed and entire silhouette visible. No brand, airline name, lettering, contrail, clouds, sky or passengers.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 29477,
+      "sha256": "6f7793a730b376655a71d45e99fb5ccc71c923046c2559649eb920430c3a6c59"
+    },
+    {
+      "path": "props/police.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One blue-and-gold police-style shield badge, front view. Symmetrical deep navy-blue shield with a substantial gold rim and a simple golden five-point star in its center. Only the shield, no person, no words, numbers, eagle, crown or insignia text.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 60276,
+      "sha256": "fdbb5baae99e328b139ece55bda92b088289d8f6daf467e68d75a48c6f3731a9"
+    },
+    {
+      "path": "props/rain.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One softly rounded gray-blue rain cloud with precisely five separate blue teardrop raindrops falling beneath it. Compact centered weather illustration, fluffy dimensional cloud with soft warm highlights. No lightning, sun, scenery, ground, sky rectangle, face or text.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 46459,
+      "sha256": "cdbae63bb770ce9b1a3c360883268b88146823501aaa2929816cc91bcdfe3323"
+    },
+    {
+      "path": "props/shirt.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One sky-blue short-sleeved cotton shirt, collar and front buttons, hanging naturally in a simple front view with gentle fabric folds. No hanger, body or extra clothing.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 55595,
+      "sha256": "4108f2cdf686af959305d85ec0e9b1735e72c48491fa3ebe424e98d531b01647"
+    },
+    {
+      "path": "props/shoes.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One matching pair of warm brown leather lace-up shoes, both visible and naturally arranged side by side in a three-quarter view, subtle polished details. Exactly two shoes, no feet or clothing.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 53473,
+      "sha256": "76968010a94823bf40ea101b7044349a5e50f1094f3f6a5a6a94d288c98d1a95"
+    },
+    {
+      "path": "props/snow.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: Exactly three separate delicate six-armed snowflakes arranged in a triangular cluster, one large snowflake at upper left and two smaller ones at upper right and lower center. Icy pale blue with clear darker blue warm-outlined edges and soft painted facets. Clean symmetric sixfold snowflake anatomy, readable at small size. No cloud, no snowfall dots, no ground, no text.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 61924,
+      "sha256": "754bf32cf5d5d27475e3ba510244e492c9152e25ba92396b33eb7bc109b08354"
+    },
+    {
+      "path": "props/sun.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One warm golden sun disc with eight gently tapered painterly golden rays, soft dimensional painted surface. No face, eyes, expression, clouds or halo outside the rays.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 39837,
+      "sha256": "e2bbea05eb0280797fe182a6ad63b138dbffc2ede8be15fee2fbf4dd4122e8b7"
+    },
+    {
+      "path": "props/table.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One simple warm honey-brown wooden rectangular dining table, complete in three-quarter view, solid tabletop with visible subtle wood grain and four sturdy legs correctly attached. Entire table including all leg ends. No chairs, cloth, food, objects, floor or shadow.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 30543,
+      "sha256": "9a0157068351fa6cb982368bf4b395cc8e0dbaeed4fed4db64f9c44e91f2834a"
+    },
+    {
+      "path": "props/teapot.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One charming rounded teal-green ceramic teapot with elegant curved spout, attached loop handle and domed lid, three-quarter side view. Warm highlights on glazed ceramic, subtle gouache texture. Only the teapot, no cup, plate, steam, flowers, decorations, words or brand.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 48789,
+      "sha256": "3a7d7097f00c0a9507ab576493fd95180c431246e7842b86f6bf86bfc9c298ee"
+    },
+    {
+      "path": "props/ticket.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One golden-yellow rectangular paper ticket, small semicircular notches at the short edges and one vertical perforation near the right end. Simple delicate border decoration, no text, words, letters, digits, symbols or barcode.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 33354,
+      "sha256": "1012a2c8723e1ca80718cb1f52d2a96050cca1bb1bcc50c6c3d89c2b585e6aaa"
+    },
+    {
+      "path": "props/train.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One compact blue passenger train engine, slight front three-quarter view, large pale blue windshield, side window and clear wheels. Complete train engine only, no attached carriages, tracks, people or text.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 61470,
+      "sha256": "ff5304e9b755a77ef5b429dcf35d9c4c2a99f3730ace9d636238049098568c6b"
+    },
+    {
+      "path": "props/tree.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One lush green deciduous tree with a rounded layered crown, warm brown trunk and a few visible branches. Entire tree, no soil, grass, ground, planter or forest.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 76167,
+      "sha256": "41dc5cfcd8d29ff961cd8ca731970dba42b9592c91bd6b508dfe8ad7f18e5084"
+    },
+    {
+      "path": "props/tv.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One unbranded modern dark navy television with a pale blue blank screen and two short supporting feet. Whole television, gentle three-quarter angle, no remote or scene inside screen.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 34965,
+      "sha256": "3c67bfa6f431b5dbfa5192cba59205d65b18f81a787f333b74a5f72a31cbae48"
+    },
+    {
+      "path": "props/umbrella.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One open coral-red umbrella, all canopy panels visible, thin dark shaft ending in a curved wooden J-shaped handle. Entire umbrella, gentle diagonal, no raindrops or person.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 40422,
+      "sha256": "fa1d0b10b5d393c57ac06a0745c32de2c63f3432d0db369b72f001988f5bd24f"
+    },
+    {
+      "path": "props/watch.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story.\nAsset type: premium illustrated vocabulary prop for a French language course.\nPrimary request: Paint an original, polished commercial cartoon prop in the same refined storybook-gouache style as the supplied French woman style reference: softly modeled dimensional forms, delicate warm brown contour lines, subtle paperlike brush texture contained within the painted object, rich restrained colors, warm soft highlights. It should be sophisticated and richly painted, not a flat vector icon, not a crude symbol, and not a toy.\nScene/backdrop: genuinely transparent alpha background, entirely empty outside the object.\nSubject: One gold-rimmed round analogue clock face with small gold top knob like a simple pocket watch, ivory dial, two dark hands and twelve small tick marks. No numerals, letters, chain or extra clocks.\nComposition/framing: square 1:1 canvas. Entire object centered, fully visible, comfortably fits within the central 78 percent of the canvas. Keep generous and even transparent safety margin on every side; no cropped edges.\nLighting/mood: gentle warm studio light, subtle depth and beautiful commercial finish.\nConstraints: strictly only the described object or natural group. Clean crisp alpha edges. No labels, letters, numbers, text, logo, watermark, border, backdrop, ground plane, cast ground shadow, floating glow, decorative sparkles or extra objects.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 50851,
+      "sha256": "d6a374baa0449432d25811ddbe16cf68018cefbef896d43259dcfb8f809ffb15"
+    },
+    {
+      "path": "props/window.png",
+      "method": "OpenAI built-in image_gen",
+      "prompt": "Use case: illustration-story. Asset type: one square transparent PNG prop for a polished French learning comic. Style: premium hand-painted commercial storybook cartoon, softly textured gouache brushwork, thin warm-brown outlines, dimensional soft highlights and shaded volumes, sophisticated cheerful colors. Make it refined and charming rather than flat vector or emoji. Composition: centered complete object, 12% clear margin on every side, readable silhouette, no cropping. True transparent background, no colored backdrop, no ground, no cast shadow, no glow. No people, no text, letters, numbers, watermark, brands or labels. Subject: One traditional closed rectangular window, front-on view, substantial white-painted wooden frame, one central vertical and one horizontal mullion creating four blue glass panes with soft diagonal reflections. Subtle gray-blue shading models the white frame. Complete window frame and shallow sill, no house, wall, curtains, landscape, lettering or background scene.",
+      "style_reference": "characters/lea.png",
+      "width": 256,
+      "height": 256,
+      "bytes": 47219,
+      "sha256": "0b861e25a5a07e1cc19111168f16a1c060743549f2d9feead763b8d60324c521"
+    }
+  ]
+}

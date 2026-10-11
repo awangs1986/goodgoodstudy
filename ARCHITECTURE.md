@@ -144,16 +144,28 @@ New units are inserted without locking previously completed regions. Desktop AI
 help requires three consecutive unsuccessful submissions and is limited to one
 use per region. Public builds continue to disable AI services.
 
-### Shared comic kit and French comic battles
+### French PNG illustrations and comic battles
 
-English and French share one hand-authored SVG comic kit, `web/courses/shared/comic-kit.mjs`
-(drawing primitives, base places, cast and props, plus `createComicKit()`), and one stylesheet,
-`web/courses/shared/comic.css` (themes `comic` and `comic-fr`). `english-nce/art.mjs` uses the
-default kit; `french-a1/art.mjs` adds twelve Paris scenes (café, boulangerie, métro, marché,
-gare, pharmacie, école, appartement, jardin, La Poste, rue, quai de Seine), an original
-recurring cast (Léa, Hugo, Marie, Luc, Camille, Zoé, Inès, Paul, Anne), French keyword rules
-and the beret-wearing trickster Gribouille. `french-a1/course.mjs` gives every question one
-everyday-life panel chosen from its French text. No raster artwork is shipped.
+English keeps its hand-authored SVG kit, `web/courses/shared/comic-kit.mjs`, unchanged.
+Both courses keep the RPG theme stylesheet `web/courses/shared/comic.css`; French adds
+its own HTML/PNG stage in `french-a1/art.mjs` and `french-a1/french.css`.
+`french-a1/art-manifest.mjs` owns the twelve Paris place keys, nine recurring characters,
+Gribouille, 58 supported prop keys and unchanged French keyword rules. Art is stored in
+`web/public/art/french-illustrations/{places,characters,props}/<key>.png`.
+The 400×250 composition preserves cast order/count, Paul’s smaller scale, character
+orientation, floor/wall/sky object positions and the pharmacy weather exception. Scene
+backgrounds, transparent character sprites and transparent props are independent layers;
+bubbles, captions and bursts are safely escaped live HTML. Pose/mood metadata is retained;
+the initial edition uses each character’s standing sprite, with an explicit manifest hook
+for future pose/mood variants. No English or shared SVG renderer is imported by French art.
+
+PNG URLs follow Vite’s `BASE_URL` (including the existing relative offline base `./`).
+Importing the course/manifest triggers no image requests: rendered images use native lazy
+loading, so there is no all-course art preload. The stage exposes one accessible image
+label and hides decorative layers from assistive technology. Listening panels retain only
+the existing listening cue; transcripts remain behind the player’s assistance control.
+The question/lesson content and IDs are unchanged (156 lessons, 416 questions).
+See `web/courses/french-a1/ILLUSTRATIONS.md` for the asset contract and verification scope.
 
 `french-a1/battle.mjs` keeps the turn rules: a correct answer removes 20 opponent HP, an
 incorrect answer removes one of three stamina points, free rest preserves cleared rounds, and

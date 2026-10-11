@@ -133,8 +133,16 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
 
   const frFirst=frLessons[0];
   await enterLesson('french-a1',frFirst.id);await page.locator('.french-question').first().waitFor();
-  assert.ok(await page.locator('.french-question svg.comic-panel').count()===frFirst.questions.length);
-  assert.ok(await page.locator('.comic-arena svg.comic-panel').count()===1);
+  assert.ok(await page.locator('.french-question .fr-comic-panel').count()===frFirst.questions.length);
+  assert.ok(await page.locator('.comic-arena .fr-comic-panel').count()===1);
+  const frenchImages=page.locator('.french-question:not([hidden]) .fr-comic-panel img, .comic-arena .fr-comic-panel img');
+  await page.locator('.french-question:not([hidden]) .fr-comic-panel').scrollIntoViewIfNeeded();
+  await frenchImages.evaluateAll(images=>Promise.race([
+    Promise.all(images.map(img=>img.complete?(img.naturalWidth>0?Promise.resolve():Promise.reject(new Error(`French PNG failed: ${img.src}`))):new Promise((ok,fail)=>{img.addEventListener('load',ok,{once:true});img.addEventListener('error',()=>fail(new Error(`French PNG failed: ${img.src}`)),{once:true});}))),
+    new Promise((_,fail)=>setTimeout(()=>fail(new Error('French PNG loading timed out')),15000))
+  ]));
+  assert.ok(await frenchImages.count()>=5,'French backgrounds, characters and props load as PNG layers');
+  assert.equal(await page.locator('.french-question svg.comic-panel').count(),0);
   assert.equal(await page.locator('[style*="french-pets"], img[src*="french-pets"]').count(),0);
   await fightRounds(frFirst,/发动 ·/,'下一格 →');
   await page.getByRole('button',{name:/收录这一页漫画/}).click();await page.locator('.adventure-dialog .comic-victory').waitFor();
