@@ -280,7 +280,7 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
   await page.getByRole('button',{name:'提交测验'}).click();await page.locator(`[data-question-id="${omNum.id}"] .om-explain`).waitFor();
   await page.locator('.om-quiz').screenshot({path:path.join(omShots,'olympiad-quiz.png')});
   await page.locator(`[data-question-id="${omNum.id}"] input`).fill(String(omNum.answer));await page.getByRole('button',{name:'提交测验'}).click();await page.locator('.om-summary.pass').waitFor();
-  assert.equal(await page.locator(`.om-nav-item[data-lesson-id="${omLessons[1].id}"]`).isDisabled(),false);
+  await waitFor(async()=>!(await page.locator(`.om-nav-item[data-lesson-id="${omLessons[1].id}"]`).isDisabled()),5000);
   assert.equal(await page.locator(`.om-nav-item[data-lesson-id="${omLessons[2].id}"]`).isDisabled(),true);
   await backToLibrary();
   save=JSON.parse(await readFile(path.join(evidence,'save/progress.json'),'utf8'));
