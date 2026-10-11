@@ -5,4 +5,4 @@
 - **维基百科**各港口城市条目及气候表 — 仅用于核对事实与常年气候数值（事实与数据本身不受版权保护）；未复制或改编 CC BY-SA 文本。
 - 气候图 `web/public/art/geography/climate/*.png` 由 `scripts/geo/climographs.py`（matplotlib）根据近似常年值绘制。
 - 港口与概念讲解、测验为本项目原创，按项目 MIT 许可发布。
-- 港口插画、海区横幅、标题图、船只与船长：当前为占位图（由航海图裁切生成），正式插画由 AI 生成，提示词见 `scripts/geo/prompts.mjs`。
+- 港口插画、海区横幅、标题图、船只与船长：由 AI 生成的 CG 风格插画，提示词见 `scripts/geo/prompts.mjs`。
