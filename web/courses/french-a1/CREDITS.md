@@ -16,7 +16,7 @@
 - RFI · Le français facile：https://francaisfacile.rfi.fr/fr/exercices/a1/
 
 ## 插图
-全部插图由共享漫画组件库 `web/courses/shared/comic-kit.mjs` 与 `french-a1/art.mjs` 中手写的 SVG 在运行时组合而成（巴黎场景、原创固定角色、日常道具），本项目原创，MIT 许可。不包含位图素材，也不使用任何第三方或商业 IP 角色。
+法语插画使用为本项目制作的 PNG 场景、原创固定角色和日常道具，素材位于 `web/public/art/french-illustrations/`。`french-a1/art.mjs` 根据题目内容实时组合这些图层，文字气泡、标题和拟声字由 HTML/CSS 排版。角色不使用第三方或商业 IP 形象；英语课程原有 SVG 组件保持独立。素材制作与来源说明见该素材目录中的记录；资源约定见 `ILLUSTRATIONS.md`。
 
 ## 音频
 合成语音的来源与许可见 `web/public/audio/fr/ATTRIBUTION.txt`（Piper `fr_FR-siwis-medium`，CC BY 4.0）。
