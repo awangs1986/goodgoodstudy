@@ -175,14 +175,18 @@ function expectedHtml(rule) {
 
 export function localizeChapter(chapter, language) {
   if (language === ZH) return chapter;
-  return { ...chapter, ...englishChapters[chapter.day - 1] };
+  return { ...chapter, ...(chapter.en ?? englishChapters[chapter.day - 1] ?? {}) };
 }
 
 export function localizeLesson(lesson, language) {
   if (language === ZH) return lesson;
-  const chapter = englishChapters[lesson.chapterIndex];
-  const title = englishTitles[lesson.chapterIndex]?.[lesson.localIndex] ?? `Rune Trial ${lesson.localIndex + 1}`;
-  const topic = englishTopics[lesson.chapterIndex]?.[lesson.localIndex] ?? 'C programming';
+  // English titles of the original 140 lessons are keyed by their fixed ID (D{chapter}-Q{nn}).
+  const legacy = /^D(\d)-Q(\d\d)$/.exec(lesson.id);
+  const chapterNumber = legacy ? Number(legacy[1]) : 0;
+  const questNumber = legacy ? Number(legacy[2]) : 0;
+  const chapter = { rune: 'The next rune', title: 'the ruins', scene: '', ...(englishChapters[chapterNumber - 1] ?? {}), ...(lesson.enChapter ?? {}) };
+  const title = lesson.en?.title ?? englishTitles[chapterNumber - 1]?.[questNumber - 1] ?? `Rune Trial ${lesson.localIndex + 1}`;
+  const topic = lesson.en?.topic ?? englishTopics[chapterNumber - 1]?.[questNumber - 1] ?? lesson.knowledge ?? 'C programming';
   const expected = expectedHtml(lesson.validation?.output);
   const input = lesson.defaultInput ? `<code>${escapeHtml(lesson.defaultInput.trim())}</code>` : 'None';
   return {

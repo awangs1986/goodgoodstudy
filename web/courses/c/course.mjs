@@ -16,15 +16,19 @@ const day01 = {
   lessons: day01Source.map((lesson, index) => ({
     ...lesson,
     chapterId: day01Meta.id,
-    chapterIndex: 0,
-    localIndex: index,
     defaultInput: '',
     solution: day01Solutions[index]
   }))
 };
 
 export const chapters = [day01, day02, day03, day04, day05, day06, day07];
+// Positions are derived after assembly; IDs (the save-file key) are fixed in each lesson's source.
+chapters.forEach((chapter, chapterIndex) => {
+  chapter.total = chapter.lessons.length;
+  chapter.lessons.forEach((lesson, localIndex) => Object.assign(lesson, { chapterId: chapter.id, chapterIndex, localIndex }));
+});
 export const lessons = chapters.flatMap(chapter => chapter.lessons);
+if (new Set(lessons.map(lesson => lesson.id)).size !== lessons.length) throw new Error('Duplicate C lesson id');
 export const solutions = lessons.map(lesson => lesson.solution);
 
 export function chapterStart(chapterIndex) {

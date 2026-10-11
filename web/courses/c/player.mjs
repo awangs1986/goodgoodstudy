@@ -133,7 +133,10 @@ export async function mount(root, context) {
       .replace(/请求失败（HTTP (\d+)）/, 'Request failed (HTTP $1)');
   }
   function completedInChapter(chapter = currentChapter()) { return chapter.lessons.filter(lesson => state.completed.includes(lesson.id)).length; }
-  function isChapterUnlocked(index) { return index === 0 || completedInChapter(chapters[index - 1]) >= chapters[index - 1].total; }
+  // A learner who already reached a chapter keeps access to it even if lessons were later
+  // inserted into an earlier chapter (new lesson 0, review and variety lessons).
+  function reachedLater(chapterIndex) { return chapters.slice(chapterIndex).some(chapter => chapter.lessons.some(lesson => state.completed.includes(lesson.id) || state.skipped.includes(lesson.id))); }
+  function isChapterUnlocked(index) { return index === 0 || completedInChapter(chapters[index - 1]) >= chapters[index - 1].total || reachedLater(index); }
 
   function updateStats() {
     $$('[data-gold]').forEach(node => { node.textContent = state.gold; });
@@ -185,9 +188,12 @@ export async function mount(root, context) {
     const lesson = lessons[index];
     if (!lesson || !isChapterUnlocked(lesson.chapterIndex)) return false;
     if (lesson.localIndex === 0) return true;
-    if (lesson.localIndex === chapters[lesson.chapterIndex].total - 1 && completedInChapter(chapters[lesson.chapterIndex]) < chapters[lesson.chapterIndex].total - 2) return false;
+    const reached = lessons.slice(index).some(item => state.completed.includes(item.id) || state.skipped.includes(item.id));
+    if (lesson.localIndex === chapters[lesson.chapterIndex].total - 1 && completedInChapter(chapters[lesson.chapterIndex]) < chapters[lesson.chapterIndex].total - 2) return reached;
     const previousId = lessons[index - 1].id;
-    return state.completed.includes(previousId) || state.skipped.includes(previousId);
+    if (state.completed.includes(previousId) || state.skipped.includes(previousId)) return true;
+    // Lessons inserted before already-finished ones stay open instead of re-locking old progress.
+    return lessons.slice(index).some(lesson => state.completed.includes(lesson.id) || state.skipped.includes(lesson.id));
   }
 
   async function startJourney(reset = false) {
@@ -277,6 +283,7 @@ export async function mount(root, context) {
     if (busy || aiTutorBusy || compilerExplainBusy) return;
     if (!isUnlocked(index)) return;
     state.currentQuest = index;
+    state.currentQuestId = lessons[index].id;
     state.currentChapter = lessons[index].chapterIndex;
     queueSave(false);
     renderQuest();
