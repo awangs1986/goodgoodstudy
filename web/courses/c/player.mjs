@@ -2,7 +2,8 @@ import { PUBLIC_SITE } from '../../deployment.mjs';
 import { chapters, lessons, solutions, chapterStart } from './course.mjs';
 import { CompilerService } from './compiler.mjs';
 import { createEditor } from './editor.mjs';
-import { gradeLesson, visibleOutput } from './judge.mjs';
+import { gradeChoice, gradeLesson, visibleOutput } from './judge.mjs';
+import { figureHtml } from './figures.mjs';
 import { emptySave, normalizeSave } from './save-store.mjs';
 import template from './view.html?raw';
 import { consumeAnswerToken, tokenCount } from './answer-store.mjs';
@@ -27,6 +28,7 @@ export async function mount(root, context) {
   let busy = false;
   let aiTutorBusy = false;
   let compilerExplainBusy = false;
+  let selectedChoice = null;
 
   const editor = createEditor($('#codeEditor'), source => {
     if (!state.started || $('#challengeView').hidden) return;
@@ -291,6 +293,45 @@ export async function mount(root, context) {
     setTimeout(() => editor.focus(), 0);
   }
 
+  const typeLabels = { predict: ['Predict the output', '预测输出'], fix: ['Fix the bug', '改错'], fill: ['Fill in the blank', '填空'] };
+  function escapeText(value) { return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  // Bundled, trusted lesson content: teach text is authored HTML, examples are escaped code.
+  function renderTeach(lesson) {
+    const panel = $('#questTeach');
+    panel.hidden = !lesson.teach;
+    if (!lesson.teach) return;
+    const label = typeLabels[lesson.type];
+    const badges = [label ? `<span class="lesson-type-badge">${tr(...label)}</span>` : '', lesson.review ? `<span class="lesson-type-badge">${tr('Review', '复习')}</span>` : '', lesson.milestone ? `<span class="lesson-type-badge">${tr('Milestone project', '里程碑项目')}</span>` : ''].join('');
+    const example = lesson.example ? `<span class="teach-example-label">${tr('Minimal example', '最小示例')}</span><pre class="teach-example">${escapeText(lesson.example)}</pre>` : '';
+    $('#teachBody').innerHTML = `${badges ? `<p>${badges}</p>` : ''}${lesson.teach}${lesson.figure ? figureHtml(lesson.figure) : ''}${example}`;
+  }
+  function renderChoices(lesson) {
+    const list = $('#choiceList');
+    const predict = lesson.type === 'predict';
+    list.hidden = !predict;
+    selectedChoice = null;
+    if (!predict) { list.replaceChildren(); return; }
+    const done = state.completed.includes(lesson.id);
+    list.replaceChildren(...lesson.choices.map((choice, index) => {
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = `choice ${done && index === lesson.answer ? 'correct' : ''}`;
+      item.setAttribute('role', 'radio');
+      item.setAttribute('aria-checked', 'false');
+      item.innerHTML = `<b>${'ABCD'[index]}</b><pre>${escapeText(visibleOutput(choice, state.language))}</pre>`;
+      item.addEventListener('click', () => {
+        selectedChoice = index;
+        list.querySelectorAll('.choice').forEach((node, position) => { node.classList.toggle('selected', position === index); node.setAttribute('aria-checked', String(position === index)); });
+      });
+      return item;
+    }));
+    updatePredictRun(lesson);
+  }
+  // Running a predict snippet would reveal the answer, so Run unlocks only after a correct pick.
+  function updatePredictRun(lesson = currentLesson()) {
+    if (!busy) $('#runBtn').disabled = lesson.type === 'predict' && !state.completed.includes(lesson.id);
+  }
+
   function renderQuest() {
     applyStaticLanguage(state.language, root);
     document.documentElement.lang = state.language;
@@ -311,6 +352,8 @@ export async function mount(root, context) {
     $('#questStory').textContent = visibleLesson.story;
     $('#questObjective').innerHTML = visibleLesson.objective;
     $('#questRules').innerHTML = visibleLesson.rules;
+    renderTeach(lesson);
+    renderChoices(lesson);
     $('#prevQuestBtn').disabled = localIndex === 0 || !isUnlocked(index - 1);
     $('#nextQuestBtn').disabled = localIndex === chapter.total - 1 || !isUnlocked(index + 1);
 
@@ -487,6 +530,7 @@ export async function mount(root, context) {
     $('#runBtn').disabled = value;
     $('#submitBtn').disabled = value;
     $('#runBtn').textContent = value ? tr('⏳ Compiling…', '⏳ 编译中…') : tr('▶ Run Code', '▶ 运行代码');
+    if (!value && state.started) updatePredictRun();
   }
 
   async function execute() {
@@ -514,16 +558,23 @@ export async function mount(root, context) {
   async function submitCode() {
     const lesson = currentLesson();
     const id = lesson.id;
-    const execution = await execute();
+    let execution;
+    if (lesson.type === 'predict') {
+      if (busy) return;
+      if (selectedChoice === null) { showToast(tr('Choose an Answer', '先选一个答案'), tr('Pick the output you predict, then submit.', '选出你预测的输出，再提交。'), true); return; }
+      execution = { ok: true, stage: 'run', code: 0, output: lesson.choices[selectedChoice], stderr: '', diagnostics: [] };
+    } else {
+      execution = await execute();
+    }
     if (!execution) return;
     state.attempts[id] = (state.attempts[id] ?? 0) + 1;
     state.drafts[id] = editor.getValue();
     state.inputs[id] = $('#stdinInput').value;
-    lastResult = gradeLesson(lesson, editor.getValue(), execution, state.language);
+    lastResult = lesson.type === 'predict' ? { ...gradeChoice(lesson, selectedChoice, state.language), execution } : gradeLesson(lesson, editor.getValue(), execution, state.language);
     setResultTab(lastResult.passed ? 'tests' : execution.ok ? 'tests' : 'compiler');
     $('#attemptLabel').textContent = tr(`Submitted ${state.attempts[id]} times · Running never reduces rewards`, `正式提交 ${state.attempts[id]} 次 · 运行不会扣除奖励`);
     updateSkipVisibility();
-    if (lastResult.passed) completeQuest();
+    if (lastResult.passed) { completeQuest(); renderChoices(lesson); }
     else {
       state.consecutiveFailures[id] = (state.consecutiveFailures[id] ?? 0) + 1;
       $('#attemptLabel').textContent = tr(`Submitted ${state.attempts[id]} times · Consecutive failures ${state.consecutiveFailures[id]}/3`, `正式提交 ${state.attempts[id]} 次 · 连续错误 ${state.consecutiveFailures[id]}/3`);
