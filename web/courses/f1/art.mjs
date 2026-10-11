@@ -122,3 +122,38 @@ export function info(rows, o = {}) {
    ${rows.map((r, i) => { const y = (o.title ? 44 : 6) + i * h; return `<rect x="10" y="${y}" width="${w - 20}" height="${h - 6}" rx="9" fill="${i % 2 ? '#162036' : '#1b2640'}"/><rect x="10" y="${y}" width="8" height="${h - 6}" rx="3" fill="${r.c ?? C.gold}"/><text x="30" y="${y + 26}" font-size="15" font-weight="800" fill="#fff">${esc(r.k)}</text><text x="${o.split ?? 210}" y="${y + 26}" font-size="14" fill="#c9d4e5">${esc(r.v)}</text>`; }).join('')}</g></svg>`;
 }
 export const colors = C;
+
+// Start lights gantry: n lit (0–5); anim cycles 1..5 then lights out.
+export function gantry(o = {}) {
+  const lit = o.lit ?? 5;
+  const lamp = (i) => {
+    const on = o.anim ? `<animate attributeName="fill" values="#2a1212;#2a1212;#ff2a1f;#ff2a1f;#2a1212" keyTimes="0;${(i + 1) / 7};${(i + 1) / 7 + .001};.857;.858" dur="4.2s" repeatCount="indefinite"/>` : '';
+    return `<g transform="translate(${70 + i * 104} 70)"><rect x="-40" y="-44" width="80" height="88" rx="12" fill="#111"/><circle cy="-18" r="16" fill="${!o.anim && i < lit ? '#ff2a1f' : '#2a1212'}">${on}</circle><circle cy="20" r="16" fill="${!o.anim && i < lit ? '#ff2a1f' : '#2a1212'}">${on.replace('fill', 'fill')}</circle></g>`;
+  };
+  return `<svg class="rc-svg${o.anim ? ' animated' : ''}" viewBox="0 0 560 190" role="img" aria-label="${esc(o.alt ?? '发车灯')}" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="190" rx="14" fill="#1a2233"/><rect x="20" y="20" width="520" height="100" rx="10" fill="#2c3445"/>${[0, 1, 2, 3, 4].map(lamp).join('')}
+   <text x="280" y="160" text-anchor="middle" font-size="16" font-weight="800" fill="#fff" ${FONT}>${esc(o.t ?? '5 组红灯逐一亮起 → 全部熄灭 = 发车')}</text></svg>`;
+}
+// Pit lane scene: track on top, pit lane below with speed-limit lines and garages.
+export function pitScene(o = {}) {
+  const W = 640, H = 330;
+  return scene({ w: W, h: H, alt: o.alt ?? '维修区示意图', top: 40, bot: 130, cars: o.cars ?? [], labels: o.labels ?? [], arrows: o.arrows ?? [], anim: o.anim,
+    under: `<rect x="0" y="150" width="${W}" height="110" fill="#30343b"/><rect x="0" y="150" width="${W}" height="40" fill="#3d424a"/><path d="M0 190H${W}" stroke="#ffd400" stroke-width="3" stroke-dasharray="14 10"/>
+     <text x="320" y="176" text-anchor="middle" font-size="12" fill="#c9d4e5" ${FONT}>快车道 Fast Lane</text><text x="320" y="246" text-anchor="middle" font-size="12" fill="#c9d4e5" ${FONT}>内车道（工作区） Inner Lane</text>
+     ${[0, 1, 2, 3, 4, 5].map(i => `<rect x="${70 + i * 90}" y="262" width="74" height="60" fill="#22262c" stroke="#555"/><rect x="${78 + i * 90}" y="270" width="58" height="8" fill="${['#d7263d', '#1f6fe0', '#ff8a1c', '#14a3a0', '#7b4ce0', '#c9ced6'][i]}"/>`).join('')}
+     <path d="M60 150V260M580 150V260" stroke="#fff" stroke-width="5"/><g><rect x="22" y="200" width="76" height="40" rx="6" fill="#fff"/><circle cx="60" cy="220" r="17" fill="#fff" stroke="#e5332a" stroke-width="5"/><text x="60" y="226" text-anchor="middle" font-size="15" font-weight="900" fill="#111" font-family="system-ui">${o.limit ?? 80}</text></g>
+     <text x="60" y="${H - 6}" text-anchor="middle" font-size="11" fill="#fff" ${FONT}>限速线</text><text x="580" y="${H - 6}" text-anchor="middle" font-size="11" fill="#fff" ${FONT}>限速结束</text>`, extra: o.extra });
+}
+// Start grid: two staggered columns of boxes.
+export function gridScene(o = {}) {
+  const W = 640, H = 300, boxes = [];
+  for (let i = 0; i < 8; i += 1) { const x = 520 - i * 62, y = i % 2 ? 190 : 110; boxes.push(`<path d="M${x} ${y - 26}H${x + 20}V${y + 26}H${x}" fill="none" stroke="#fff" stroke-width="3"/><text x="${x + 32}" y="${y - 30}" font-size="12" font-weight="800" fill="#fff" font-family="system-ui">${i + 1}</text>`); }
+  return scene({ w: W, h: H, top: 60, bot: 240, alt: o.alt ?? '发车格', under: boxes.join('') + `<path d="M570 60V240" stroke="#fff" stroke-width="6"/><path d="M582 60V240" stroke="#111" stroke-width="6" stroke-dasharray="6 6"/>`, cars: o.cars ?? [], labels: o.labels ?? [], arrows: o.arrows ?? [], anim: o.anim });
+}
+// Corner scene with custom curved track (for track limits / overtaking etiquette).
+export function cornerScene(o = {}) {
+  return scene({ w: 640, h: 360, alt: o.alt ?? '弯道示意', cars: o.cars ?? [], labels: o.labels ?? [], arrows: o.arrows ?? [], anim: o.anim, extra: o.extra,
+    custom: m => `<rect width="640" height="360" fill="url(#${m}grass)"/><path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="#8b8e94" stroke-width="150" opacity=".45"/>
+      <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="url(#${m}kerb)" stroke-width="112"/>
+      <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="#fff" stroke-width="96"/>
+      <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="url(#${m}asph)" stroke-width="88"/>` });
+}
