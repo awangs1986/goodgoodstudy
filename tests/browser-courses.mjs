@@ -11,6 +11,8 @@ import { lessons as frLessons } from '../web/courses/french-a1/course.mjs';
 import { lessons as enLessons } from '../web/courses/english-nce/course.mjs';
 import { lessons as phLessons } from '../web/courses/physics/course.mjs';
 import { lessons as omLessons } from '../web/courses/olympiad/course.mjs';
+import { lessons as fibaLessons } from '../web/courses/fiba/course.mjs';
+import { lessons as f1Lessons } from '../web/courses/f1/course.mjs';
 import { gradeCode } from '../web/courses/csharp/judge.mjs';
 
 const root=process.cwd();
@@ -294,6 +296,31 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
   assert.ok(await page.locator('.om-solution li').count()>=3,'reduced motion shows all steps as text');
   await page.emulateMedia({reducedMotion:'no-preference'});await backToLibrary();
   pass('Olympiad: Remotion video loads with Chinese captions, plays/pauses; quiz locked until read; hint + explanation; progress saved; reduced motion shows poster + steps.');
+
+  const rulesShots=process.env.GRAY_CROWN_SHOTS||path.join(evidence,'shots');await mkdir(rulesShots,{recursive:true});
+  for(const [id,key,list] of [['fiba-rules','fiba',fibaLessons],['f1-rules','f1',f1Lessons]]){
+    const card=page.locator(`.course-card[data-course-id="${id}"]`);await card.scrollIntoViewIfNeeded();
+    await card.screenshot({path:path.join(rulesShots,`${key}-shelf-card.png`)});await page.screenshot({path:path.join(rulesShots,`${key}-shelf.png`),fullPage:true});
+    await card.locator('button').click();await page.locator('.rc-teach').waitFor();
+    assert.ok(await page.locator('.rc-teach .rc-figure svg').count()>=1,'teach diagram');
+    await page.addStyleTag({content:'#courseNavigation{position:static!important}'});
+    await page.locator('.rc-teach').screenshot({path:path.join(rulesShots,`${key}-teach.png`)});
+    assert.equal(await page.locator('.rc-question').count(),0,'quiz locked before reading');
+    await page.locator('.rc-finish-teach').click();await page.locator('.rc-question').first().waitFor();
+    const first=list[0],withFig=first.questions.find(q=>q.svg);assert.ok(await page.locator(`[data-question-id="${withFig.id}"] .rc-qfig svg`).count()===1,'quiz scenario diagram');
+    await page.locator(`[data-question-id="${withFig.id}"]`).screenshot({path:path.join(rulesShots,`${key}-quiz.png`)});
+    await page.locator(`[data-question-id="${first.questions[0].id}"] input[value="${first.questions[0].options[1]}"]`).check();
+    for(const q of first.questions.slice(1))await page.locator(`[data-question-id="${q.id}"] input[value="${q.answer}"]`).check();
+    await page.locator('.rc-submit').click();await page.locator('.rc-summary.retry').waitFor();
+    assert.ok(await page.locator(`[data-question-id="${first.questions[0].id}"] .rc-explain`).count()>=1,'explanation shown');
+    await page.locator(`[data-question-id="${first.questions[0].id}"] input[value="${first.questions[0].answer}"]`).check();
+    await page.locator('.rc-submit').click();await page.locator('.rc-summary.pass').waitFor();
+    const animIndex=list.findIndex(l=>l.teach?.diagrams?.some(d=>d.svg.includes('rc-svg animated')));
+    assert.ok(animIndex>=0);
+    await backToLibrary();save=JSON.parse(await readFile(path.join(evidence,'save/progress.json'),'utf8'));
+    assert.deepEqual(save.courses[id].completed,[first.id]);assert.ok(save.courses.olympiad.completed.length>0,'other progress untouched');
+    pass(`${id}: teach diagram, quiz locked until read, scenario diagram, explanation, progress saved.`);
+  }
   await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(evidence,'06-mobile.png'),fullPage:true});
   assert.deepEqual(errors,[]);pass('No uncaught browser errors.');
 }catch(error){reports.push('FAIL '+error.stack);console.error(error);process.exitCode=1;}
