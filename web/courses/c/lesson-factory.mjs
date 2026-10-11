@@ -18,7 +18,19 @@ function plain(value) {
 // so IDs must never be derived from a lesson's position (lessons are reordered and inserted).
 const defaultMinutes = difficulty => difficulty.startsWith('★★★') ? 25 : difficulty.startsWith('★★☆') ? 15 : 10;
 
-export function makeLesson(chapter, spec) {
+// Predict lessons list the correct output first in source; shuffle deterministically per ID
+// so the right answer is not always "A".
+function shuffledChoices(spec) {
+  if (spec.type !== 'predict') return spec;
+  if (!Array.isArray(spec.choices) || !Number.isInteger(spec.answer)) throw new Error(`${spec.id} 需要 choices 与 answer`);
+  const seed = [...spec.id].reduce((sum, char) => (sum * 31 + char.charCodeAt(0)) >>> 0, 7);
+  const shift = seed % spec.choices.length;
+  const choices = spec.choices.map((_, index) => spec.choices[(index + shift) % spec.choices.length]);
+  return { ...spec, choices, answer: (spec.answer - shift + spec.choices.length) % spec.choices.length };
+}
+
+export function makeLesson(chapter, rawSpec) {
+  const spec = shuffledChoices(rawSpec);
   const id = spec.id;
   if (!/^[A-Za-z0-9-]+$/.test(id ?? '')) throw new Error(`${chapter.id} 的题目缺少固定 id：${spec.title}`);
   if (!spec.difficulty) throw new Error(`${id} 缺少难度标注`);
