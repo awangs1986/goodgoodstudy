@@ -11,3 +11,62 @@
 .adventure-course[data-theme=comic-fr] .accent-keys button { font-family:var(--fr-serif); border:2px solid var(--ink); border-radius:8px; background:#fff; box-shadow:2px 2px 0 var(--ink); }
 .adventure-course[data-theme=comic-fr] .further-links { padding-left:20px; font-size:13px; line-height:1.8; }
 .adventure-course[data-theme=comic-fr] .further-links a { color:var(--sky); }
+
+/* French-only PNG stage. Percent coordinates preserve the 400×250 composition at every size.
+   The shared English SVG selectors remain unchanged. */
+.fr-comic-panel {
+  position:relative; display:block; width:100%; max-width:560px; aspect-ratio:8/5;
+  isolation:isolate; overflow:hidden; container-type:inline-size;
+  border-radius:12px; background:#eadbc5; color:#243148;
+  box-shadow:0 3px 0 #18253d,0 12px 24px #19294720;
+  font-family:"Comic Neue","Chalkboard SE","Comic Sans MS","Microsoft YaHei",sans-serif;
+}
+.fr-comic-panel::after {
+  content:""; position:absolute; inset:0; border:3px solid #263349; border-radius:inherit;
+  box-shadow:inset 0 0 0 1px #fff8e150; pointer-events:none; z-index:3;
+}
+.fr-comic-layers { position:absolute; inset:0; overflow:hidden; border-radius:inherit; }
+.fr-comic-background { position:absolute; inset:0; width:100%; height:100%; display:block; object-fit:cover; }
+.fr-comic-character, .fr-comic-prop {
+  position:absolute; display:block; left:var(--fr-x); top:var(--fr-y);
+  transform:translate(-50%,-100%) scale(var(--fr-scale)); transform-origin:center bottom;
+}
+.fr-comic-character { width:25%; height:64%; }
+.fr-comic-villain { width:25%; height:52%; }
+.fr-comic-prop { width:16%; height:25.6%; }
+.fr-comic-sprite, .fr-comic-object { display:block; width:100%; height:100%; object-fit:contain; object-position:center bottom; }
+.fr-comic-sprite { filter:drop-shadow(0 2px 2px #25354b25); }
+.fr-comic-character[data-flip=true] .fr-comic-sprite { transform:scaleX(-1); }
+.fr-comic-object { filter:drop-shadow(0 1px 1px #25354b25); }
+.fr-comic-bubble, .fr-comic-caption, .fr-comic-burst {
+  position:absolute; box-sizing:border-box; font-weight:800; text-align:center;
+  font-size:13px; font-size:3.25cqw; line-height:1.23; overflow-wrap:anywhere;
+}
+.fr-comic-bubble {
+  top:4%; padding:2.1% 2.4%; border:2px solid #263349; border-radius:14px;
+  background:#fffefa; color:#20304a; box-shadow:0 2px 0 #26334920;
+}
+.fr-comic-bubble::after {
+  content:""; position:absolute; left:var(--fr-tail); top:100%; width:10px; height:10px;
+  width:2.5cqw; height:2.5cqw; background:#fffefa; border-right:2px solid #263349;
+  border-bottom:2px solid #263349; transform:translateY(-45%) skewY(25deg) rotate(45deg);
+}
+.fr-comic-caption {
+  left:2%; bottom:3.2%; max-width:75%; min-height:11.2%; padding:1.4% 2.4%;
+  display:flex; align-items:center; justify-content:center;
+  border:2px solid #263349; border-radius:5px; background:#ffe4a4; color:#263349;
+  font-size:12px; font-size:3cqw; box-shadow:0 2px 0 #26334925;
+}
+.fr-comic-burst {
+  left:72.5%; top:8%; width:20%; height:32%; display:grid; place-items:center;
+  padding:3%; color:#4a2b1e; background:#263349;
+  clip-path:polygon(50% 0,63% 27%,93% 18%,75% 43%,100% 58%,70% 65%,78% 95%,53% 75%,33% 98%,33% 68%,3% 65%,25% 45%,8% 20%,38% 28%);
+}
+.fr-comic-burst::before {
+  content:""; position:absolute; inset:2px; background:#ffce69; clip-path:inherit;
+}
+.fr-comic-burst > span { position:relative; max-width:100%; transform:rotate(-7deg); }
+.comic-hero .fr-comic-panel, .comic-cover .fr-comic-panel { max-width:720px; margin:auto; }
+.comic-victory .fr-comic-panel { max-width:420px; margin:auto; }
+.comic-thumb .fr-comic-panel { max-width:none; border-radius:6px; box-shadow:0 2px 0 #263349; }
+.comic-thumb .fr-comic-panel::after { border-width:2px; }
