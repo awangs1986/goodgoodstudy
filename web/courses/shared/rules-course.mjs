@@ -5,7 +5,12 @@ export const mc = (id, prompt, options, explanation, hint, svg) => ({ id, type: 
 export const stage = (id, title, teach, quiz) => ({ id, title, teach, quiz });
 export function buildCourse(units, prefix) {
   const chapters = units.map((unit, chapterIndex) => {
-    const stageLessons = unit.stages.map((s, localIndex) => ({ ...s, kind: 'stage', questions: s.quiz, chapterId: unit.id, chapterIndex, localIndex }));
+    const stageLessons = unit.stages.map((s, localIndex) => {
+      // Scenario picture for the first quiz question: reuse the stage's scenario diagram (static copy) unless the question brings its own.
+      const scene = s.teach.diagrams?.at(-1)?.svg?.replace(/class="rc-svg animated"/, 'class="rc-svg"').replace(/<animate\w*\b[^>]*\/>/g, '').replace(/<animate\w*\b[^>]*>[\s\S]*?<\/animate\w*>/g, '');
+      const quiz = s.quiz.map((q, i) => (i === 0 && !q.svg && scene ? { ...q, svg: scene } : q));
+      return { ...s, quiz, kind: 'stage', questions: quiz, chapterId: unit.id, chapterIndex, localIndex };
+    });
     const exam = { id: `${unit.id}-exam`, kind: 'exam', title: `${unit.title} · 单元测试`, questions: unit.exam, chapterId: unit.id, chapterIndex, localIndex: stageLessons.length, recap: stageLessons.map(s => s.title) };
     return { ...unit, lessons: [...stageLessons, exam] };
   });
