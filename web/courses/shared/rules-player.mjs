@@ -1,23 +1,10 @@
 import './rules.css';
 import { createProgress, unlocked } from './progress.mjs';
 import { gradeChoice, shuffled } from './rules-course.mjs';
+import { figure } from './rules-figure.mjs';
 
 const el = (tag, text, className) => { const n = document.createElement(tag); if (text != null) n.textContent = text; if (className) n.className = className; return n; };
 const btn = (text, action, className = 'rc-btn') => { const n = el('button', text, className); n.type = 'button'; n.addEventListener('click', action); return n; };
-const reducedMotion = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-// Diagrams are bundled, trusted SVG strings authored in this repo (never user/save data).
-function figure(d, className = 'rc-figure') {
-  const fig = el('figure', null, className); fig.innerHTML = d.svg; if (d.anim) fig.dataset.anim = d.anim;
-  const svg = fig.querySelector('svg');
-  if (svg?.classList.contains('animated')) {
-    fig.classList.add('has-anim');
-    const toggle = btn('⏸ 暂停动画', () => { if (svg.animationsPaused()) { svg.unpauseAnimations(); toggle.textContent = '⏸ 暂停动画'; } else { svg.pauseAnimations(); toggle.textContent = '▶ 播放动画'; } }, 'rc-btn ghost rc-anim-toggle');
-    if (reducedMotion()) { queueMicrotask(() => { try { svg.pauseAnimations(); svg.setCurrentTime(0); } catch {} }); toggle.textContent = '▶ 播放动画'; fig.classList.add('reduced'); }
-    fig.append(toggle);
-  }
-  if (d.cap) fig.append(el('figcaption', d.cap));
-  return fig;
-}
 
 export function mountRulesCourse(cfg) {
   const { key, chapters, lessons, credits } = cfg;

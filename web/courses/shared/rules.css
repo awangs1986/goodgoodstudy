@@ -28,8 +28,9 @@
 .rc-ref { display: inline-block; padding: 3px 12px; border-radius: 999px; background: var(--rc-accent2-soft); color: var(--rc-accent2); font-weight: 700; font-size: 13px; }
 .rc-box { border-radius: 12px; padding: 10px 14px; margin: 12px 0; } .rc-box p, .rc-box li { margin: 6px 0 0; line-height: 1.85; font-size: 16px; } .rc-box ul { margin: 4px 0 0; padding-left: 22px; }
 .rc-hook { background: var(--rc-accent-soft); } .rc-rule { background: var(--rc-accent2-soft); } .rc-why { background: rgba(31,157,107,.10); } .rc-scenario { background: rgba(255,197,51,.16); } .rc-caution { background: rgba(212,55,44,.10); border: 1px dashed var(--rc-bad); }
-.rc-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin: 14px 0; }
+.rc-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; margin: 14px 0; }
 .rc-figure { margin: 0; background: var(--rc-card); border: 1px solid var(--rc-line); border-radius: 14px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.rc-figure-wide { grid-column: 1 / -1; min-width: 0; }
 .rc-figure svg { display: block; width: 100%; height: auto; max-height: 460px; border-radius: 10px; } .rc-figure figcaption { font-size: 13px; color: var(--rc-muted); text-align: center; line-height: 1.6; }
 .rc-qfig { max-width: 520px; margin: 8px 0; } .rc-qfig svg { max-height: 300px; }
 .rc-anim-toggle { font-size: 12px; padding: 3px 12px; }
@@ -43,3 +44,11 @@
 .rc-dialog { max-width: 680px; border-radius: 16px; border: 1px solid var(--rc-line); line-height: 1.7; background: var(--rc-card); color: var(--rc-ink); } .rc-dialog a { color: var(--rc-accent2); }
 @media (prefers-color-scheme: dark) { .rules-course.theme-fiba { --rc-ink: #f3ece0; --rc-muted: #b8ad9b; --rc-bg: #1d1a16; --rc-card: #28241f; --rc-line: #40382d; --rc-accent-soft: #3b231d; --rc-accent2-soft: #1d2a42; background: #1d1a16; } }
 @media (prefers-reduced-motion: reduce) { .rules-course * { transition: none !important; animation: none !important; } }
+
+/* Keep the same lesson layout while recovering drawing space on small screens. */
+@media (max-width: 600px) {
+  .rules-course .rc-step { padding: 14px 10px; }
+  .rules-course .rc-figure { padding: 6px; }
+  .rules-course .rc-figs { gap: 12px; }
+  .rules-course .rc-question { padding: 10px 8px; min-width: 0; }
+}

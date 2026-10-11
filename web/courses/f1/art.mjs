@@ -1,49 +1,20 @@
+import { technicalCar, technicalSafetyCar, technicalAeroSide } from './vehicle-art.mjs';
 // F1 rules course illustration kit — hand-authored SVG, offline. Generic open-wheel silhouettes with
 // team-neutral liveries; no F1/FIA logos, team marks or tyre-maker branding.
-const C = { asphalt: '#3a3f47', asphalt2: '#444a53', grass: '#5c9e4f', grass2: '#4f8e43', kerbR: '#d8322b', kerbW: '#f5f5f5', line: '#ffffff', ink: '#141922', gold: '#ffc533', bad: '#e5332a', ok: '#23a26d', pit: '#2c3038' };
+const C = { asphalt: '#343e49', asphalt2: '#3b4651', grass: '#3d584f', grass2: '#405c53', kerbR: '#b64b47', kerbW: '#d7dfe2', line: '#ffffff', ink: '#141922', gold: '#ffc533', bad: '#e5332a', ok: '#23a26d', pit: '#2c3038' };
 export const LIVERY = { red: ['#d7263d', '#1b1b1f'], blue: ['#1f6fe0', '#f2f2f2'], orange: ['#ff8a1c', '#1d2a44'], teal: ['#14a3a0', '#0f1f2b'], silver: ['#c9ced6', '#1a1a1a'], purple: ['#7b4ce0', '#ffd23f'], green: ['#1f8a4c', '#e9f2ea'], yellow: ['#f2c318', '#1a1a1a'] };
 let uid = 0; const id = p => `${p}${(uid += 1)}`;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const FONT = `font-family="'Noto Sans SC','PingFang SC',system-ui,sans-serif"`;
 
-// Top-down car pointing +x, origin at car centre, length ≈ 100 units.
-export function car(o = {}) {
-  const [c1, c2] = LIVERY[o.livery ?? 'red'], s = o.scale ?? 1;
-  const wheel = (x, y) => `<rect x="${x - 9}" y="${y - 6}" width="18" height="12" rx="3.5" fill="#15171b"/><rect x="${x - 7}" y="${y - 1}" width="14" height="2" rx="1" fill="${o.tyre ?? '#5a5f68'}"/>`;
-  const glow = o.hl ? `<ellipse cx="0" cy="0" rx="62" ry="30" fill="none" stroke="${C.gold}" stroke-width="3" stroke-dasharray="7 5"/>` : '';
-  const num = o.n != null ? `<text x="-14" y="4.5" text-anchor="middle" font-size="12" font-weight="900" fill="${c2}" font-family="system-ui">${esc(o.n)}</text>` : '';
-  return `<g class="f1-car" transform="translate(${o.x ?? 0} ${o.y ?? 0}) rotate(${o.rot ?? 0}) scale(${s})">
-   <ellipse cx="2" cy="3" rx="54" ry="22" fill="#000" opacity=".22"/>${glow}
-   ${wheel(30, -17)}${wheel(30, 17)}${wheel(-34, -18)}${wheel(-34, 18)}
-   <path d="M30 -10L33 -17M30 10L33 17M-34 -9L-34 -18M-34 9L-34 18" stroke="#222" stroke-width="2"/>
-   <rect x="44" y="-20" width="8" height="40" rx="2" fill="${c2}"/><rect x="46" y="-20" width="3" height="40" fill="${c1}" opacity=".6"/>
-   <path d="M50 -3Q56 0 50 3L18 6L10 -6Z" fill="${c1}"/>
-   <path d="M18 -6Q6 -9 -6 -15L-26 -15Q-30 -10 -30 -6L-40 -5L-40 5L-30 6Q-30 10 -26 15L-6 15Q6 9 18 6Z" fill="${c1}"/>
-   <path d="M-4 -13L-22 -13Q-25 -9 -25 0Q-25 9 -22 13L-4 13Q-8 0 -4 -13Z" fill="${c2}" opacity=".35"/>
-   <ellipse cx="6" cy="0" rx="7" ry="4.6" fill="#111"/><circle cx="6" cy="0" r="3.4" fill="${c2}"/>
-   <path d="M13 0Q12 -8 4 -8Q-1 -8 -2 -5M13 0Q12 8 4 8Q-1 8 -2 5" fill="none" stroke="#222" stroke-width="2.4"/>
-   <rect x="-52" y="-16" width="9" height="32" rx="2" fill="${c2}"/><rect x="-50" y="-16" width="3" height="32" fill="${c1}"/>
-   ${o.open ? `<rect x="-54" y="-16" width="3" height="32" fill="${C.gold}"/>` : ''}${num}</g>`;
-}
-// Side-view car for active aero: mode 'corner' | 'straight'.
-export function aeroSide(mode = 'corner', o = {}) {
-  const [c1, c2] = LIVERY[o.livery ?? 'blue'], open = mode === 'straight';
-  const fwFlap = open ? 'rotate(-2 70 52)' : 'rotate(-16 70 52)', rwFlap = open ? 'rotate(-2 -78 4)' : 'rotate(-22 -78 4)';
-  return `<g transform="translate(${o.x ?? 0} ${o.y ?? 0})">
-   <ellipse cx="0" cy="70" rx="120" ry="6" fill="#000" opacity=".18"/>
-   <circle cx="58" cy="52" r="18" fill="#15171b"/><circle cx="58" cy="52" r="8" fill="#555"/><circle cx="-62" cy="50" r="20" fill="#15171b"/><circle cx="-62" cy="50" r="9" fill="#555"/>
-   <path d="M98 52L80 46L30 40L0 22L-30 20L-70 26L-84 40L-84 54L-40 56L0 54L40 50Z" fill="${c1}"/>
-   <path d="M2 22Q12 6 26 18" fill="none" stroke="#222" stroke-width="3"/><circle cx="10" cy="20" r="6" fill="${c2}"/>
-   <g transform="${fwFlap}"><rect x="62" y="48" width="34" height="5" rx="2" fill="${c2}"/></g><rect x="84" y="56" width="22" height="4" rx="1" fill="${c2}"/>
-   <rect x="-90" y="-14" width="4" height="56" fill="#222"/><rect x="-104" y="-6" width="32" height="7" rx="2" fill="${c2}"/>
-   <g transform="${rwFlap}"><rect x="-102" y="4" width="30" height="6" rx="2" fill="${open ? C.gold : c1}"/></g>
-   ${(o.flow ?? true) ? (open ? `<path d="M140 -20H-150M140 0H-150" stroke="#7cc4ff" stroke-width="2" stroke-dasharray="10 8" opacity=".8"><animate attributeName="stroke-dashoffset" from="0" to="-36" dur=".6s" repeatCount="indefinite"/></path>` : `<path d="M140 -20Q-40 -20 -90 -40M140 0Q-60 0 -100 -24" fill="none" stroke="#ff9c7c" stroke-width="2" stroke-dasharray="10 8" opacity=".85"><animate attributeName="stroke-dashoffset" from="0" to="-36" dur=".9s" repeatCount="indefinite"/></path>`) : ''}
-   </g>`;
-}
+// Top-down vehicle geometry and materials live in the dedicated illustration module.
+export const car = (o = {}) => technicalCar(o, LIVERY);
+export const safetyCar = (o = {}) => technicalSafetyCar(o, LIVERY);
+export const aeroSide = (mode = 'corner', o = {}) => technicalAeroSide(mode, o, LIVERY);
 export function aeroModes(o = {}) {
   return `<svg class="rc-svg animated" viewBox="0 0 640 300" role="img" aria-label="主动空气动力学：弯道模式与直道模式" xmlns="http://www.w3.org/2000/svg"><rect width="640" height="300" rx="14" fill="#0f1726"/>
-   <g ${FONT}><text x="160" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#ff9c7c">弯道模式 Corner Mode</text><text x="160" y="56" text-anchor="middle" font-size="13" fill="#c9d4e5">翼片立起 → 下压力大、抓地好、阻力大</text>
-   <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#7cc4ff">直道模式 Straight Mode</text><text x="480" y="56" text-anchor="middle" font-size="13" fill="#c9d4e5">前后翼片放平 → 阻力小、更省电、更快</text>
+   <g ${FONT}><text x="160" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#ff9c7c">弯道模式 Corner Mode</text><text x="160" y="56" text-anchor="middle" font-size="18" fill="#c9d4e5">翼片立起 · 抓地力大</text>
+   <text x="480" y="34" text-anchor="middle" font-size="18" font-weight="800" fill="#7cc4ff">直道模式 Straight Mode</text><text x="480" y="56" text-anchor="middle" font-size="18" fill="#c9d4e5">翼片放平 · 阻力小</text>
    <path d="M320 70V280" stroke="#2c3a52" stroke-width="2" stroke-dasharray="6 6"/>
    <text x="320" y="292" text-anchor="middle" font-size="12" fill="#8fa3bf">${esc(o.note ?? '技术规则 C3.10 / C3.11；使用区域由 FIA 每站公布（体育规则 B7.1）')}</text></g>
    <g transform="translate(160 150) scale(.95)">${aeroSide('corner', { flow: true })}</g><g transform="translate(480 150) scale(.95)">${aeroSide('straight', { livery: 'orange' })}</g></svg>`;
@@ -57,48 +28,91 @@ export function scene(o = {}) {
    <rect x="0" y="${top}" width="${W}" height="${bot - top}" fill="url(#${m}asph)"/>
    <rect x="${o.kerbFrom ?? 0}" y="${top - 12}" width="${(o.kerbTo ?? W) - (o.kerbFrom ?? 0)}" height="12" fill="url(#${m}kerb)"/><rect x="${o.kerbFrom ?? 0}" y="${bot}" width="${(o.kerbTo ?? W) - (o.kerbFrom ?? 0)}" height="12" fill="url(#${m}kerb)"/>
    <path d="M0 ${top + 2}H${W}M0 ${bot - 2}H${W}" stroke="${C.line}" stroke-width="4"/>`;
-  const lines = (o.lines ?? []).map(l => `<g><path d="M${l.x} ${top - (l.ext ?? 0)}V${bot + (l.ext ?? 0)}" stroke="${l.c ?? C.line}" stroke-width="${l.wd ?? 4}" ${l.dash ? 'stroke-dasharray="10 6"' : ''}/>${l.t ? `<g><rect x="${l.x - l.t.length * 7 - 8}" y="${(l.ty ?? top - 40) - 16}" width="${l.t.length * 14 + 16}" height="24" rx="6" fill="${l.bg ?? 'rgba(10,14,22,.85)'}"/><text x="${l.x}" y="${(l.ty ?? top - 40) + 1}" text-anchor="middle" font-size="13" font-weight="800" fill="${l.fc ?? '#fff'}" ${FONT}>${esc(l.t)}</text></g>` : ''}</g>`).join('');
-  const cars = (o.cars ?? []).map(car).join('');
-  const labels = (o.labels ?? []).map(l => `<g><rect x="${l.x - (l.w ?? l.t.length * 14 + 16) / 2}" y="${l.y - 17}" width="${l.w ?? l.t.length * 14 + 16}" height="25" rx="7" fill="${l.bg ?? 'rgba(10,14,22,.82)'}"/><text x="${l.x}" y="${l.y + 1}" text-anchor="middle" font-size="13" font-weight="700" fill="${l.fc ?? '#fff'}" ${FONT}>${esc(l.t)}</text></g>`).join('');
+  const labelWidth = t => [...t].reduce((n, c) => n + (/[ -~]/.test(c) ? 9 : 16), 22);
+  const lines = (o.lines ?? []).map(l => {
+    const w = Math.min(W - 20, l.w ?? labelWidth(l.t ?? '')), x = Math.min(W - w / 2 - 10, Math.max(w / 2 + 10, l.x)), y = l.ty ?? top - 40;
+    return `<g><path d="M${l.x} ${top - (l.ext ?? 0)}V${bot + (l.ext ?? 0)}" stroke="${l.c ?? C.line}" stroke-width="${l.wd ?? 4}" ${l.dash ? 'stroke-dasharray="10 6"' : ''}/>${l.t ? `<rect x="${x - w / 2}" y="${y - 18}" width="${w}" height="27" rx="6" fill="${l.bg ?? '#172630'}"/><text x="${x}" y="${y + 1}" text-anchor="middle" font-size="16" font-weight="800" fill="${l.fc ?? '#fff'}" ${FONT}>${esc(l.t)}</text>` : ''}</g>`;
+  }).join('');
+  const cars = (o.cars ?? []).map(c => c.kind === 'safety' ? safetyCar(c) : car(c)).join('');
+  const labels = (o.labels ?? []).map(l => {
+    const w = Math.min(W - 20, l.w ?? labelWidth(l.t)), x = Math.min(W - w / 2 - 10, Math.max(w / 2 + 10, l.x));
+    return `<g><rect x="${x - w / 2}" y="${l.y - 18}" width="${w}" height="27" rx="6" fill="${l.bg ?? '#172630'}" stroke="#91a5b4" stroke-opacity=".2"/><text x="${x}" y="${l.y + 1}" text-anchor="middle" font-size="16" font-weight="700" fill="${l.fc ?? '#fff'}" ${FONT}>${esc(l.t)}</text></g>`;
+  }).join('');
   const arrows = (o.arrows ?? []).map(a => `<path d="${a.d}" fill="none" stroke="${a.c ?? C.gold}" stroke-width="${a.w ?? 4}" stroke-linecap="round" ${a.dash ? 'stroke-dasharray="10 8"' : ''} marker-end="url(#${m}arr${a.c === C.bad ? 'b' : ''})"/>`).join('');
   return `<svg class="rc-svg${o.anim ? ' animated' : ''}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.alt ?? '赛道示意图')}" xmlns="http://www.w3.org/2000/svg"><defs>
-   <pattern id="${m}grass" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="${C.grass}"/><rect width="20" height="40" fill="${C.grass2}"/></pattern>
-   <pattern id="${m}asph" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="${C.asphalt}"/><circle cx="2" cy="3" r=".7" fill="${C.asphalt2}"/><circle cx="6" cy="6" r=".6" fill="#4d535d"/></pattern>
+   <pattern id="${m}grass" width="160" height="80" patternUnits="userSpaceOnUse"><rect width="160" height="80" fill="${C.grass}"/><rect width="80" height="80" fill="${C.grass2}"/></pattern>
+   <pattern id="${m}asph" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="${C.asphalt}"/><circle cx="2" cy="3" r=".45" fill="${C.asphalt2}"/><circle cx="6" cy="6" r=".35" fill="#4b5560"/></pattern>
    <pattern id="${m}kerb" width="32" height="12" patternUnits="userSpaceOnUse"><rect width="16" height="12" fill="${C.kerbR}"/><rect x="16" width="16" height="12" fill="${C.kerbW}"/></pattern>
    <marker id="${m}arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="${C.gold}"/></marker>
    <marker id="${m}arrb" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="${C.bad}"/></marker></defs>
    ${o.custom ? o.custom(m) : straight}${o.under ?? ''}${lines}${arrows}${cars}${o.anim ? o.anim(m) : ''}${labels}${o.extra ?? ''}</svg>`;
 }
-// Animated car moving along x (SMIL). from/to x, y; dur seconds.
-export const drive = (o) => `<g>${car({ ...o, x: 0, y: 0 })}<animateTransform attributeName="transform" type="translate" values="${o.values}" keyTimes="${o.kt ?? '0;1'}" dur="${o.dur ?? 4}s" repeatCount="indefinite"/></g>`;
+// Translation and heading are animated independently. Static consumers commit the
+// declared representative pose after removing SMIL; the live transform is untouched.
+export function drive(o) {
+  const points = o.values.split(';').map(p => p.trim().split(/\s+/).map(Number));
+  const still = o.still ?? points[0];
+  const headings = points.map((p, i) => {
+    const a = points[Math.min(i, points.length - 2)], b = points[Math.min(i + 1, points.length - 1)];
+    return o.orient === false || (a[0] === b[0] && a[1] === b[1]) ? (o.rot ?? 0) : Math.round(Math.atan2(b[1] - a[1], b[0] - a[0]) * 1800 / Math.PI) / 10;
+  });
+  const times = o.kt ?? points.map((_, i) => i / (points.length - 1)).join(';');
+  return `<g class="f1-drive" data-static-transform="translate(${still.join(' ')})"><g data-static-transform="rotate(${o.stillRot ?? headings[0]})">${(o.kind === 'safety' ? safetyCar : car)({ ...o, x: 0, y: 0, rot: 0 })}<animateTransform attributeName="transform" type="rotate" values="${headings.join(';')}" keyTimes="${times}" calcMode="discrete" dur="${o.dur ?? 4}s" repeatCount="indefinite"/></g><animateTransform attributeName="transform" type="translate" values="${o.values}" keyTimes="${times}" dur="${o.dur ?? 4}s" repeatCount="indefinite"/></g>`;
+}
 
 export function flag(type, o = {}) {
   const w = 120, h = 80, m = id('fl');
+  const transform = `translate(${o.x ?? 0} ${o.y ?? 0}) scale(${o.s ?? 1})`;
+  const label = o.t ? `<text x="60" y="130" text-anchor="middle" font-size="15" font-weight="800" fill="${o.fc ?? C.ink}" ${FONT}>${esc(o.t)}</text>` : '';
+  if (type === 'double-yellow') return `<g data-flag="double-yellow" transform="${transform}">${flag('yellow', { x: 1, y: 20, s: .73, still: o.still, poleH: 122 })}${flag('yellow', { x: 29, y: 0, s: .73, still: o.still, poleH: 150 })}${label}</g>`;
   const body = {
-    green: `<rect width="${w}" height="${h}" fill="#1fa34a"/>`, yellow: `<rect width="${w}" height="${h}" fill="#ffd400"/>`, red: `<rect width="${w}" height="${h}" fill="#e01b24"/>`,
-    blue: `<rect width="${w}" height="${h}" fill="#1f6fe0"/>`, white: `<rect width="${w}" height="${h}" fill="#fafafa" stroke="#bbb"/>`, black: `<rect width="${w}" height="${h}" fill="#111"/>`,
-    bw: `<rect width="${w}" height="${h}" fill="#fafafa" stroke="#bbb"/><path d="M0 0H${w}L0 ${h}Z" fill="#111"/>`,
-    blackorange: `<rect width="${w}" height="${h}" fill="#111"/><circle cx="${w / 2}" cy="${h / 2}" r="22" fill="#ff7a00"/>`,
-    stripes: `<rect width="${w}" height="${h}" fill="#ffd400"/>${[0, 1, 2, 3, 4, 5].map(i => `<rect x="${i * 20}" width="10" height="${h}" fill="#e01b24"/>`).join('')}`,
-    chequered: `<pattern id="${m}ch" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="#fff"/><rect width="10" height="10" fill="#111"/><rect x="10" y="10" width="10" height="10" fill="#111"/></pattern><rect width="${w}" height="${h}" fill="url(#${m}ch)" stroke="#999"/>`
+    green: '<rect width="120" height="80" fill="#159c54"/>', yellow: '<rect width="120" height="80" fill="#ffd62d"/>', red: '<rect width="120" height="80" fill="#e42c37"/>',
+    blue: '<rect width="120" height="80" fill="#287ce8"/>', white: '<rect width="120" height="80" fill="#f7f9fc"/>', black: '<rect width="120" height="80" fill="#17212a"/>',
+    bw: '<rect width="120" height="80" fill="#f7f9fc"/><path d="M0 0H120L0 80Z" fill="#101820"/>',
+    blackorange: '<rect width="120" height="80" fill="#111a23"/><circle cx="60" cy="40" r="22" fill="#ff8a24"/>',
+    stripes: `<rect width="120" height="80" fill="#ffd62d"/>${[0, 1, 2, 3, 4, 5].map(i => `<rect x="${i * 20}" width="10" height="80" fill="#e42c37"/>`).join('')}`,
+    chequered: `<pattern id="${m}ch" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" fill="#fff"/><rect width="12" height="12" fill="#15202a"/><rect x="12" y="12" width="12" height="12" fill="#15202a"/></pattern><rect width="120" height="80" fill="url(#${m}ch)"/>`
   }[type];
-  const wave = o.still ? '' : `<animateTransform attributeName="transform" type="skewY" values="0;4;0;-3;0" dur="1.4s" repeatCount="indefinite"/>`;
-  return `<g transform="translate(${o.x ?? 0} ${o.y ?? 0}) scale(${o.s ?? 1})"><rect x="-6" y="-4" width="6" height="150" rx="2" fill="#8a8f98"/><g>${body}${wave}</g>${o.t ? `<text x="${w / 2}" y="${h + 26}" text-anchor="middle" font-size="15" font-weight="800" fill="${o.fc ?? C.ink}" ${FONT}>${esc(o.t)}</text>` : ''}</g>`;
+  const outline = 'M0 3Q25 -2 47 4T88 5Q105 2 120 0V74Q103 80 83 77T43 75Q20 72 0 78Z';
+  const wave = o.still ? '' : '<animateTransform attributeName="transform" type="skewY" values="0;2;0;-2;0" dur="1.4s" repeatCount="indefinite"/>';
+  return `<g data-flag="${type}" transform="${transform}"><defs><clipPath id="${m}clip"><path d="${outline}"/></clipPath>
+   <linearGradient id="${m}cloth"><stop stop-color="#000" stop-opacity=".16"/><stop offset=".24" stop-color="#fff" stop-opacity=".18"/><stop offset=".47" stop-color="#000" stop-opacity=".12"/><stop offset=".7" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient>
+   <linearGradient id="${m}pole"><stop stop-color="#657481"/><stop offset=".45" stop-color="#d5e0e8"/><stop offset="1" stop-color="#788998"/></linearGradient></defs>
+   <rect x="-6" y="-4" width="6" height="${o.poleH ?? 150}" rx="2" fill="url(#${m}pole)"/><circle cx="-3" cy="-4" r="3.5" fill="#8fa1af"/>
+   <g data-flag-panel="${type}"><g clip-path="url(#${m}clip)">${body}<rect width="120" height="80" fill="url(#${m}cloth)"/></g><path d="${outline}" fill="none" stroke="#243440" stroke-opacity=".3" stroke-width=".8"/><path d="M3 8Q25 3 47 9T88 10Q104 7 116 5M3 73Q24 67 44 71T84 72Q105 75 116 70" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width=".6"/>${wave}</g>${label}</g>`;
 }
 export function flags(list, o = {}) {
   const gap = 150;
-  return `<svg class="rc-svg${o.still ? '' : ' animated'}" viewBox="0 0 ${list.length * gap + 20} ${o.h ?? 175}" role="img" aria-label="${esc(o.alt ?? '旗语：' + list.map(f => f.t).join('、'))}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" rx="14" fill="#eef2f7"/>
+  return `<svg class="rc-svg${o.still ? '' : ' animated'}" viewBox="0 0 ${list.length * gap + 20} ${o.h ?? 175}" role="img" aria-label="${esc(o.alt ?? '旗语：' + list.map(f => f.t).join('、'))}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" rx="14" fill="#e9eff5"/>
    ${list.map((f, i) => flag(f.type, { x: 30 + i * gap, y: 20, t: f.t, still: o.still })).join('')}</svg>`;
 }
-const TYRE = { soft: ['#e5332a', 'S', '软胎'], medium: ['#f2c318', 'M', '中性胎'], hard: ['#f2f2f2', 'H', '硬胎'], inter: ['#23a24a', 'I', '半雨胎'], wet: ['#1f6fe0', 'W', '全雨胎'] };
+const TYRE = { soft: ['#ed534a', 'S', '软胎'], medium: ['#ffd12a', 'M', '中性胎'], hard: ['#edf3f7', 'H', '硬胎'], inter: ['#33bf72', 'I', '半雨胎'], wet: ['#3a92ff', 'W', '全雨胎'] };
 export function tyre(kind, o = {}) {
-  const [c, l, name] = TYRE[kind];
-  return `<g transform="translate(${o.x ?? 0} ${o.y ?? 0}) scale(${o.s ?? 1})"><circle r="52" fill="#16181c"/><circle r="40" fill="none" stroke="${c}" stroke-width="5"/>${kind === 'inter' || kind === 'wet' ? `<path d="M-46 -12l10 4M-48 4l10 2M46 -12l-10 4M48 4l-10 2" stroke="#333" stroke-width="3"/>` : ''}<circle r="24" fill="#8d939c"/><circle r="8" fill="#cfd4db"/>
-   ${[0, 60, 120, 180, 240, 300].map(a => `<path d="M0 0L0 -22" transform="rotate(${a})" stroke="#6c727b" stroke-width="5"/>`).join('')}<circle r="8" fill="#cfd4db"/>
-   <text y="74" text-anchor="middle" font-size="15" font-weight="800" fill="${o.fc ?? C.ink}" ${FONT}>${esc(o.t ?? name)}</text><text x="0" y="-31" text-anchor="middle" font-size="11" font-weight="900" fill="${c}" font-family="system-ui">${l}</text></g>`;
+  const [c, l, name] = TYRE[kind], m = id('ty'), rain = kind === 'inter' || kind === 'wet';
+  const tread = rain ? Array.from({ length: kind === 'wet' ? 13 : 7 }, (_, i) => {
+    const y = -45 + i * (kind === 'wet' ? 7.5 : 14.5), x = -9 + 39 * Math.sqrt(Math.max(0, 1 - y * y / 2704));
+    return `<path d="M${x - 3} ${y - 4}l11 8 13 -3" fill="none" stroke="#04090e" stroke-width="${kind === 'wet' ? 2.6 : 2.1}"/><path d="M${x - 3} ${y - 5.5}l11 8 13 -3" fill="none" stroke="#71808b" stroke-width=".6" opacity=".42"/>`;
+  }).join('') : '';
+  return `<g data-tyre="${kind}" transform="translate(${o.x ?? 0} ${o.y ?? 0}) scale(${o.s ?? 1})"><defs>
+   <linearGradient id="${m}tread" x1="0" y1="0" x2="1" y2=".3"><stop stop-color="#111b26"/><stop offset=".45" stop-color="#394651"/><stop offset=".77" stop-color="#1d2832"/><stop offset="1" stop-color="#070e15"/></linearGradient>
+   <radialGradient id="${m}wall" cx=".3" cy=".2" r=".9"><stop stop-color="#3d4954"/><stop offset=".6" stop-color="#19232d"/><stop offset="1" stop-color="#080f17"/></radialGradient>
+   <linearGradient id="${m}rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7e1e8"/><stop offset=".42" stop-color="#637789"/><stop offset="1" stop-color="#b0c0cc"/></linearGradient>
+   <clipPath id="${m}band"><path d="M-9 -52H12A39 52 0 0 1 12 52H-9A39 52 0 0 0 -9 -52Z"/></clipPath></defs>
+   <ellipse cx="4" cy="55" rx="49" ry="6" fill="#1b3041" opacity=".13"/>
+   <path d="M-9 -52H12A39 52 0 0 1 12 52H-9Z" fill="url(#${m}tread)" stroke="#111c25" stroke-width=".9"/>
+   <g clip-path="url(#${m}band)">${tread}${kind === 'wet' ? '<path d="M15 -51Q65 0 15 51" fill="none" stroke="#070e15" stroke-width="2"/>' : ''}<path d="M3 -50Q54 0 3 50" fill="none" stroke="#acbcc5" stroke-width=".7" opacity=".22"/></g>
+   <ellipse cx="-9" rx="39" ry="52" fill="url(#${m}wall)" stroke="#51616d" stroke-width=".6"/>
+   <ellipse cx="-9" rx="36.5" ry="49" fill="none" stroke="#82919b" stroke-width=".55" opacity=".4"/>
+   <ellipse cx="-9" rx="31.5" ry="42" fill="none" stroke="${c}" stroke-width="3.8"/>
+   <ellipse cx="-9" rx="25" ry="33.5" fill="#090f16" stroke="#566775" stroke-width=".8"/>
+   <ellipse cx="-9" rx="21" ry="28" fill="url(#${m}rim)"/><ellipse cx="-9" rx="17.8" ry="24.1" fill="#1c2a37"/>
+   <g transform="translate(-9 0) scale(.74 1)">${[0,60,120,180,240,300].map(a => `<path d="M-2 -4L-4 -23L1 -24L4 -7Z" fill="url(#${m}rim)" transform="rotate(${a})"/>`).join('')}<circle r="7.2" fill="#abbcc8"/><circle r="3.9" fill="#273845"/><circle r="1.5" fill="#d1dbe1"/></g>
+   <path d="M-31 -29Q-20 -43 -8 -43" fill="none" stroke="#fff" stroke-width=".7" opacity=".35"/>
+   <rect x="-15" y="-45" width="12" height="12" rx="4" fill="#17222d"/><text x="-9" y="-35" text-anchor="middle" font-size="10" font-weight="900" fill="${c}" font-family="system-ui">${l}</text>
+   <text y="78" text-anchor="middle" font-size="15" font-weight="800" fill="${o.fc ?? C.ink}" ${FONT}>${esc(o.t ?? name)}</text></g>`;
 }
 export function tyres(list, o = {}) {
-  return `<svg class="rc-svg" viewBox="0 0 ${list.length * 140 + 20} 170" role="img" aria-label="${esc(o.alt ?? '轮胎配方')}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" rx="14" fill="#eef2f7"/>${list.map((k, i) => tyre(k.kind ?? k, { x: 80 + i * 140, y: 68, t: k.t })).join('')}</svg>`;
+  return `<svg class="rc-svg" viewBox="0 0 ${list.length * 140 + 20} 170" role="img" aria-label="${esc(o.alt ?? '轮胎配方')}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" rx="14" fill="#e9eff5"/>${list.map((k, i) => tyre(k.kind ?? k, { x: 80 + i * 140, y: 68, t: k.t })).join('')}</svg>`;
 }
 // Timing tower widget: rows {p, code, gap, tyre, hl, tag}
 export function tower(rows, o = {}) {
@@ -127,7 +141,7 @@ export const colors = C;
 export function gantry(o = {}) {
   const lit = o.lit ?? 5;
   const lamp = (i) => {
-    const on = o.anim ? `<animate attributeName="fill" values="#2a1212;#2a1212;#ff2a1f;#ff2a1f;#2a1212" keyTimes="0;${(i + 1) / 7};${(i + 1) / 7 + .001};.857;.858" dur="4.2s" repeatCount="indefinite"/>` : '';
+    const on = o.anim ? `<animate attributeName="fill" values="#2a1212;#2a1212;#ff2a1f;#ff2a1f;#2a1212;#2a1212" keyTimes="0;${(i + 1) / 7};${(i + 1) / 7 + .001};.857;.858;1" dur="4.2s" repeatCount="indefinite"/>` : '';
     return `<g transform="translate(${70 + i * 104} 70)"><rect x="-40" y="-44" width="80" height="88" rx="12" fill="#111"/><circle cy="-18" r="16" fill="${!o.anim && i < lit ? '#ff2a1f' : '#2a1212'}">${on}</circle><circle cy="20" r="16" fill="${!o.anim && i < lit ? '#ff2a1f' : '#2a1212'}">${on.replace('fill', 'fill')}</circle></g>`;
   };
   return `<svg class="rc-svg${o.anim ? ' animated' : ''}" viewBox="0 0 560 190" role="img" aria-label="${esc(o.alt ?? '发车灯')}" xmlns="http://www.w3.org/2000/svg"><rect width="560" height="190" rx="14" fill="#1a2233"/><rect x="20" y="20" width="520" height="100" rx="10" fill="#2c3445"/>${[0, 1, 2, 3, 4].map(lamp).join('')}
@@ -138,7 +152,7 @@ export function pitScene(o = {}) {
   const W = 640, H = 330;
   return scene({ w: W, h: H, alt: o.alt ?? '维修区示意图', top: 40, bot: 130, cars: o.cars ?? [], labels: o.labels ?? [], arrows: o.arrows ?? [], anim: o.anim,
     under: `<rect x="0" y="150" width="${W}" height="110" fill="#30343b"/><rect x="0" y="150" width="${W}" height="40" fill="#3d424a"/><path d="M0 190H${W}" stroke="#ffd400" stroke-width="3" stroke-dasharray="14 10"/>
-     <text x="320" y="176" text-anchor="middle" font-size="12" fill="#c9d4e5" ${FONT}>快车道 Fast Lane</text><text x="320" y="246" text-anchor="middle" font-size="12" fill="#c9d4e5" ${FONT}>内车道（工作区） Inner Lane</text>
+     <text x="14" y="177" font-size="11" fill="#dae5ef" ${FONT}>快车道</text><text x="320" y="251" text-anchor="middle" font-size="12" fill="#dae5ef" ${FONT}>内车道 · 工作区</text>
      ${[0, 1, 2, 3, 4, 5].map(i => `<rect x="${70 + i * 90}" y="262" width="74" height="60" fill="#22262c" stroke="#555"/><rect x="${78 + i * 90}" y="270" width="58" height="8" fill="${['#d7263d', '#1f6fe0', '#ff8a1c', '#14a3a0', '#7b4ce0', '#c9ced6'][i]}"/>`).join('')}
      <path d="M60 150V260M580 150V260" stroke="#fff" stroke-width="5"/><g><rect x="22" y="200" width="76" height="40" rx="6" fill="#fff"/><circle cx="60" cy="220" r="17" fill="#fff" stroke="#e5332a" stroke-width="5"/><text x="60" y="226" text-anchor="middle" font-size="15" font-weight="900" fill="#111" font-family="system-ui">${o.limit ?? 80}</text></g>
      <text x="60" y="${H - 6}" text-anchor="middle" font-size="11" fill="#fff" ${FONT}>限速线</text><text x="580" y="${H - 6}" text-anchor="middle" font-size="11" fill="#fff" ${FONT}>限速结束</text>`, extra: o.extra });
@@ -153,7 +167,8 @@ export function gridScene(o = {}) {
 export function cornerScene(o = {}) {
   return scene({ w: 640, h: 360, alt: o.alt ?? '弯道示意', cars: o.cars ?? [], labels: o.labels ?? [], arrows: o.arrows ?? [], anim: o.anim, extra: o.extra,
     custom: m => `<rect width="640" height="360" fill="url(#${m}grass)"/><path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="#8b8e94" stroke-width="150" opacity=".45"/>
-      <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="url(#${m}kerb)" stroke-width="112"/>
+      <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="${C.kerbR}" stroke-width="112"/>
+      <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="${C.kerbW}" stroke-width="112" stroke-dasharray="18 18"/>
       <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="#fff" stroke-width="96"/>
       <path d="M-10 290H300Q480 290 520 150Q540 60 650 40" fill="none" stroke="url(#${m}asph)" stroke-width="88"/>` });
 }

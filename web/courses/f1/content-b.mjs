@@ -3,10 +3,13 @@
 import { mc, stage } from '../shared/rules-course.mjs';
 import { aeroModes, scene, drive, cornerScene, pitScene, tyres, tower, info, flags, gridScene, colors } from './art.mjs';
 
-const overtakeScene = (anim = true) => scene({ w: 640, h: 300, alt: '超车模式：检测线与启用线', anim: anim ? m => `${drive({ livery: 'red', n: 16, values: '120 150;660 150', dur: 5 })}${drive({ livery: 'blue', n: 4, values: '30 150;560 118;700 118', kt: '0;.75;1', dur: 5 })}` : null,
+// Ease the following car fully into a separate lane before it draws alongside.
+const overtakeLane = Array.from({ length: 21 }, (_, i) => { const t = i / 20; return `${30 + 270 * t} ${(168 - 52 * (3 * t * t - 2 * t * t * t)).toFixed(3)}`; });
+const overtakeTimes = [...Array.from({ length: 21 }, (_, i) => i / 40), 1].join(';');
+const overtakeScene = (anim = true) => scene({ w: 640, h: 300, top: 80, bot: 220, alt: '超车模式：检测线与启用线', anim: anim ? m => `${drive({ livery: 'red', n: 16, values: '180 168;660 168', still: [460, 165], stillRot: 0, dur: 5 })}${drive({ livery: 'blue', n: 4, values: [...overtakeLane, '700 116'].join(';'), still: [570, 117], stillRot: 0, kt: overtakeTimes, dur: 5 })}` : null,
   cars: anim ? [] : [{ x: 220, y: 150, livery: 'red', n: 16 }, { x: 140, y: 150, livery: 'blue', n: 4, hl: true }],
   lines: [{ x: 90, t: '检测线 · 差距 < 1 秒？', c: colors.gold, ty: 54, ext: 0 }, { x: 420, t: '启用线 · 超车模式开启', c: '#7cc4ff', ty: 54 }],
-  labels: [{ x: 320, y: 268, t: '后车在检测线处落后不到“检测差距”→ 下一段可用额外电能' }] });
+  labels: [{ x: 320, y: 268, t: '检测差距内 → 下一段可用额外电能' }] });
 
 export const unitsB = [
 { id: 'f106', icon: '⚡', title: '主动空气动力学与“超车模式”', stages: [
@@ -63,7 +66,7 @@ export const unitsB = [
     why: '统一的界限让所有车手跑同一条赛道；否则走捷径就能变快。',
     scenario: '车手出弯时四个轮子都越过了白线，压在路肩外侧——这一圈在排位赛中被删除。如果只有右侧两个轮子越线，左侧还在白线上，就不算出界。',
     ref: 'Section B 第 B1.8.6 条', diagrams: [
-      { svg: cornerScene({ cars: [{ x: 498, y: 160, livery: 'orange', n: 81, rot: -70 }, { x: 330, y: 285, livery: 'purple', n: 10, rot: -8 }], labels: [{ x: 210, y: 40, t: '白线 = 赛道 · 路肩 ≠ 赛道' }, { x: 560, y: 330, t: '四轮越线 → 超界', bg: 'rgba(229,51,42,.9)' }] }), cap: '弯道：白线属于赛道，路肩不属于' }] }, [
+      { svg: cornerScene({ cars: [{ x: 355, y: 184, livery: 'orange', n: 81 }, { x: 155, y: 313, livery: 'purple', n: 10 }], labels: [{ x: 210, y: 40, t: '白线 = 赛道 · 路肩 ≠ 赛道' }, { x: 355, y: 122, t: '四轮越线 → 超界', bg: '#ac302c' }, { x: 155, y: 222, t: '仍接触白线', bg: '#17634c' }], extra: '<g data-track-limits="four-wheels-out"><path d="M355 138V151" stroke="#f59d8c" stroke-width="2"/><path d="M105 230V336H116" fill="none" stroke="#73d4a7" stroke-width="1.5"/></g>' }), cap: '弯道：白线属于赛道，路肩不属于' }] }, [
     mc('f107-01-q1', '车的左前轮还压在白线上，其他三个轮子在路肩外。算离开赛道吗？', ['不算：还有部分接触赛道（白线属于赛道）', '算：三个轮子出去了', '算：压线就算', '由车手自己说'], 'B1.8.6：只要有任何部分接触赛道（含白线）就不算离开。', '白线属于哪边？'),
     mc('f107-01-q2', '车手冲出赛道后从缓冲区回来，位置提前了一名。', ['可能被要求让回位置或被处罚（不能获得持久优势）', '没问题', '直接取消资格', '奖励超车模式'], '离开赛道后不能获得持久优势；赛事总监可以让他把优势还回去。', '“持久优势”。'),
     mc('f107-01-q3', '路肩（kerb）算赛道的一部分吗？', ['不算', '算', '只在弯道算', '只在雨天算'], 'B1.8.6 明确：路肩不属于赛道。', '只有白线算。')
@@ -76,7 +79,7 @@ export const unitsB = [
     ref: 'ISC 附录 L 第 IV 章；FIA 驾驶标准指引；Section B 第 B1.9.3 条',
     caution: '“一次变线”“一个车宽”等细则主要写在国际赛车运动规章（ISC）附录 L 和 FIA 的驾驶标准指引中，而不在 F1 体育规则 Section B 里；本课用通俗的话概括，具体判罚以干事判断为准。',
     diagrams: [{ svg: scene({ cars: [{ x: 340, y: 132, livery: 'red', n: 16 }, { x: 300, y: 180, livery: 'blue', n: 4 }], arrows: [{ d: 'M140 150Q220 150 260 180', dash: true }], extra: `<path d="M380 168H620" stroke="#ffc533" stroke-width="3" stroke-dasharray="8 6"/><text x="500" y="200" text-anchor="middle" font-size="13" font-weight="800" fill="#ffc533" font-family="'Noto Sans SC',system-ui">至少一个车宽</text>`, labels: [{ x: 320, y: 40, t: '并排时：给对方留一个车宽' }] }), cap: '并排时要留出空间' },
-      { svg: scene({ anim: m => `${drive({ livery: 'red', n: 16, values: '200 120;330 120;460 180;600 120', kt: '0;.3;.65;1', dur: 4 })}${drive({ livery: 'blue', n: 4, values: '60 150;190 180;320 120;470 182', kt: '0;.3;.65;1', dur: 4 })}`, labels: [{ x: 320, y: 270, t: '多次变线防守 = 可能被处罚', bg: 'rgba(229,51,42,.9)' }], alt: '多次变线防守动画' }), cap: '动画：反复变线防守（不允许）', anim: 'weaving' }] }, [
+      { svg: scene({ top: 80, bot: 220, anim: m => `${drive({ livery: 'red', n: 16, values: '200 130;330 130;460 170;600 130', still: [200, 130], kt: '0;.3;.65;1', dur: 4 })}${drive({ livery: 'blue', n: 4, values: '60 150;190 170;320 130;470 170', still: [60, 150], kt: '0;.3;.65;1', dur: 4 })}`, arrows: [{ d: 'M265 130H330L460 170L595 132', c: colors.bad, dash: true, w: 2.5 }], labels: [{ x: 320, y: 270, t: '多次变线防守 = 可能被处罚', bg: 'rgba(229,51,42,.9)' }], alt: '多次变线防守动画' }), cap: '动画：反复变线防守（不允许）', anim: 'weaving' }] }, [
     mc('f107-02-q1', '前车在直道上连续三次左右变线挡住后车。', ['违规：只能做一次防守变线', '合法，只要没碰撞', '合法，前车有优先权', '后车违规'], '多次变线防守属于危险驾驶，会被处罚。', '“一次”。'),
     mc('f107-02-q2', '两车已经并排进入弯道，外侧车被内侧车挤出赛道。内侧车？', ['可能被处罚：并排时要给对方留空间', '没问题：内线优先', '外侧车违规', '两车都没事'], '并排时要留出至少一个车宽。', '“一个车宽”。'),
     mc('f107-02-q3', '体育规则规定什么时候才会对事故作出处罚？', ['当一方全部或主要负责时', '只要有碰撞就罚', '只罚后车', '只罚领先者'], 'B1.9.3：除非清楚某车手全部或主要负责，否则不处罚。', '看“责任”。')
@@ -128,7 +131,7 @@ export const unitsB = [
     why: '出口白线把出站的慢车和赛道上的快车隔开，避免高速碰撞。',
     scenario: '车手刚出站就急着抢线，左侧两个轮子压过出口白线，干事判 5 秒罚时。',
     ref: 'Section B 第 B1.6.1 条；赛事总监赛事说明', diagrams: [
-      { svg: scene({ w: 640, h: 300, top: 60, bot: 170, alt: '维修区出口白线', under: `<path d="M0 230H330Q420 230 520 172" fill="none" stroke="#30343b" stroke-width="64"/><path d="M0 200H320Q400 200 470 172" fill="none" stroke="#fff" stroke-width="4"/>`, cars: [{ x: 230, y: 230, livery: 'green', n: 14 }, { x: 420, y: 115, livery: 'silver', n: 44 }], labels: [{ x: 320, y: 285, t: '出口白线：出站车不能越过' }] }), cap: '维修区出口的白线' }] }, [
+      { svg: scene({ w: 640, h: 300, top: 60, bot: 170, alt: '维修区出口白线', under: `<path d="M0 199H320Q418 199 493 155L563 130L640 130V169L562 181Q448 262 330 262H0Z" fill="#343e49"/><path d="M0 200H320Q420 200 510 151L565 135" fill="none" stroke="#fff" stroke-width="4"/><path d="M0 261H330Q448 261 562 181" fill="none" stroke="#a5b3b9" stroke-width="2"/>`, cars: [{ x: 230, y: 230, livery: 'green', n: 14 }, { x: 420, y: 115, livery: 'silver', n: 44 }], labels: [{ x: 320, y: 285, t: '出口白线：出站车不能越过' }] }), cap: '维修区出口的白线' }] }, [
     mc('f108-03-q1', '维修区出口亮红灯时，车手可以出站吗？', ['不可以', '可以', '只能慢慢出', '只能在排位赛'], '出口红灯禁止离开维修区。', '红灯停。'),
     mc('f108-03-q2', '出站时越过出口白线去抢赛车线。', ['可能被处罚', '合法', '奖励', '只警告车队'], '越过出口白线属于违规，常见处罚是时间罚。', '白线的作用？'),
     mc('f108-03-q3', '进站作业只能在哪里进行？', ['内车道本队指定的停车位', '快车道', '赛道上', '任何地方'], 'B1.6.1e：内车道是唯一能对车辆作业的区域。', '“Inner Lane”。')
@@ -160,7 +163,7 @@ export const unitsB = [
     scenario: '暴雨中比赛在安全车后起步，一名车手想赌天气、换上半雨胎——他会被判停车处罚。',
     ref: 'Section B 第 B6.3.7 条', diagrams: [
       { svg: tyres(['inter', 'wet']), cap: '半雨胎（绿）与全雨胎（蓝）' },
-      { svg: scene({ cars: [{ x: 420, y: 150, livery: 'yellow', n: 'SC' }, { x: 300, y: 150, livery: 'red', n: 1, tyre: '#1f6fe0' }, { x: 180, y: 150, livery: 'blue', n: 2, tyre: '#1f6fe0' }], extra: `<g opacity=".5">${Array.from({ length: 40 }, (_, i) => `<path d="M${(i * 53) % 640} ${(i * 37) % 300}l-6 14" stroke="#cfe6ff" stroke-width="2"><animateTransform attributeName="transform" type="translate" values="0 -20;0 40" dur="${0.6 + (i % 5) * .1}s" repeatCount="indefinite"/></path>`).join('')}</g>`, labels: [{ x: 320, y: 270, t: '安全车后起跑：必须用全雨胎' }], anim: () => '' }), cap: '动画：雨中安全车起跑', anim: 'rain-start' }] }, [
+      { svg: scene({ cars: [{ x: 420, y: 150, kind: 'safety', livery: 'silver', n: 'SC' }, { x: 300, y: 150, livery: 'red', n: 1, tyre: '#1f6fe0' }, { x: 180, y: 150, livery: 'blue', n: 2, tyre: '#1f6fe0' }], extra: `<g opacity=".5">${Array.from({ length: 40 }, (_, i) => `<path d="M${(i * 53) % 640} ${(i * 37) % 300}l-6 14" stroke="#cfe6ff" stroke-width="2"><animateTransform attributeName="transform" type="translate" values="0 -20;0 40" dur="${0.6 + (i % 5) * .1}s" repeatCount="indefinite"/></path>`).join('')}</g>`, labels: [{ x: 320, y: 270, t: '安全车后起跑：必须用全雨胎' }], anim: () => '' }), cap: '动画：雨中安全车起跑', anim: 'rain-start' }] }, [
     mc('f109-02-q1', '大雨中比赛在安全车后起步。车手必须用？', ['全雨胎，直到安全车回站', '任意轮胎', '半雨胎', '软胎'], 'B6.3.7：安全车后起步时全雨胎是强制的。', '最安全的那种。'),
     mc('f109-02-q2', '绿色标识的是哪种胎？', ['半雨胎', '全雨胎', '软胎', '硬胎'], '半雨胎绿色，全雨胎蓝色。', '“中间”的那种。'),
     mc('f109-02-q3', '安全车后起步阶段，某车手换上了半雨胎。', ['停车处罚', '合法', '罚款', '警告'], 'B6.3.7：此时更换为其他规格会被判停车处罚。', '违反“强制”的后果。')
@@ -216,7 +219,7 @@ export const unitsB = [
     caution: '驾照罚分的具体规定在国际赛车运动规章（ISC）附录 L，不在 F1 体育规则中；本课只做概括说明。',
     diagrams: [
       { svg: info([{ k: '内燃机 / 涡轮 / 排气', v: '各 3 套（2026 年 +1）', c: '#ff8a1c' }, { k: '电池 / 控制电子 / MGU-K', v: '各 2 套（2026 年 +1）', c: '#4f86ff' }, { k: '首次超额', v: '退后 10 位', c: '#e5332a' }, { k: '之后每次', v: '退后 5 位（可累加）', c: '#e5332a' }], { title: '动力单元配额（B8.2）', split: 260, w: 600 }), cap: '动力单元配额' },
-      { svg: gridScene({ anim: m => `${drive({ livery: 'purple', n: 9, values: '376 110;376 110;-60 190', kt: '0;.3;1', dur: 4 })}`, cars: [{ x: 500, y: 110, livery: 'red', n: 1 }, { x: 438, y: 190, livery: 'blue', n: 2 }], labels: [{ x: 210, y: 40, t: '超额换引擎 → 退后 10 位' }], alt: '退后发车动画' }), cap: '动画：超额更换部件 → 退后发车', anim: 'grid-drop' }] }, [
+      { svg: gridScene({ anim: m => `${drive({ livery: 'purple', n: 9, values: '376 110;376 110;-60 190', still: [376, 110], orient: false, kt: '0;.3;1', dur: 4 })}`, cars: [{ x: 500, y: 110, livery: 'red', n: 1 }, { x: 438, y: 190, livery: 'blue', n: 2 }], labels: [{ x: 210, y: 40, t: '名次调整示意 · 超额换引擎退后 10 位' }], alt: '退后发车动画' }), cap: '动画：超额更换部件 → 退后发车', anim: 'grid-drop' }] }, [
     mc('f110-03-q1', '2026 年（非新厂商）每位车手内燃机配额是？', ['4 台（3 台 + 2026 年额外 1 台）', '3 台', '2 台', '不限'], 'B8.2.2a + B8.2.3a。', '基础数加“2026 年额外”。'),
     mc('f110-03-q2', '某部件第一次超额，处罚是？', ['退后 10 位发车', '退后 5 位', '罚款', '取消资格'], 'B8.2.8a。', '第一次更重。'),
     mc('f110-03-q3', '12 个月内驾照罚分累计 12 分会？', ['禁赛一场', '罚款', '只是警告', '加 1 套引擎'], 'ISC 附录 L 的规定。', '“12”。')
