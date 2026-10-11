@@ -1,9 +1,12 @@
 // FIBA 篮球规则课 · 单元 6–10（时间违例、回场与干扰球、接触原则、犯规种类、罚则与即时回放）。
 // 依据 FIBA《Official Basketball Rules 2026》；讲解与题目均为原创。
 import { mc, stage } from '../shared/rules-course.mjs';
-import { court, referee, clocks, sideView, table, moving } from './art.mjs';
+import { court, referee, clocks, sideView, table, moving, goaltending, replayScreen, fastBreakDetail } from './art.mjs';
 
-const fastBreak = () => court({ full: true, tokens: [{ x: 9, y: 7.4, t: 'b', n: 8 }], anim: m => `${moving(m, 'token', 'M11 6.8L22 7.2', 3, { n: 5, t: 'a', ball: true, kp: '0;1;1', kt: '0;.85;1' })}${moving(m, 'token', 'M9 7.4L19.6 7.6', 3, { n: 8, t: 'b', kp: '0;1;1', kt: '0;.85;1' })}`, labels: [{ x: 18, y: 2, text: '快攻，前面没人 → 从后面拉人 = 扰乱犯规', w: 9.2 }], alt: '快攻中从后方犯规的动画' });
+const fastBreak = () => court({ full: true,
+  anim: m => `${moving(m, 'token', 'M11 6.8L22 7.2', 3, { n: 5, t: 'a', ball: true, still: [22, 7.2], kp: '0;1;1', kt: '0;.85;1' })}${moving(m, 'token', 'M9 7.4L21.2 7.35', 3, { n: 8, t: 'b', grab: true, still: [21.2, 7.35], kp: '0;1;1', kt: '0;.85;1' })}`,
+  labels: [{ x: 18, y: 2, text: '快攻中从后方拉人', w: 6.6 }],
+  extra: fastBreakDetail(), alt: '快攻中从后方犯规的动画' });
 
 export const unitsB = [
 { id: 'fb06', icon: '⏳', title: '3 秒、5 秒、8 秒、24 秒', stages: [
@@ -60,7 +63,7 @@ export const unitsB = [
     why: '“最后触球”原则简单清楚，裁判和观众都能一眼判断。',
     scenario: '蓝 6 号从界内飞身扑出，在空中把球拍回场内，然后才摔到场外——漂亮的救球，比赛继续！',
     ref: 'OBR 2026 第 23 条', diagrams: [
-      { svg: court({ tokens: [{ x: 14.6, y: 9, t: 'b', n: 6 }], anim: m => `${moving(m, 'ball', 'M13 7L15.3 9.2L12.4 10.6', 2.6, { kp: '0;.5;1', kt: '0;.5;1' })}`, labels: [{ x: 9.5, y: 12, text: '空中救球：落地前把球拍回场内', w: 7 }], alt: '空中救球动画' }), cap: '动画：空中救球合法', anim: 'save' },
+      { svg: court({ tokens: [{ x: 14.6, y: 9, t: 'b', n: 6 }], anim: m => `${moving(m, 'ball', 'M13 7L15.3 9.2L12.4 10.6', 2.6, { still: [15.3, 9.2], kp: '0;.5;1', kt: '0;.5;1' })}`, labels: [{ x: 9.5, y: 12, text: '空中救球：落地前把球拍回场内', w: 7 }], alt: '空中救球动画' }), cap: '动画：空中救球合法', anim: 'save' },
       { svg: referee('pointDir', { caption: '手臂平指：球权方向' }), cap: '裁判手势：指示进攻方向' }
     ] }, [
     mc('fb07-01-q1', '红队传球碰到蓝队队员的腿后滚出边线。球权给谁？', ['红队', '蓝队', '跳球', '交替拥有'], '最后触球的是蓝队队员，他使球出界，球判给红队。', '最后谁碰的？'),
@@ -85,8 +88,8 @@ export const unitsB = [
     why: '球已经“注定要进”时还去碰它，就是在破坏公平；规则直接给分，杜绝这种行为。',
     scenario: '蓝 13 号在球下落时把它从篮圈正上方扇走。裁判直接示意 2 分有效——这是干扰得分。2026 版还允许在任何时候、只要伴随犯规，用即时回放核实干扰判罚。',
     ref: 'OBR 2026 第 31 条；附录 F', diagrams: [
-      { svg: sideView('vertical', { alt: '侧视：合法的垂直起跳' }).replace('垂直起跳、双手直上 = 合法防守', '上升阶段封盖：合法'), cap: '球上升阶段的封盖是合法的' },
-      { svg: `<svg class="rc-svg animated" viewBox="0 0 520 300" role="img" aria-label="干扰得分：球下落且高于篮圈时被碰" xmlns="http://www.w3.org/2000/svg"><rect width="520" height="300" fill="#eef4fb"/><rect x="420" y="40" width="10" height="120" fill="#9aa4b3"/><rect x="410" y="60" width="8" height="90" fill="#fff" stroke="#1f2433"/><path d="M360 140H410" stroke="#e8731c" stroke-width="6"/><path d="M362 140l8 30h30l8-30" fill="none" stroke="#ddd" stroke-width="2"/><path d="M40 260Q240 -20 385 128" fill="none" stroke="#e8731c" stroke-width="3" stroke-dasharray="6 8"/><path d="M300 70Q340 80 370 110" stroke="#d4372c" stroke-width="5" fill="none"/><text x="250" y="40" text-anchor="middle" font-size="16" font-weight="800" fill="#d4372c" font-family="'Noto Sans SC',system-ui">下落段 + 高于篮圈：不能碰！</text><text x="120" y="120" font-size="14" fill="#1f2433" font-family="'Noto Sans SC',system-ui">上升段：可以封盖</text><circle r="12" fill="#e8731c" stroke="#5a2a07"><animateMotion dur="2.6s" repeatCount="indefinite" path="M40 260Q240 -20 385 128"/></circle><path d="M362 140H410" stroke="#e8731c" stroke-width="6"/></svg>`, cap: '动画：球的“下落段”不能碰', anim: 'goaltending' }
+      { svg: sideView('rising', { alt: '侧视：球在上升阶段被封盖，含篮球和篮筐' }), cap: '球上升阶段的封盖是合法的' },
+      { svg: goaltending(), cap: '动画：球的“下落段”不能碰', anim: 'goaltending' }
     ] }, [
     mc('fb07-03-q1', '红队三分出手，球在下落、高于篮圈时被蓝队中锋扇走。', ['红队得 3 分', '红队得 2 分', '蓝队球权，不得分', '跳球'], '防守方干扰得分：按出手区域给分，三分出手给 3 分。', '谁违例？出手在哪？'),
     mc('fb07-03-q2', '进攻队员在队友投篮球还在篮圈上滚时，伸手拍了篮圈。', ['进攻方干扰球：不得分，对方在罚球线延长线发球', '得 2 分', '跳球', '技术犯规'], '进攻方干扰球不得分，球判给对方在罚球线延长线掷球入界。', '违例的是哪一方？'),
@@ -133,7 +136,7 @@ export const unitsB = [
     why: '半圆区鼓励防守人“去封盖”，而不是“站着等撞”；掩护规则保护被掩护的人不受偷袭。',
     scenario: '红 7 号突破，蓝 5 号退到篮下，脚踩在半圆区线上，两人相撞。裁判判阻挡还是撞人？——不能判带球撞人，因为防守人在半圆区内。',
     ref: 'OBR 2026 第 33.7、33.10 条', diagrams: [
-      { svg: court({ hl: ['nocharge'], tokens: [{ x: 7.5, y: 2.1, t: 'b', n: 5, hl: true }], anim: m => moving(m, 'token', 'M10.5 8L8.6 4.2L7.9 2.9', 2.6, { n: 7, t: 'a', ball: true, kp: '0;1;1', kt: '0;.8;1' }), labels: [{ x: 7.5, y: 0.6, text: '脚踩半圆区：不能判带球撞人', w: 6.4 }], alt: '无撞人半圆区动画' }), cap: '动画：突破到无撞人半圆区', anim: 'no-charge' },
+      { svg: court({ hl: ['nocharge'], tokens: [{ x: 7.5, y: 2.1, t: 'b', n: 5, hl: true }], anim: m => moving(m, 'token', 'M10.5 8L8.6 4.2L7.9 2.9', 2.6, { n: 7, t: 'a', ball: true, still: [7.9, 2.9], kp: '0;1;1', kt: '0;.8;1' }), labels: [{ x: 7.5, y: 0.6, text: '脚踩半圆区：不能判带球撞人', w: 6.4 }], alt: '无撞人半圆区动画' }), cap: '动画：突破到无撞人半圆区', anim: 'no-charge' },
       { svg: court({ tokens: [{ x: 9, y: 8, t: 'a', n: 14, tag: '掩护：静止' }, { x: 10.2, y: 7.4, t: 'b', n: 6 }, { x: 11, y: 9.4, t: 'a', n: 2, ball: true }], arrows: [{ d: 'M11 9L8.8 9.6L7 8.2', kind: 'dribble' }], labels: [{ x: 7.5, y: 12.4, text: '合法掩护：静止 + 双脚着地', w: 6 }], alt: '挡拆掩护' }), cap: '挡拆：掩护人要静止站好' }
     ] }, [
     mc('fb08-03-q1', '进攻人空中上篮，撞到双脚都踩在无撞人半圆区线上的防守人（无非法动作）。', ['不能判带球撞人', '带球撞人', '技术犯规', '双方犯规'], '半圆区的线属于半圆区；防守人在区内，不判带球撞人。', '线算在半圆区里吗？'),
@@ -225,7 +228,7 @@ export const unitsB = [
     why: '人眼有极限，关键时刻用录像核实，让比赛结果更公正；但次数和范围有限制，防止比赛被无限打断。',
     scenario: '第 4 节最后 1:10，裁判吹了蓝队干扰得分，红队得 2 分。裁判示意要回放——2026 版允许在最后 2 分钟核实干扰判罚。录像显示球已经开始下落，判罚维持。',
     ref: 'OBR 2026 附录 F（2026 修订）', diagrams: [
-      { svg: `<svg class="rc-svg" viewBox="0 0 520 260" role="img" aria-label="即时回放显示器" xmlns="http://www.w3.org/2000/svg"><rect width="520" height="260" rx="16" fill="#101826"/><rect x="40" y="30" width="440" height="170" rx="10" fill="#1b2638" stroke="#3a4b63" stroke-width="3"/><rect x="60" y="48" width="400" height="134" rx="6" fill="#d8b17a"/><path d="M60 150H460" stroke="#fff" stroke-width="3"/><circle cx="260" cy="110" r="14" fill="#e8731c"/><path d="M200 182V120M320 182V120" stroke="#e2483d" stroke-width="10" stroke-linecap="round"/><text x="260" y="226" text-anchor="middle" font-size="16" font-weight="800" fill="#ffc533" font-family="'Noto Sans SC',system-ui">IRS 回放：逐帧核查</text><circle cx="456" cy="44" r="6" fill="#ff5a4e"><animate attributeName="opacity" values="1;.2;1" dur="1s" repeatCount="indefinite"/></circle><text x="440" y="48" text-anchor="end" font-size="12" fill="#ff5a4e" font-family="system-ui">REPLAY</text></svg>`, cap: '即时回放：在场边显示器前逐帧核查' },
+      { svg: replayScreen(), cap: '即时回放：在场边显示器前逐帧核查' },
       { svg: table([{ k: '任何时间', v: '2/3 分、罚 2/3 次、犯规升降级、暴力行为' }, { k: '节末/决胜期末', v: '最后一投是否在铃响前出手' }, { k: '最后 2:00', v: '24 秒、出界、掷球时犯规、干扰判罚' }, { k: '主教练挑战', v: '每场 1 次' }], { title: 'IRS 可以看什么', split: 170, w: 580 }), cap: 'IRS 适用范围（简化）' }
     ] }, [
     mc('fb10-03-q1', '主教练上半场用了一次挑战并且成功。下半场他还能再挑战吗？', ['不能：每场只有 1 次，无论成功与否', '能，成功就保留', '能，下半场重新给', '只要裁判同意'], '附录 F.4：每场比赛主教练只能挑战 1 次，不论结果。', '“不论结果”。'),
