@@ -5,13 +5,53 @@ import { createEditor } from './editor.mjs';
 import { CSharpRuntime } from './runtime.mjs';
 import { gradeCode } from './judge.mjs';
 import { createCoursePlayer, element, button, downloadFile } from '../shared/player.mjs';
+import { pipelineFigure } from '../shared/lesson-zero.mjs';
 import './csharp.css';
+
+// Predict-the-output lessons: read the code, pick the output. No compile needed to answer.
+function mountPredict(ui,lesson){
+  const {body}=ui;
+  body.append(element('span','Program.cs','learn-label'),element('pre',lesson.solution.replace(/^using[^\n]*\n/gm,'').trimStart(),'learn-code'));
+  const list=element('div',null,'choice-list');list.setAttribute('role','radiogroup');list.setAttribute('aria-label','选择你预测的输出');
+  let selected=null;
+  const done=()=>ui.state.completed.includes(lesson.id);
+  lesson.choices.forEach((choice,index)=>{
+    const item=button('',()=>{selected=index;list.querySelectorAll('.choice').forEach((node,position)=>{node.classList.toggle('selected',position===index);node.setAttribute('aria-checked',String(position===index));});},'choice');
+    item.setAttribute('role','radio');item.setAttribute('aria-checked','false');
+    if(done()&&index===lesson.answer)item.classList.add('correct');
+    item.append(element('b','ABCD'[index]),element('pre',choice.replaceAll('\n','↵\n')));list.append(item);
+  });
+  body.append(list);
+  const result=element('pre','选出答案后提交。','learn-result');result.setAttribute('aria-live','polite');
+  const submit=button('◆ 提交预测',async()=>{
+    if(ui.busy)return;
+    if(selected===null){result.className='learn-result error';result.textContent='请先选择一个答案。';return;}
+    const passed=selected===lesson.answer;
+    result.className=`learn-result ${passed?'success':'error'}`;
+    result.textContent=passed?'预测正确！你已经能在脑中“运行”这段代码。':'还不对。按从上到下的顺序逐行跟踪每个变量的值，再选一次。';
+    if(passed)list.children[lesson.answer].classList.add('correct');
+    await ui.record(passed,passed?100:0);
+  },'primary-btn');submit.dataset.lockWhileBusy='';
+  const actions=element('div',null,'learn-actions');actions.append(submit);body.append(actions,result);
+  const hints=element('details',null,'learn-explanation');hints.append(element('summary','分级提示'));lesson.hints.forEach((text,index)=>hints.append(element('p',`提示 ${index+1}：${text}`)));body.append(hints);
+  return ()=>{};
+}
 
 export async function mount(root, context) {
   return createCoursePlayer(root,context,{title:'C# · 王冠远征',subtitle:`${chapters.length} 章 · ${lessons.length} 道编程试炼 · 从第一行代码到文字 RPG`,chapters,lessons,adventure},ui=>{
     const {body,lesson}=ui;
-    const theory=element('section',null,'learn-explanation');theory.append(element('strong',lesson.topic),element('p',lesson.teach));body.append(theory);
+    const theory=element('section',null,'learn-explanation');
+    const typeLabel={predict:'预测输出',fix:'改错',fill:'填空'}[lesson.type];
+    const badges=[typeLabel,lesson.review&&'复习',lesson.optional&&'选做拓展'].filter(Boolean);
+    if(badges.length){const row=element('p');badges.forEach(text=>row.append(element('span',text,'lesson-type-badge')));theory.append(row);}
+    theory.append(element('strong',lesson.topic));
+    String(lesson.teach).split('\n').forEach(paragraph=>theory.append(element('p',paragraph)));
+    if(lesson.teachFigure==='pipeline'){const figure=element('div');figure.innerHTML=pipelineFigure({file:'Program.cs',compiler:'C# 编译器',output:'Hello!'});theory.append(figure);}
+    if(lesson.example){theory.append(element('span','最小示例','teach-example-label'),element('pre',lesson.example,'teach-example'));}
+    if(lesson.optional)theory.append(element('p','这一课是选做拓展：可以先跳过，学完主线再回来挑战。','learn-status'));
+    body.append(theory);
     body.append(element('p',lesson.objective,'learn-task'));
+    if(lesson.type==='predict')return mountPredict(ui,lesson);
     if(lesson.rules){const rules=element('ol',null,'learn-task');lesson.rules.forEach(rule=>rules.append(element('li',rule)));body.append(rules);}
     const samples=element('details',null,'learn-explanation');samples.append(element('summary',`测试用例（${lesson.tests.length} 组）`));
     lesson.tests.forEach((test,index)=>{samples.append(element('strong',`测试 ${index+1}`),element('pre',`输入：\n${test.input||'（无）'}\n期望输出：\n${test.output||'（无）'}`));});body.append(samples);

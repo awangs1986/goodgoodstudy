@@ -68,7 +68,15 @@
 .course-card[data-course-id="physics"] h2 { font-family: Georgia, "Songti SC", "Noto Serif SC", serif; }
 .course-card[data-course-id="olympiad"] { --card-accent: #ffc58a; --card-accent-2: #e8730c; background-image: radial-gradient(rgba(255,197,138,.18) 1px, transparent 1.4px); background-size: 16px 16px; }
 .course-card[data-course-id="olympiad"] .course-emblem::before { content: "∑"; font-size: 26px; font-weight: 800; }
+/* New rule courses keep their own shelf accents. */
 .course-card[data-course-id="fiba-rules"] { --card-accent: #ffb27a; --card-accent-2: #e2483d; background-image: repeating-linear-gradient(90deg, rgba(232,115,28,.08) 0 14px, transparent 14px 28px); }
 .course-card[data-course-id="fiba-rules"] .course-emblem::before { content: "🏀"; font-size: 24px; }
 .course-card[data-course-id="f1-rules"] { --card-accent: #ff8a80; --card-accent-2: #e5332a; background-image: linear-gradient(115deg, transparent 0 70%, rgba(229,51,42,.12) 70% 73%, transparent 73% 76%, rgba(229,51,42,.08) 76% 78%, transparent 78%); }
 .course-card[data-course-id="f1-rules"] .course-emblem::before { content: "🏁"; font-size: 24px; }
+/* Keep the navigation bar visible when course views scroll to their start. */
+:root { --course-nav-h: 52px; }
+.course-navigation { box-sizing: border-box; height: var(--course-nav-h); min-height: 0; }
+html { scroll-padding-top: calc(var(--course-nav-h) + 12px); }
+#courseRoot .view { min-height: calc(100vh - var(--course-nav-h)); }
+#courseRoot .challenge-shell { height: calc(100vh - 64px - var(--course-nav-h)); }
+#courseRoot .map-scene { min-height: calc(100vh - 64px - var(--course-nav-h)); }
