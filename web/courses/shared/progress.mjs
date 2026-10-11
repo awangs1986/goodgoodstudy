@@ -10,6 +10,8 @@ export function normalizeProgress(value, lessons, language = 'zh-CN') {
     drafts: map('drafts'), inputs: map('inputs'), responses: map('responses'), attempts: map('attempts'),
     // Older saves may carry a retired companionId field; it is dropped here and nothing else changes.
     battles: map('battles'),
+    // Optional per-course game state (geography voyage: gold, ship, supplies, location, log). Plain JSON object.
+    voyage: record(value?.voyage),
     scores: map('scores'), assisted: map('assisted'), hints: map('hints'),
     answerReveals: [...new Set((Array.isArray(value?.answerReveals) ? value.answerReveals : []).filter(id => ids.has(id)))],
     consecutiveFailures: map('consecutiveFailures'),
