@@ -1,5 +1,6 @@
 // Lesson IDs are explicit and stable: saved progress (shared/progress.mjs) is keyed by them.
 // Older lessons keep the positional ID they had before the 2026 reordering, so existing saves map correctly.
+import { csharpExtras } from './extras.mjs';
 const prelude = 'using System;\nusing System.Collections.Generic;\n\n';
 const linqPrelude = 'using System;\nusing System.Collections.Generic;\nusing System.Linq;\n\n';
 const t = (id, title, topic, teach, objective, code, output, options = {}) => ({ id, title, topic, teach, objective, solution: (options.linq ? linqPrelude : prelude) + code, tests: [{ input: '', output }], ...options });
@@ -260,6 +261,15 @@ chapters.at(-1).lessons.push(t(
   }
 ));
 
+
+// Review, predict, fix and fill lessons (extras.mjs) are placed after a named lesson or at the chapter start.
+for (const { chapter: chapterId, after, lesson } of csharpExtras) {
+  const chapter = chapters.find(item => item.id === chapterId);
+  if (!chapter) throw new Error(`Unknown C# chapter ${chapterId}`);
+  const index = after === null ? -1 : chapter.lessons.findIndex(item => item.id === after);
+  if (after !== null && index < 0) throw new Error(`Unknown C# anchor ${after}`);
+  chapter.lessons.splice(index + 1, 0, lesson);
+}
 
 export const lessons = chapters.flatMap((chapter, chapterIndex) => chapter.lessons.map((lesson, localIndex) => Object.assign(lesson, {
   chapterId: chapter.id, chapterIndex, localIndex,
