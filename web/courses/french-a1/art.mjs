@@ -64,7 +64,9 @@ const keywords = {
   rain: 'nuage|vent|orage', snow: 'neige|il neige', tree: 'parc|arbre|campagne', boat: 'bateau|mer|plage|vacances|seine', police: 'police|voleur', bell: 'réveil|cloche',
   croissant: 'croissant|boulangerie', baguette: 'pain|baguette', fromage: 'fromage', clock: 'horloge|pendule', metroTicket: 'métro|station'
 };
-const kit = createComicKit({ places, cast, props, keywords, defaultPlace: 'rue', defaultHero: 'lea', villainStyle: 'beret' });
+const kit = createComicKit({ places, cast, props, keywords, defaultPlace: 'rue', defaultHero: 'lea', villainStyle: 'beret',
+  // The PHARMACIE sign fills the top-right corner, so the sun/rain sits lower, between the sign and the counter.
+  skySpots: { pharmacie: [300, 126, .85] } });
 export const VILLAIN = 'Gribouille 先生';
 export { places };
 export const { castNames, propNames, propsFor, comicPanel } = kit;

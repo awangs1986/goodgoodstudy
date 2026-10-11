@@ -4,7 +4,7 @@
 
 **Gray Crown** is an offline learning application with a C adventure, a C# beginner course, French A1, an English comic RPG aligned to the New Concept English Books 1–2 syllabus, and a classical physics foundations course adapted from OpenStax.
 
-Seven runes are scattered across the North. Players travel through 7 chapters and 140 short trials. Every trial has a vivid adventure story, a clear objective, up to three hints, and a built-in C editor. When the player submits code, the game compiles and runs it inside an isolated WebAssembly sandbox, then checks whether the result is correct.
+Seven runes are scattered across the North. Players start with lesson 0 and travel through 9 chapters and 184 short trials. Every trial has a short explanation with a minimal example, a vivid adventure story, a clear objective, three lesson-specific hints, and a built-in C editor. When the player submits code, the game compiles and runs it inside an isolated WebAssembly sandbox, then checks whether the result is correct.
 
 The goal is not to turn a textbook into a question bank. It is to help learners understand C by making a choice, running code, reading the result, and trying again.
 
@@ -16,8 +16,8 @@ All four courses are available:
 
 | Course | Content | Goal |
 | --- | --- | --- |
-| C | Original 7 chapters, 140 trials | C syntax and programming fundamentals |
-| C# | 8 chapters, 96 exercises, real compilation and 189 input/output cases | Build a console text RPG from scratch, step by step |
+| C | Lesson 0 + 9 chapters, 184 trials (code, predict-the-output, fix-the-bug, fill-in-the-blank) | C syntax and programming fundamentals |
+| C# | Lesson 0 + 8 chapters, 126 exercises, real compilation and 223 input/output cases | Build a console text RPG from scratch, step by step |
 | French A1 | 12 units (alphabet → travel), 156 exercises, 192 vocabulary entries, 228 offline audio clips | Progressive vocabulary, sentences, grammar, listening and unit tests with fresh items |
 | English · Comic City (NCE 1–2 syllabus) | 25 units (15 Book-1-aligned + 10 Book-2-aligned), 325 quests, 250 vocabulary entries, 325 offline MP3 clips, one original comic panel per question | Original dialogues/stories following the NCE grammar sequence; contraction- and UK/US-spelling-tolerant grading |
 | Classical Physics (adapted from OpenStax, Chinese) | 11 units, 33 teach→test stages + 11 unit exams, 158 questions (110 numeric), 33 realistic Commons photos, KaTeX formulas offline | Every stage: concept + formula + step-by-step worked example, then a quiz that unlocks only after reading; numeric judge accepts 2 % rounding, scientific notation and unit conversion. Credits: [web/courses/physics/CREDITS.md](web/courses/physics/CREDITS.md) |
@@ -29,7 +29,9 @@ The new courses use Chinese teaching explanations. C# accepts prefilled console 
 
 ## C course gameplay
 
-- 7 chapters × 20 quests: 140 short C programming trials.
+- Lesson 0 (what a program is, compile → run, reading an error) plus 9 chapters: 184 short C trials. The original 140 lesson ids (`D1-Q01` … `D7-Q20`) are fixed, so old saves keep their progress.
+- Recommended order for complete beginners: C# first, then C (C errors are harder to read and pointers come later).
+- Every lesson explains first (3–6 plain sentences and a minimal example), then asks. Input with `scanf` arrives at the end of Day 2; arrays/strings and pointers each get two chapters with SVG diagrams; Day 4 and Day 6 end with milestone projects; each chapter opens with a review question.
 - English is the default language. The first screen has a one-click switch to Chinese, and the choice is saved in the local JSON save.
 - Every quest includes an RPG story, an objective, trial rules, three progressive hints, and a code editor.
 - Learner code is compiled and executed with the bundled Clang/WebAssembly sandbox, with compiler diagnostics and program output shown in the UI.
@@ -79,7 +81,7 @@ See [LICENSE](LICENSE).
 
 ### C# 与法语：RPG 冒险课程
 
-- **C# · 王冠远征**：穿越雾港、集市、森林、地牢、镜塔、星图馆、英雄工坊与王城，完成 96 道符文委托，收集八枚核心；最终用 C# 编写可运行的控制台文字 RPG。
+- **C# · 王冠远征**：穿越雾港、集市、森林、地牢、镜塔、星图馆、英雄工坊与王城，从“第 0 课”起步，完成 126 道符文委托（含读代码猜输出、改错、填空与复习题；LINQ 与 out 参数为选做），收集八枚核心；最终用 C# 编写可运行的控制台文字 RPG。
 - **法语 · 晨钟之旅 A1**：扮演巡路信使，穿越十二个区域，在 156 组委托中学习问候、身份、家庭、日常、餐饮、问路、喜好与旅行。词汇、句子、语法和离线听力共同推动剧情。
 - 两门课均包含开场故事、NPC 对话、地图解锁、守关试炼、经验/等级、金币、区域遗物、旅途日志及每区域三枚真知水晶。
 - 已有课程存档可继续使用；重温已完成任务不会重复领取奖励。

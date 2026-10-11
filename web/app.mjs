@@ -48,6 +48,8 @@ function renderLibrary() {
     title.textContent = localized(course.title, library.language);
     const description = document.createElement('p');
     description.textContent = localized(course.description, library.language);
+    const order = course.order ? document.createElement('p') : null;
+    if (order) { order.className = 'course-order'; order.textContent = `${tr('Learning order', '学习顺序')}：${localized(course.order, library.language)}`; }
     const button = document.createElement('button');
     button.className = 'primary-btn';
     button.type = 'button';
@@ -63,7 +65,7 @@ function renderLibrary() {
     const head = document.createElement('div');
     head.className = 'course-card-head';
     head.append(emblem, badge);
-    card.append(head, title, description, button);
+    card.append(head, title, description, ...(order ? [order] : []), button);
     return card;
   }));
 }

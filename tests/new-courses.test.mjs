@@ -7,9 +7,9 @@ import { chapters as frChapters, lessons as frLessons, audio } from '../web/cour
 import { gradeFrench, normalizeFrench, shuffled } from '../web/courses/french-a1/judge.mjs';
 import { normalizeProgress, unlocked } from '../web/courses/shared/progress.mjs';
 
-test('C# offers eight progressive chapters and 96 complete exercises',()=>{
-  assert.equal(csChapters.length,8);assert.equal(csLessons.length,96);
-  assert.equal(new Set(csLessons.map(l=>l.id)).size,96);
+test('C# offers lesson 0, eight progressive chapters and 126 complete exercises',()=>{
+  assert.equal(csChapters.length,9);assert.equal(csChapters[0].id,'cs00');assert.equal(csLessons.length,126);
+  assert.equal(new Set(csLessons.map(l=>l.id)).size,126);
   for(const lesson of csLessons){
     assert.ok(lesson.teach&&lesson.objective&&lesson.starter&&lesson.solution);
     assert.equal(lesson.hints.length,3);assert.ok(lesson.tests.length);
@@ -72,8 +72,9 @@ test('choice order is stable but answers do not always occupy the same slot',()=
 });
 test('new course progress repairs navigation, isolates IDs and unlocks only earned lessons',()=>{
   const value=normalizeProgress({version:1,currentLessonId:'not-a-lesson',completed:['cs01-01','bogus','cs01-01'],drafts:{'cs01-01':'code','bogus':'data'}},csLessons);
-  assert.deepEqual(value.completed,['cs01-01']);assert.equal(value.currentLessonId,'cs01-01');assert.deepEqual(Object.keys(value.drafts),['cs01-01']);
-  assert.equal(unlocked(csLessons,value,1),true);assert.equal(unlocked(csLessons,value,2),false);
+  assert.deepEqual(value.completed,['cs01-01']);assert.equal(value.currentLessonId,csLessons[0].id);assert.deepEqual(Object.keys(value.drafts),['cs01-01']);
+  const done=csLessons.findIndex(l=>l.id==='cs01-01');
+  assert.equal(unlocked(csLessons,value,1),true,'lesson 0 stays open for old saves');assert.equal(unlocked(csLessons,value,done+1),true);assert.equal(unlocked(csLessons,value,done+2),false);
   assert.deepEqual(normalizeProgress(value,frLessons).completed,[]);
   assert.throws(()=>normalizeProgress({version:2},frLessons));
 });
@@ -99,7 +100,8 @@ test('lesson IDs from the first release survive reordering, so saved progress ke
 test('C# concepts are taught before reference solutions rely on them',()=>{
   const first=pattern=>csLessons.findIndex(l=>pattern.test(l.solution));
   assert.equal(csLessons[first(/[^?]\?(?![?.])[^;\n]*:/)].id,'cs03-08');
-  assert.equal(csLessons[first(/string\?/)].id,'cs04-09');
+  assert.equal(csLessons[first(/string\?/)].id,'cs02-01');assert.match(csLessons.find(l=>l.id==='cs02-01').teach,/string\? name/);
+  assert.doesNotMatch(csLessons.find(l=>l.id==='cs02-01').solution,/\?\?/,'first input lesson avoids ??');
   assert.ok(first(/\benum\b/)>first(/\bclass Hero\b/));
   assert.ok(first(/get; set;/)<csLessons.findIndex(l=>l.chapterId==='cs07'));
   assert.ok(!csLessons.some(l=>l.chapterId==='cs07'&&/public int Hp\s*=/.test(l.solution)),'RPG chapter uses properties');
@@ -127,4 +129,14 @@ test('chapter tests and graduation use items that practice lessons never show',(
     const seen=new Set(practice.map(q=>q.prompt+'|'+q.answers[0]+'|'+(q.audio??'')));
     for(const q of exam.questions)assert.ok(!seen.has(q.prompt+'|'+q.answers[0]+'|'+(q.audio??'')),q.id);
   }
+});
+
+test('C# beginner additions: lesson 0, reviews, typed exercises and optional extras',()=>{
+  for(const lesson of csLessons){assert.ok(lesson.teach.length>30,lesson.id);assert.equal(lesson.hints.length,3,lesson.id);}
+  const types=new Set(csLessons.map(l=>l.type??'code'));for(const t of ['code','predict','fix','fill'])assert.ok(types.has(t),t);
+  for(const chapter of csChapters.slice(2))assert.ok(chapter.lessons.some(l=>l.review),`${chapter.id} review`);
+  for(const lesson of csLessons.filter(l=>l.type==='predict')){assert.ok(lesson.choices.includes(lesson.tests[0].output),lesson.id);}
+  for(const lesson of csLessons.filter(l=>l.type==='fix'||l.type==='fill'))assert.notEqual(lesson.starter,lesson.solution,lesson.id);
+  for(const lesson of csLessons.filter(l=>l.type==='fill')){const ran={compiled:{ok:true},executions:lesson.tests.map(t=>({ok:true,output:t.output}))};assert.equal(gradeCode(lesson,lesson.starter,ran).passed,false,lesson.id);}
+  assert.deepEqual(csLessons.filter(l=>l.optional).map(l=>l.id).sort(),['cs-linq','cs-out']);
 });

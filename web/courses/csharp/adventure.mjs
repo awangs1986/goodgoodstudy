@@ -128,6 +128,7 @@ adventure.regions[6].quests = [
 // inherit their chapter's NPC and get a briefing built from the actual objective.
 const legacyRegions = new Map(['cs01','cs02','cs03','cs04','cs05','cs06','cs07'].map((id,index)=>[id,adventure.regions[index]]));
 const newRegions = {
+  cs00: {name:'启程码头',icon:'⛵',npc:'老守灯人 · 欧文',quote:'写下的每一行，都会被一丝不苟地执行。',description:'弄懂程序怎样跑起来，学会读懂编译器的报错。',relic:'启程之钥',relicIcon:'⚿',relicLore:'打开编程世界的第一把钥匙。'},
   csoop: {name:'英雄工坊',icon:'⚒',npc:'角色导师 · 希娅',quote:'一位英雄的状态，应由这位英雄自己守护。',description:'用类、属性、构造方法和异常处理打造可靠的冒险队伍。',relic:'英雄核心',relicIcon:'◆',relicLore:'让角色带着完整的能力与状态踏入王城。'}
 };
 adventure.prepare = chapters => {
