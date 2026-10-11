@@ -10,6 +10,7 @@ export function emptySave() {
     started: false,
     currentChapter: 0,
     currentQuest: 0,
+    currentQuestId: lessons[0].id,
     completed: [],
     skipped: [],
     attempts: {},
@@ -26,9 +27,26 @@ export function emptySave() {
   };
 }
 
+// Version-2 saves written before lesson IDs were fixed only stored the position of the
+// current quest in the original 7×20 layout. Translate that position to its (stable) ID.
+export function legacyQuestId(index) {
+  return `D${Math.floor(index / 20) + 1}-Q${String((index % 20) + 1).padStart(2, '0')}`;
+}
+
+function resolveCurrentQuest(value) {
+  const byId = typeof value.currentQuestId === 'string' ? lessons.findIndex(lesson => lesson.id === value.currentQuestId) : -1;
+  if (byId >= 0) return byId;
+  if (Number.isInteger(value.currentQuest) && value.currentQuest >= 0 && value.currentQuest < 140) {
+    const legacy = lessons.findIndex(lesson => lesson.id === legacyQuestId(value.currentQuest));
+    if (legacy >= 0) return legacy;
+  }
+  return 0;
+}
+
 export function normalizeSave(value) {
   const base = emptySave();
   if (!value || value.version !== 2) return base;
+  const currentQuest = resolveCurrentQuest(value);
   return {
     ...base,
     ...value,
@@ -40,8 +58,9 @@ export function normalizeSave(value) {
     drafts: value.drafts && typeof value.drafts === 'object' ? value.drafts : {},
     inputs: value.inputs && typeof value.inputs === 'object' ? value.inputs : {},
     consecutiveFailures: value.consecutiveFailures && typeof value.consecutiveFailures === 'object' ? value.consecutiveFailures : {},
-    currentChapter: Number.isInteger(value.currentChapter) && value.currentChapter >= 0 && value.currentChapter < chapters.length ? value.currentChapter : 0,
-    currentQuest: Number.isInteger(value.currentQuest) && value.currentQuest >= 0 && value.currentQuest < lessons.length ? value.currentQuest : 0,
+    currentChapter: lessons[currentQuest].chapterIndex,
+    currentQuest,
+    currentQuestId: lessons[currentQuest].id,
     answerTokens: value.answerTokens && typeof value.answerTokens === 'object' ? { ...chapterTokens(), ...value.answerTokens } : chapterTokens(),
     answerUses: value.answerUses && typeof value.answerUses === 'object' ? { ...chapterUses(), ...value.answerUses } : chapterUses(),
     aiTutorUses: value.aiTutorUses && typeof value.aiTutorUses === 'object' ? { ...chapterTutorUses(), ...value.aiTutorUses } : chapterTutorUses()

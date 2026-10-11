@@ -4,6 +4,7 @@ export function gradeCode(lesson, source, result) {
   if (!result.compiled?.ok) return { passed:false, score:0, checks:[{passed:false,label:'编译',message:result.compiled?.stderr||'编译没有成功。'}] };
   // Requirements teach the requested construct; multi-input execution decides behaviour.
   const withoutComments = source.replace(/\/\*[\s\S]*?\*\//g,'').replace(/\/\/[^\n]*/g,'');
+  if (lesson.type === 'fill') checks.push({passed:!source.includes('____'),label:'填空',message:'把所有 ____ 换成正确的代码。'});
   for (const construct of lesson.required ?? []) checks.push({passed:withoutComments.includes(construct),label:'知识点',message:`使用 ${construct} 完成本题。`});
   // Patterns avoid substring false positives, e.g. "!" must not be satisfied by "!=".
   for (const { pattern, label } of lesson.requiredPatterns ?? []) checks.push({passed:new RegExp(pattern).test(withoutComments),label:'知识点',message:`使用 ${label} 完成本题。`});
