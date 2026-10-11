@@ -20,7 +20,7 @@ export const day06 = buildChapter(meta, [
     for (int i = 0; i < 6; i++) { total += damage[i]; if (damage[i] > max) max = damage[i]; }
     printf("Total: %d\nAverage: %.1f\nMax: %d\n", total, total / 6.0, max);`) },
   { id:'D6-Q04', difficulty:'★★☆ 基础', title:'四方向星盘', knowledge:'平行数组', task:'用dx/dy数组记录上下左右，并逐项输出位移。', expected:['Up: 0,-1','Down: 0,1','Left: -1,0','Right: 1,0'], minLines:4, solution:p(String.raw`    int dx[4] = {0, 0, -1, 1}, dy[4] = {-1, 1, 0, 0};
-    const char *name[4] = {"Up", "Down", "Left", "Right"};
+    char name[4][6] = {"Up", "Down", "Left", "Right"};
     for (int i = 0; i < 4; i++) printf("%s: %d,%d\n", name[i], dx[i], dy[i]);`) },
   { id:'D6-Q05', difficulty:'★★☆ 基础', title:'英雄的真名', knowledge:'C 字符串', task:'保存Aster，用%s和逐字符两种方式打印。', expected:['Name: Aster','Letters: A s t e r'], minLines:2, solution:p(String.raw`    char name[20] = "Aster";
     printf("Name: %s\nLetters:", name);
