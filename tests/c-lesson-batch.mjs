@@ -72,10 +72,11 @@ async function main(start, end, results) {
     sdkUrl: join(sdkRoot, 'node.mjs')
   });
   const clang = await Wasmer.fromFile(new Uint8Array(await readFile(packagePath)));
-  for (let index = start; index < end; index++) {
+  for (const index of selection(start, end)) {
     const lesson = lessons[index];
     const project = new Directory();
-    await project.writeFile('main.c', lessonSolutions[index]);
+    // --source=starter compiles a lesson's starter code instead (used to prove fix-the-bug starters fail).
+    await project.writeFile('main.c', SOURCE === 'starter' ? lesson.starterCode : lessonSolutions[index]);
     const compiler = await clang.entrypoint.run({
       args: ['/project/main.c', '-std=c11', '-O0', '-Wall', '-Wextra', '-Wpedantic', ...NODE_LINK_FLAGS, '-o', '/project/program.wasm'],
       // Without `stdin`, Wasmer opens an interactive stdin pipe whose JS handle
@@ -101,7 +102,16 @@ function emit(message) {
   process.stdout.write(`\n${RESULT_PREFIX}${JSON.stringify(message)}\n`);
 }
 
-const [start, end] = process.argv.slice(2).map(Number);
+const positional = process.argv.slice(2).filter(arg => !arg.startsWith('--'));
+const option = name => process.argv.find(arg => arg.startsWith(`--${name}=`))?.slice(name.length + 3);
+const SOURCE = option('source') ?? 'solution';
+// --ids=A,B,C selects lessons by fixed ID (start/end are then ignored).
+const IDS = option('ids')?.split(',').filter(Boolean);
+function selection(from, to) {
+  if (IDS) return IDS.map(id => { const index = lessons.findIndex(lesson => lesson.id === id); if (index < 0) throw new Error(`Unknown lesson ${id}`); return index; });
+  return Array.from({ length: to - from }, (_, offset) => from + offset);
+}
+const [start, end] = positional.map(Number);
 const results = [];
 // Always exit explicitly: Wasmer worker threads would otherwise keep a stuck
 // runtime alive.

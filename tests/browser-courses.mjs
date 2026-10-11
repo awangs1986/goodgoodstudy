@@ -121,9 +121,13 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
   await page.locator('.learn-result.success').waitFor({timeout:90000});
   await page.screenshot({path:path.join(evidence,'02-csharp.png'),fullPage:true});
   await page.locator('.adventure-dialog').getByRole('button',{name:'继续旅途 →'}).click();
-  await page.locator('.learn-editor .cm-content').waitFor();
+  // Lesson 0 continues with a predict-the-output lesson: read-only code and choices instead of an editor.
+  assert.equal(csLessons[1].type,'predict');await page.locator('.choice-list').waitFor();
+  assert.equal(await page.locator('.learn-editor .cm-content').count(),0);
+  await backToLibrary();
+  await enterLesson('csharp',csLessons[0].id);await page.locator('.learn-editor .cm-content').waitFor();
   await page.locator('.learn-editor .cm-content').fill('// retained C# draft');
-  await backToLibrary();pass('C# UI compiles, grades, unlocks next lesson and saves draft on exit.');
+  await backToLibrary();pass('C# UI compiles, grades, unlocks the predict lesson and saves draft on exit.');
 
   const frFirst=frLessons[0];
   await enterLesson('french-a1',frFirst.id);await page.locator('.french-question').first().waitFor();
@@ -137,7 +141,7 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
   await backToLibrary();
   let save=JSON.parse(await readFile(path.join(evidence,'save/progress.json'),'utf8'));
   assert.equal(save.courses.c.gold,17);assert.equal(save.courses.c.drafts['D1-Q01'],'legacy C draft');
-  assert.equal(save.courses.csharp.drafts[csLessons[1].id],'// retained C# draft');assert.ok(save.courses['french-a1'].completed.includes(frFirst.id));
+  assert.equal(save.courses.csharp.drafts[csLessons[0].id],'// retained C# draft');assert.ok(save.courses['french-a1'].completed.includes(frFirst.id));
   pass('French comic battle passes with one Paris illustration per question; C, C# and French saves remain independent.');
 
   const enFirst=enLessons[0];
@@ -278,7 +282,7 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
   await page.getByRole('button',{name:'提交测验'}).click();await page.locator(`[data-question-id="${omNum.id}"] .om-explain`).waitFor();
   await page.locator('.om-quiz').screenshot({path:path.join(omShots,'olympiad-quiz.png')});
   await page.locator(`[data-question-id="${omNum.id}"] input`).fill(String(omNum.answer));await page.getByRole('button',{name:'提交测验'}).click();await page.locator('.om-summary.pass').waitFor();
-  assert.equal(await page.locator(`.om-nav-item[data-lesson-id="${omLessons[1].id}"]`).isDisabled(),false);
+  await page.waitForFunction(id=>document.querySelector(`.om-nav-item[data-lesson-id="${id}"]`)?.disabled===false,omLessons[1].id,{timeout:10000});
   assert.equal(await page.locator(`.om-nav-item[data-lesson-id="${omLessons[2].id}"]`).isDisabled(),true);
   await backToLibrary();
   save=JSON.parse(await readFile(path.join(evidence,'save/progress.json'),'utf8'));

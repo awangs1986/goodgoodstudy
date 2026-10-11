@@ -82,3 +82,21 @@ export function gradeLesson(lesson, source, execution, language = 'zh-CN') {
   }
   return { passed: tests.every(test => test.passed), execution, tests };
 }
+
+/** Grades a 'predict' lesson: the learner picks which output the shown code prints. */
+export function gradeChoice(lesson, choiceIndex, language = 'zh-CN') {
+  const zh = language === 'zh-CN';
+  const passed = Number.isInteger(choiceIndex) && choiceIndex === lesson.answer;
+  const picked = Number.isInteger(choiceIndex) ? lesson.choices[choiceIndex] : undefined;
+  return {
+    passed,
+    execution: null,
+    tests: [{
+      passed,
+      name: zh ? '预测输出' : 'Predicted Output',
+      message: picked === undefined ? (zh ? '请先选择一个答案。' : 'Choose an answer first.') : passed ? (zh ? '预测正确！你已经能在脑中“运行”这段代码。' : 'Correct: you ran the code in your head.') : (zh ? '还不对。按从上到下的顺序逐行跟踪每个变量的值，再选一次。' : 'Not yet. Trace each line and every variable from top to bottom, then choose again.'),
+      actual: picked ?? '',
+      expected: passed ? lesson.choices[lesson.answer] : (zh ? '（答对后显示）' : '(shown once correct)')
+    }]
+  };
+}

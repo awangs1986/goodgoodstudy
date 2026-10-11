@@ -157,10 +157,11 @@ const keywordRule = words => new RegExp(`(?<!\\p{L})(?:${words})(?!\\p{L})`, 'iu
 let serial = 0;
 /**
  * Build a course-specific comic kit from shared parts.
- * @param {{places?:object, cast?:object, props?:object, keywords?:Record<string,string>, defaultPlace?:string, defaultHero?:string, villainStyle?:string}} options
+ * @param {{places?:object, cast?:object, props?:object, keywords?:Record<string,string>, defaultPlace?:string, defaultHero?:string, villainStyle?:string, skySpots?:Record<string,[number,number,number]>}} options
+ *  skySpots: place -> [x, y, scale] for sun/rain/snow/plane when the default top-right spot would cover that scene's signage.
  *  props: name -> [englishKeywords, draw]; keywords: optional name -> keyword list overriding the prop's own (e.g. French words).
  */
-export function createComicKit({ places = basePlaces, cast = baseCast, props = baseProps, keywords, defaultPlace = 'street', defaultHero = 'leo', villainStyle = 'tophat' } = {}) {
+export function createComicKit({ places = basePlaces, cast = baseCast, props = baseProps, keywords, defaultPlace = 'street', defaultHero = 'leo', villainStyle = 'tophat', skySpots = {} } = {}) {
   const castNames = Object.fromEntries(Object.entries(cast).map(([id, value]) => [id, value.name]));
   const propNames = Object.keys(props);
   const rules = Object.entries(props).map(([name, [words]]) => [name, keywords ? keywords[name] : words]).filter(([, words]) => words).map(([name, words]) => [name, keywordRule(words)]);
@@ -180,7 +181,7 @@ export function createComicKit({ places = basePlaces, cast = baseCast, props = b
     const items = (scene.props ?? []).filter(name => props[name]).slice(0, 3);
     const floorSpots = people.length === 1 ? [[230, 222], [310, 222], [370, 222]] : people.length === 2 ? [[200, 224], [160, 230], [244, 230]] : [[135, 230], [265, 230], [380, 232]];
     let floorIndex = 0;
-    const propSvg = items.map(name => skyProps.has(name) ? drawProp(name, 350, 98, 1.1) : wallProps.has(name) ? drawProp(name, 200, 120, 1.1) : drawProp(name, ...floorSpots[floorIndex++ % floorSpots.length], people.length === 1 ? 1.5 : 1.2)).join('');
+    const propSvg = items.map(name => skyProps.has(name) ? drawProp(name, ...(skySpots[place] ?? [350, 98, 1.1])) : wallProps.has(name) ? drawProp(name, 200, 120, 1.1) : drawProp(name, ...floorSpots[floorIndex++ % floorSpots.length], people.length === 1 ? 1.5 : 1.2)).join('');
     const capWidth = Math.min(300, [...String(scene.caption ?? '')].reduce((sum, ch) => sum + (ch.charCodeAt(0) > 255 ? 13 : 7.4), 0) + 20);
     const caption = scene.caption ? `<g>${r(8, 214, capWidth, 28, '#ffe45c', 'stroke-width="2.5"')}${t(8 + capWidth / 2, 233, scene.caption, 12)}</g>` : '';
     const burst = scene.burst ? `<g transform="translate(330 60)">${p('M0 -40 L10 -18 L34 -26 L20 -6 L40 6 L16 12 L22 36 L2 20 L-14 38 L-14 14 L-38 12 L-20 -4 L-34 -24 L-10 -18Z', '#ffd23f')}${t(0, 6, scene.burst, 13)}</g>` : '';

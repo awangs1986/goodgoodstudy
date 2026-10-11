@@ -8,7 +8,7 @@ import { gradeLesson } from '../web/courses/c/judge.mjs';
 import { lessonSolutions } from './lesson-solutions.mjs';
 
 // Each batch runs in a fresh process with a fresh Wasmer runtime; see
-// tests/c-lesson-batch.mjs for why one runtime cannot compile all 140 lessons.
+// tests/c-lesson-batch.mjs for why one runtime cannot compile every lesson.
 // A runtime fails on its 11th compile, so 5 leaves a wide margin (the web app
 // itself compiles at most a warm-up plus one job per worker).
 const LESSONS_PER_PROCESS = 5;
@@ -68,11 +68,11 @@ function runBatch(start, end) {
   });
 }
 
-test('all 140 lessons compile, run, and pass their own judge rules', {
+test('all 184 lessons compile, run, and pass their own judge rules', {
   timeout: 1_800_000,
   skip: process.platform === 'win32' ? 'Wasmer Node worker has a Windows path issue; browser worker regression is the release test.' : false
 }, async () => {
-  assert.equal(lessons.length, 140, '七章必须共140题');
+  assert.equal(lessons.length, 184, '第 0 课加九章必须共184题');
   assert.equal(lessonSolutions.length, lessons.length, '每道题都必须有自动化答案');
 
   const report = [];
@@ -111,6 +111,6 @@ test('all 140 lessons compile, run, and pass their own judge rules', {
     start = stalled ? stalled.index : end;
   }
 
-  assert.equal(report.length, 140);
-  console.log(`\n${report.join('\n')}\nALL 140 LESSONS PASS`);
+  assert.equal(report.length, lessons.length);
+  console.log(`\n${report.join('\n')}\nALL ${lessons.length} LESSONS PASS`);
 });
