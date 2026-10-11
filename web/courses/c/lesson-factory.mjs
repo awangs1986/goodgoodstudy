@@ -14,23 +14,27 @@ function plain(value) {
   return value.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 }
 
-export function makeLesson(chapter, number, spec) {
-  const id = `D${chapter.day}-Q${String(number).padStart(2, '0')}`;
+// Lesson IDs and difficulty are explicit per lesson. Saved progress is keyed by ID,
+// so IDs must never be derived from a lesson's position (lessons are reordered and inserted).
+const defaultMinutes = difficulty => difficulty.startsWith('★★★') ? 25 : difficulty.startsWith('★★☆') ? 15 : 10;
+
+export function makeLesson(chapter, spec) {
+  const id = spec.id;
+  if (!/^[A-Za-z0-9-]+$/.test(id ?? '')) throw new Error(`${chapter.id} 的题目缺少固定 id：${spec.title}`);
+  if (!spec.difficulty) throw new Error(`${id} 缺少难度标注`);
   const objective = spec.objective ?? spec.task;
   const expected = Array.isArray(spec.expected) ? spec.expected : [spec.expected];
   return {
     id,
     chapterId: chapter.id,
-    chapterIndex: chapter.day - 1,
-    localIndex: number - 1,
     title: spec.title,
-    difficulty: spec.difficulty ?? (number >= 18 ? '★★★ 综合' : number >= 8 ? '★★☆ 基础' : '★☆☆ 入门'),
+    difficulty: spec.difficulty,
     knowledge: spec.knowledge,
-    minutes: spec.minutes ?? (number === 20 ? 25 : number >= 16 ? 18 : 12),
+    minutes: spec.minutes ?? defaultMinutes(spec.difficulty),
     quote: spec.quote ?? `“${spec.title}不是障碍，而是第${chapter.day}枚符文留下的考验。”`,
     story: spec.story ?? `${chapter.scene}${spec.task}`,
     objective,
-    rules: `输入：${spec.input ? `<code>${spec.inputLabel ?? spec.input.trim()}</code>` : '无'}<br>核心知识：<code>${spec.knowledge}</code><br>建议在 ${spec.minutes ?? (number === 20 ? 25 : number >= 16 ? 18 : 12)} 分钟内完成`,
+    rules: `输入：${spec.input ? `<code>${spec.inputLabel ?? spec.input.trim()}</code>` : '无'}<br>核心知识：<code>${spec.knowledge}</code><br>建议在 ${spec.minutes ?? defaultMinutes(spec.difficulty)} 分钟内完成`,
     starterCode: spec.starterCode ?? skeleton,
     defaultInput: spec.input ?? '',
     hints: spec.hints ?? [
@@ -50,7 +54,6 @@ export function makeLesson(chapter, number, spec) {
 }
 
 export function buildChapter(chapter, specs) {
-  if (specs.length !== 20) throw new Error(`${chapter.id} 必须恰好包含20题，目前是${specs.length}题。`);
-  const lessons = specs.map((spec, index) => makeLesson(chapter, index + 1, spec));
+  const lessons = specs.map(spec => makeLesson(chapter, spec));
   return { ...chapter, total: lessons.length, lessons };
 }
