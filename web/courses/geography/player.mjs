@@ -159,7 +159,7 @@ export async function mount(root, context) {
     if (!isOpen(lesson)) { const c = el('section', null, 'gv-card'); c.append(el('p', '🔒 这个港口的课程还没解锁：先到「航海学堂」学完本海区的概念课，或完成前一个港口的测验。')); main.append(c); return; }
     const teach = el('section', null, 'gv-card gv-teach'); teach.append(el('p', '第 1 步 · 港口见闻', 'gv-step'));
     const hook = el('div', null, 'gv-box hook'); hook.append(el('strong', '🌅 抵达'), el('p', p.hook)); teach.append(hook);
-    const facts = el('dl', null, 'gv-facts'); for (const [k, v] of [['大洲', p.continent], ['海域', p.sea], ['经纬度', fmtLat(p.lat, p.lon)], ['气候', p.zone]]) facts.append(el('dt', k), el('dd', v)); teach.append(facts);
+    const facts = el('dl', null, 'gv-facts'); for (const [k, v] of [['大洲', p.continent], ['海域', p.sea], ['经纬度', fmtLat(p.lat, p.lon)], ['气候', p.zone]]) { const d = el('div'); d.append(el('dt', k), el('dd', v)); facts.append(d); } teach.append(facts);
     for (const [icon, title, text] of [['⛰', '地形', p.land], ['🌦', '气候与季节', p.climate]]) { const b = el('div', null, 'gv-box'); b.append(el('strong', `${icon} ${title}`), el('p', text)); teach.append(b); }
     const fig = el('figure', null, 'gv-climo'); fig.append(img(`${ART}/climate/${p.id}.png`, `${p.name}气候图：柱子是每月降水，折线是每月平均气温`), el('figcaption', '气候图：蓝柱 = 月降水量（毫米），橙线 = 月平均气温（°C）。数据为常年平均近似值。')); teach.append(fig);
     const people = el('div', null, 'gv-box'); people.append(el('strong', '👫 人们与文化'), el('p', p.culture)); teach.append(people);

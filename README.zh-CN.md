@@ -24,6 +24,7 @@
 | 奥数思维课（小学 → 初中，中文） | 4 个学段、15 单元、30 关“先讲解后测验” + 15 次单元测试、150 道题、30 段 Remotion 动画例题（带中文字幕） | 每关先讲思维方法（生活引入、动画例题、分步解答、提示），再测验。来源见 [web/courses/olympiad/CREDITS.md](web/courses/olympiad/CREDITS.md) |
 | FIBA 篮球规则 · 看图学当裁判（OBR 2026） | 10 单元、30 关“先讲解后测验” + 10 次单元测试、130 道情景题、56 张手绘 SVG 图解（8 个动画） | 球场、计时、走步、违例、圆柱体/撞人阻挡、2026 新犯规体系、罚球与回放；来源见 [CREDITS](web/courses/fiba/CREDITS.md) |
 | F1 赛车规则 2026 · 图解 | 10 单元、30 关“先讲解后测验” + 10 次单元测试、130 道情景题、44 张手绘 SVG 图解（13 个动画） | 新时代赛车、周末赛制、积分、旗语、SC/VSC/红旗、主动空气动力学、赛道界限、维修区、轮胎、处罚与动力单元；来源见 [CREDITS](web/courses/f1/CREDITS.md) |
+| 大航海地理 · 环游世界 | 10 大海区、42 个真实港口、52 关“先学后测”、166 道题；航海、季风/信风、贸易、船只升级、发现物收藏 | Natural Earth（公有领域）渲染的 PNG 航海图、42 张真实常年值气候图；文本原创；来源见 [CREDITS](web/courses/geography/CREDITS.md) |
 
 C# 和法语课程采用中文教学说明。C# 支持下载代码，在 .NET 控制台项目继续运行；浏览器练习预先填写输入。法语提供选择、填空、排序、听写、阅读和综合测试，音频为有来源标注的合成语音，可慢速播放。课程内容来源与致谢见 [web/courses/french-a1/CREDITS.md](web/courses/french-a1/CREDITS.md)、[web/courses/english-nce/CREDITS.md](web/courses/english-nce/CREDITS.md)（英语课程仅对齐新概念大纲，内容全部原创）。
 
