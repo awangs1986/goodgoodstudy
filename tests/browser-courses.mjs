@@ -7,14 +7,15 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { lessons as csLessons } from '../web/courses/csharp/course.mjs';
-import { lessons as frLessons } from '../web/courses/french-a1/course.mjs';
-import { lessons as enLessons } from '../web/courses/english-nce/course.mjs';
+import { lessons as frLessons, chapters as frChapters } from '../web/courses/french-a1/course.mjs';
+import { lessons as enLessons, chapters as enChapters } from '../web/courses/english-nce/course.mjs';
 import { lessons as phLessons } from '../web/courses/physics/course.mjs';
 import { lessons as omLessons } from '../web/courses/olympiad/course.mjs';
 import { lessons as fibaLessons } from '../web/courses/fiba/course.mjs';
 import { lessons as f1Lessons } from '../web/courses/f1/course.mjs';
 import { lessons as geoLessons } from '../web/courses/geography/course.mjs';
 import { gradeCode } from '../web/courses/csharp/judge.mjs';
+import { buildVocabularyCheck } from '../web/courses/shared/vocabulary-checks.mjs';
 
 const root=process.cwd();
 const evidence=await mkdtemp(path.join(tmpdir(),'verify-graycrown-courses-'));
@@ -115,6 +116,37 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
       if(index<lesson.questions.length-1)await page.getByRole('button',{name:next}).click();
     }
   }
+  async function finishVocabulary(courseId, lesson, chapter, language, retryAndResume = false) {
+    const check = buildVocabularyCheck({ lesson, vocabulary: chapter.vocabulary, language, contexts: [chapter.sentence].filter(Boolean) });
+    await page.getByRole('button', { name: '进入课后单词测试 →', exact: true }).click();
+    await page.getByRole('button', { name: '我复习好了，开始单词测试', exact: true }).click();
+    await page.getByRole('button', { name: '检查这个答案', exact: true }).click();
+    await page.locator('.vocabulary-feedback').filter({ hasText: '请先选择答案或填写缺少的字母' }).waitFor();
+    if (retryAndResume) {
+      const first = check.questions[0];
+      await page.locator('[data-vocabulary-question]').getByRole('radio', { name: first.options.find(option => option !== first.answer), exact: true }).check();
+      await page.getByRole('button', { name: '检查这个答案', exact: true }).click();
+      await page.locator('.vocabulary-feedback').filter({ hasText: first.explanation }).waitFor();
+      await backToLibrary();
+      const before = JSON.parse(await readFile(path.join(evidence, 'save/progress.json'), 'utf8')).courses[courseId];
+      assert.ok(before.languageVocabulary[lesson.id].mainPassed);
+      assert.ok(!before.completed.includes(lesson.id), 'main task alone must not unlock a new lesson');
+      await enterLesson(courseId, lesson.id);
+      assert.equal(await page.locator('[data-question-id]:visible').count(), 0, 'saved main rounds do not restart');
+      await page.locator('.vocabulary-feedback').filter({ hasText: first.explanation }).waitFor();
+      await page.getByRole('button', { name: '看懂了，再试一次', exact: true }).click();
+      pass(`${courseId}: vocabulary mistake, explanation and main-task progress survive exit/reopen.`);
+    }
+    for (const question of check.questions) {
+      const field = page.locator('[data-vocabulary-question]');
+      assert.equal(await field.getAttribute('data-vocabulary-question'), question.id);
+      if (question.options) await field.getByRole('radio', { name: question.answer, exact: true }).check();
+      else await field.locator('input[type=text]').fill(question.answer);
+      await page.getByRole('button', { name: '检查这个答案', exact: true }).click();
+    }
+    await page.getByRole('button', { name: '完成本课并收录漫画', exact: true }).click();
+    await page.locator('.adventure-dialog .comic-victory').waitFor();
+  }
   const putSave=async value=>{await fetch(url+'api/save',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(value)});await page.reload();await page.locator('.course-card').first().waitFor();};
 
   // Student workflow: edit, submit, unlock and return with saved drafts.
@@ -146,7 +178,7 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
   assert.equal(await page.locator('.french-question svg.comic-panel').count(),0);
   assert.equal(await page.locator('[style*="french-pets"], img[src*="french-pets"]').count(),0);
   await fightRounds(frFirst,/发动 ·/,'下一格 →');
-  await page.getByRole('button',{name:/收录这一页漫画/}).click();await page.locator('.adventure-dialog .comic-victory').waitFor();
+  await finishVocabulary('french-a1', frFirst, frChapters[frFirst.chapterIndex], 'fr', true);
   await page.screenshot({path:path.join(evidence,'03-french.png'),fullPage:true});
   await page.locator('.adventure-dialog').getByRole('button',{name:'关闭'}).click();
   await backToLibrary();
@@ -160,7 +192,7 @@ var post = type.GetMethod("PostAsync", new[] {typeof(string), http.GetType("Syst
   assert.ok(await page.locator('.english-question svg.comic-panel').count()===enFirst.questions.length);
   assert.ok(await page.locator('.comic-arena svg.comic-panel').count()===1);
   await fightRounds(enFirst,/发动 ·/,'下一格 →');
-  await page.getByRole('button',{name:/收录这一页漫画/}).click();await page.locator('.adventure-dialog .comic-victory').waitFor();
+  await finishVocabulary('english-nce', enFirst, enChapters[enFirst.chapterIndex], 'en', true);
   await page.screenshot({path:path.join(evidence,'03b-english.png'),fullPage:true});
   await page.locator('.adventure-dialog').getByRole('button',{name:'关闭'}).click();await backToLibrary();
   save=JSON.parse(await readFile(path.join(evidence,'save/progress.json'),'utf8'));

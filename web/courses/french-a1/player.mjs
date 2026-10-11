@@ -1,3 +1,5 @@
+import { createVocabularyCheck } from '../shared/vocabulary-player.mjs';
+import '../shared/vocabulary-player.css';
 import { createBattle } from './battle.mjs';
 import { adventure, regionInfo } from './adventure.mjs';
 import { comicPanel, VILLAIN } from './art.mjs';
@@ -44,6 +46,8 @@ export async function mount(root,context){
     const {body,lesson,chapter}=ui;
     const responses=ui.state.responses[lesson.id]&&typeof ui.state.responses[lesson.id]==='object'&&!Array.isArray(ui.state.responses[lesson.id])?ui.state.responses[lesson.id]:{};
     ui.state.responses[lesson.id]=responses;
+    const vocabularyCheck = createVocabularyCheck(ui, { vocabulary: chapter.vocabulary, language: 'fr', contexts: [chapter.sentence].filter(Boolean) });
+    ui.vocabularyCheck = vocabularyCheck;
     const battle=createBattle(ui,responses);
     const media=[];let vocabularyAudio;
     const goal=element('p',null,'unit-goal');goal.append(element('span','本单元目标'),element('strong',chapter.goal));body.append(goal);
@@ -101,12 +105,13 @@ export async function mount(root,context){
       const message=element('div');message.setAttribute('aria-live','polite');feedback.set(question.id,message);field.append(message);body.append(field);battle.addQuestion(question,field,message);
     }
     battle.mountControls();
+    vocabularyCheck.mount();
     if(!PUBLIC_SITE)body.append(button('召唤语言导师',()=>ui.askTutor({code:JSON.stringify(responses),objective:lesson.questions.map(q=>q.prompt).join('\n'),compilerMessage:battle.feedback,output:''})));
     const answers=element('div');
     body.append(button('◈ 真知水晶 · 参考答复',async()=>{
       if(!await ui.revealAnswer())return;
       answers.replaceChildren(...lesson.questions.map((q,index)=>element('p',`${index+1}. ${q.answers.join(' / ')} — ${q.explanation}`,'learn-explanation')));
     }),answers);
-    return ()=>{battle.dispose();media.forEach(audio=>{audio.pause();audio.removeAttribute('src');audio.load();});vocabularyAudio?.pause();};
+    return ()=>{vocabularyCheck.dispose();battle.dispose();media.forEach(audio=>{audio.pause();audio.removeAttribute('src');audio.load();});vocabularyAudio?.pause();};
   });
 }

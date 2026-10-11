@@ -144,6 +144,37 @@ New units are inserted without locking previously completed regions. Desktop AI
 help requires three consecutive unsuccessful submissions and is limited to one
 use per region. Public builds continue to disable AI services.
 
+### Language vocabulary checkpoints and Book 2 life practice
+
+`shared/vocabulary-checks.mjs` builds deterministic, taught-word-only checks after every existing
+English (325) and French (156) task. It selects 3–4 relevant words or presents an explicit chapter
+recap before assessing them. Each small check mixes meanings, 1–2 missing letters, a taught sentence
+context and an exact supported object picture where appropriate. Overlapping taught Chinese senses
+are excluded from distractors. French comparison preserves accents and teaches article/gender notes
+without inventing a gender-scoring requirement. The original main-task answers and battles remain in
+their existing fields; `languageVocabulary[lessonId]` separately records recap, answers, cleared items,
+mistakes and final word-check completion. New task completion is recorded only after the word check;
+old completed IDs remain valid. A deliberate main-task replay retains completion and word-check history.
+
+English's `wrapper-player.mjs` switches between the unchanged-ID comic track and 96 new original
+`nce2-life-001` … `nce2-life-096` lessons. `nce2Practice` is an additive course-level record preserved by
+the legacy normalizer. It contains independent current lesson, study/main answers, per-word state and
+derived completion. Switching flushes the mounted track before loading the other; the two tracks share
+one English backup. A life-only reset preserves the comic track. New lessons unlock sequentially,
+independently of old comic progress. All text is original; `life-syllabus.mjs` supplies the inspected
+factual vocabulary/grammar map. The PDF/OCR is never shipped. No new audio files or remote audio
+requests are introduced. See [coverage and QA](web/courses/english-nce/LIFE_COVERAGE.md).
+
+`shared/player.mjs` rolls back only completion-owned fields when durable saving fails, preserving
+live input references and keeping the final completion retryable. This prevents a failed write from
+unlocking the next task or awarding an extra attempt/reward.
+
+Optional DOM regression command (requires an already available `jsdom`, not installed by this task):
+`GRAY_CROWN_JSDOM=/path/to/jsdom/lib/api.js node --loader ./tests/helpers/ignore-css.mjs tests/language-ui-dom.mjs`.
+It tests English/French gates, accent input, wrong/partial resumes, save-failure retry, replay, and English
+track switching/import/reset. It fails clearly if jsdom is unavailable. DOM simulation does not replace
+the Playwright visual/audio/browser checks in `tests/browser-courses.mjs`.
+
 ### French PNG illustrations and comic battles
 
 English keeps its hand-authored SVG kit, `web/courses/shared/comic-kit.mjs`, unchanged.

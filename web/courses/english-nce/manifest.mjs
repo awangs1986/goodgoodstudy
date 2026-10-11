@@ -1,6 +1,6 @@
 export default {
   id: 'english-nce', version: 1, status: 'available',
-  title: { en: 'English · Comic City Quest (NCE 1–2 syllabus)', 'zh-CN': '英语 · 漫画城大冒险（新概念 1–2 册）' },
-  description: { en: '25 comic-book regions and 325 quests aligned to the New Concept English Books 1–2 grammar syllabus: vocabulary, dialogues, stories, grammar, translation and offline listening. All content is original.', 'zh-CN': '对齐新概念英语第一、二册语法大纲的原创漫画 RPG：25 个街区、325 格漫画任务，词汇、对话、小故事、语法、中译英与离线听力，打败捣蛋鬼 Muddle 先生，收集你的漫画册。' },
-  exerciseTypes: ['choice', 'text', 'ordering', 'listening'], load: () => import('./player.mjs')
+  title: { en: 'English · Comic City & Real Life (NCE syllabus)', 'zh-CN': '英语 · 漫画城与生活运用（新概念大纲）' },
+  description: { en: 'Keep the original 325 comic quests and offline audio; add 96 original real-life lessons using Book 2 vocabulary and grammar targets. Every lesson ends with a taught-vocabulary check. Separate track progress, one English backup.', 'zh-CN': '保留25街区、325格漫画任务与离线音频；新增96课第二册生活运用，覆盖862条目标词汇和对应语法，面向初高中、由易到难。每课都有先复习后测试的单词关，题型包括词义、补字母、情境选词和适合实物的看图选词。内容原创，两条路线分别记进度。' },
+  exerciseTypes: ['choice', 'text', 'ordering', 'listening'], load: () => import('./wrapper-player.mjs')
 };

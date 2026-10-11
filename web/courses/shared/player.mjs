@@ -57,6 +57,9 @@ export function createCoursePlayer(root, context, course, renderExercise) {
     refresh() { if(!busy) render(); },
     async record(passed, score) {
       const lesson = current();
+      // A rejected durable write must not unlock the next lesson or display a terminal success.
+      // Keep all in-flight answers, but roll back this completion transaction so it can be retried.
+      const snapshot = structuredClone(progress.state);
       const first = !progress.state.completed.includes(lesson.id);
       const before = adventurer(progress.state, course.lessons);
       progress.state.consecutiveFailures[lesson.id] = passed ? 0 : (Number(progress.state.consecutiveFailures[lesson.id]) || 0) + 1;
@@ -64,7 +67,18 @@ export function createCoursePlayer(root, context, course, renderExercise) {
       progress.state.attempts[lesson.id] = (Number(progress.state.attempts[lesson.id]) || 0) + 1;
       progress.state.scores[lesson.id] = Math.max(Number(progress.state.scores[lesson.id]) || 0, score);
       if (passed && !progress.state.completed.includes(lesson.id)) progress.state.completed.push(lesson.id);
-      await progress.persist();
+      try { await progress.persist(); }
+      catch (error) {
+        // Restore only fields owned by record; mounted inputs retain references to response maps.
+        progress.state.started = snapshot.started;
+        progress.state.updatedAt = snapshot.updatedAt;
+        progress.state.completed.splice(0, progress.state.completed.length, ...snapshot.completed);
+        for (const key of ['attempts', 'scores', 'consecutiveFailures']) {
+          if (Object.hasOwn(snapshot[key], lesson.id)) progress.state[key][lesson.id] = snapshot[key][lesson.id];
+          else delete progress.state[key][lesson.id];
+        }
+        throw error;
+      }
       renderNav(); updateFooter();
       if(passed) showVictory(lesson, first, before);
     },

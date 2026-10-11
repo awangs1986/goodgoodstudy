@@ -11,9 +11,11 @@ export function createBattle(ui, responses) {
   const { lesson, chapter, body } = ui, rival = rivalName(lesson), move = moves[lesson.topic] ?? moves.综合;
   const saved = ui.state.battles[lesson.id], replay = ui.state.completed.includes(lesson.id);
   const valid = new Set(gradeEnglish(lesson, responses).checks.filter(c => c.passed).map(c => c.id));
-  const cleared = new Set(!replay && Array.isArray(saved?.cleared) ? saved.cleared.filter(id => valid.has(id)) : []);
-  let stamina = !replay && Number.isInteger(saved?.stamina) ? Math.max(0, Math.min(3, saved.stamina)) : 3;
-  let awaitingNext = false, finished = false, active = lesson.questions.find(q => !cleared.has(q.id));
+  let replayingMain = saved?.replay === true;
+  const atWordCheckpoint = Boolean(ui.vocabularyCheck?.mainPassed) && !replayingMain;
+  const cleared = new Set(atWordCheckpoint ? lesson.questions.map(q => q.id) : (!replay || replayingMain) && Array.isArray(saved?.cleared) ? saved.cleared.filter(id => valid.has(id)) : []);
+  let stamina = (!replay || replayingMain) && Number.isInteger(saved?.stamina) ? Math.max(0, Math.min(3, saved.stamina)) : 3;
+  let awaitingNext = false, finished = atWordCheckpoint, active = lesson.questions.find(q => !cleared.has(q.id));
   const fields = new Map(), feedback = new Map();
   const stage = element('section', null, 'comic-battle'); stage.setAttribute('aria-label', '漫画回合对战');
   const banner = element('div', lesson.key === 'exam' ? 'BOSS 战 · 本章大结局' : '漫画格修复 · 回合对战', 'comic-eyebrow');
@@ -32,23 +34,30 @@ export function createBattle(ui, responses) {
     if (ui.busy) return; ui.setBusy(true); stamina = 3; store();
     try { await ui.progress.persist(); log.textContent = 'Leo 喝了杯热可可，精神满满！已修好的画格会保留。'; } catch (error) { ui.report(error); } finally { ui.setBusy(false); sync(); }
   });
-  const complete = button('▤ 收录这一页漫画', async () => {
+  const complete = button(ui.vocabularyCheck ? '进入课后单词测试 →' : '▤ 收录这一页漫画', async () => {
     if (ui.busy || cleared.size !== lesson.questions.length || finished) return;
     ui.setBusy(true);
-    try { await ui.record(true, 100); finished = true; stage.classList.add('complete'); log.textContent = `${rival} 被击退了！这一格漫画已经修好。`; } catch (error) { ui.report(error); } finally { ui.setBusy(false); sync(); }
+    try { replayingMain = false; store(); await (ui.vocabularyCheck ? ui.vocabularyCheck.finishMain(100) : ui.record(true, 100)); finished = true; stage.classList.add('complete'); log.textContent = `${rival} 被击退了！这一格漫画已经修好。`; } catch (error) { ui.report(error); } finally { ui.setBusy(false); sync(); }
   }, 'primary-btn');
-  controls.append(attack, next, rest, complete);
-  function store() { ui.state.battles[lesson.id] = { cleared: [...cleared], stamina }; }
+  const restart = button('重练主课（保留完成与词测记录）', async () => {
+    if (ui.busy) return; ui.setBusy(true);
+    replayingMain = true; cleared.clear(); stamina = 3; awaitingNext = false; finished = false; active = lesson.questions[0]; store();
+    try { await ui.progress.persist(); stage.classList.remove('complete'); log.textContent = '开始重练主课。原有答案、完成记录和单词测试记录都会保留。'; }
+    catch (error) { ui.report(error); } finally { ui.setBusy(false); sync(); }
+  });
+  controls.append(attack, next, rest, complete, restart);
+  function store() { ui.state.battles[lesson.id] = { cleared: [...cleared], stamina, ...(replayingMain ? { replay: true } : {}) }; }
   function sync() {
     const remaining = lesson.questions.length - cleared.size;
     enemy.bar.value = remaining * 20; enemy.text.textContent = `${remaining * 20} / ${lesson.questions.length * 20}`;
     hero.bar.value = stamina; hero.text.textContent = `${stamina} / 3`;
-    round.textContent = `已修好 ${cleared.size} / ${lesson.questions.length} 格 · ${remaining ? '每答对一题造成 20 点伤害' : 'Muddle 的捣乱被清除了，收录这一页吧！'}`;
+    round.textContent = `已修好 ${cleared.size} / ${lesson.questions.length} 格 · ${remaining ? '每答对一题造成 20 点伤害' : 'Muddle 的捣乱被清除了，接着完成课后单词测试！'}`;
     attack.hidden = !active || awaitingNext || stamina === 0 || remaining === 0; attack.disabled = ui.busy;
     next.hidden = !awaitingNext || remaining === 0; next.disabled = ui.busy;
     rest.hidden = stamina > 0 || remaining === 0; rest.disabled = ui.busy;
     complete.hidden = remaining > 0; complete.disabled = ui.busy || finished;
-    if (finished) complete.textContent = '✓ 已收录进漫画册';
+    complete.textContent = finished ? (ui.vocabularyCheck ? '✓ 主课已保存，请完成下方单词测试' : '✓ 已收录进漫画册') : (ui.vocabularyCheck ? '进入课后单词测试 →' : '▤ 收录这一页漫画');
+    restart.hidden = !ui.vocabularyCheck?.mainPassed || replayingMain; restart.disabled = ui.busy;
     for (const [id, field] of fields) { field.hidden = id !== active?.id || remaining === 0; field.disabled = ui.busy || awaitingNext || stamina === 0; }
   }
   async function strike() {
@@ -72,7 +81,7 @@ export function createBattle(ui, responses) {
   }
   return {
     addQuestion(question, field, message) { fields.set(question.id, field); feedback.set(question.id, message); },
-    mountControls() { body.append(controls, element('p', '答对 → 招式命中；答错 → Muddle 反击；体力耗尽可以免费休息。所有画格修好后，把这一页收进漫画册。', 'comic-help')); ui.root.addEventListener('course-busy-change', sync); sync(); },
+    mountControls() { body.append(controls, element('p', '答对 → 招式命中；答错 → Muddle 反击；体力耗尽可以免费休息。所有画格修好后进入课后单词测试；通过后收录漫画。', 'comic-help')); ui.root.addEventListener('course-busy-change', sync); sync(); },
     dispose() { ui.root.removeEventListener('course-busy-change', sync); },
     get feedback() { return log.textContent; }
   };
