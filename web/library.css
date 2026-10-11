@@ -80,3 +80,6 @@ html { scroll-padding-top: calc(var(--course-nav-h) + 12px); }
 #courseRoot .view { min-height: calc(100vh - var(--course-nav-h)); }
 #courseRoot .challenge-shell { height: calc(100vh - 64px - var(--course-nav-h)); }
 #courseRoot .map-scene { min-height: calc(100vh - 64px - var(--course-nav-h)); }
+
+.course-card[data-course-id="geography-voyage"] { --card-accent: #f4d68c; --card-accent-2: #1e6e9a; background-image: radial-gradient(circle at 85% 20%, rgba(244,214,140,.16), transparent 45%), linear-gradient(160deg, rgba(30,110,154,.14), transparent 60%); }
+.course-card[data-course-id="geography-voyage"] .course-emblem::before { content: "⛵"; font-size: 24px; }

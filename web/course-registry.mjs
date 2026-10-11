@@ -6,9 +6,10 @@ import physics from './courses/physics/manifest.mjs';
 import olympiad from './courses/olympiad/manifest.mjs';
 import fiba from './courses/fiba/manifest.mjs';
 import f1 from './courses/f1/manifest.mjs';
+import geography from './courses/geography/manifest.mjs';
 
 // Only trusted, bundled modules may provide a player. Save files never name code to load.
-export const courses = [c, csharp, french, english, physics, olympiad, fiba, f1];
+export const courses = [c, csharp, french, english, physics, olympiad, fiba, f1, geography];
 
 export function getCourse(id) {
   return courses.find(course => course.id === id);
