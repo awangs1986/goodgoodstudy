@@ -74,3 +74,8 @@ export const teachMore = {
   'cs07-10': e('把生命、金币、钥匙放进同一个类，方法只需要接收一个对象，就能读写全部状态。', 'class Hero { public int Hp = 12; public int Gold; }'),
   'cs07-11': e('把对象、方法和主循环组合起来，就是一个完整游戏的骨架。先让最短的胜利路线跑通，再补齐其他命令。', 'var hero = new Hero();\nwhile (hero.Hp > 0) { /* 读命令、更新、输出 */ break; }')
 };
+
+const add = {"cs00-04": "报错里的 CS0117 意思是“Console 里没有叫这个名字的成员”，几乎总是拼写或大小写错了。", "cs04-05": "外层循环每转一圈，内层循环都要从头完整跑一遍。", "cs04-06": "先写出 i 和每次要输出的数之间的关系，再写循环，会清楚很多。", "cs07-07": "综合题不要一次写完：先让第一步跑通，再一点点加功能。", "cs07-08": "每加一段代码就运行一次，出错时更容易找到是哪一段。", "cs-str-basics": "这些方法都会返回新的字符串，原来的字符串本身不会改变。", "cs-list-index": "下标从 0 开始，最后一个元素的下标是 Count - 1，越界会直接报错。", "cs06-06": "先想清楚要用数组、List 还是 Dictionary，再动手写。", "cs-inventory-trial": "这一关是本章的小结，用到的写法前面都学过，可以回头翻看。", "cs-hero-list": "List<Hero> 里的每个元素都是一个完整的对象，可以用 hero.Name 这样读取它的属性。", "cs-milestone-fight": "这是里程碑关卡：把类、列表、循环和条件组合起来，按题目顺序一步一步实现。"};
+for (const [id, text] of Object.entries(add)) {
+  teachMore[id] = teachMore[id] ? { ...teachMore[id], more: `${teachMore[id].more}${text}` } : { more: text };
+}
