@@ -11,9 +11,16 @@ authors or publishers.
 本课程仅对齐新概念英语第一、二册的语法与话题顺序，所有课文、对话、标题与练习均为原创。
 
 ## Artwork
-All illustrations are composed at runtime from the hand-authored SVG kit in `art.mjs` / `shared/comic-kit.mjs` (places, the recurring
-original cast Leo, Mia, Sam, Mr Grant, Grandma Rose, Dr Lin, Ada, Officer Bell, and the trickster Mr Muddle,
-plus everyday props). No raster images, no third-party or franchise characters.
+All illustrations are composed at runtime from the English-specific, hand-authored SVG kit:
+`art.mjs` (panel composition and lettering), `comic-places.mjs` (15 locations),
+`comic-cast.mjs` (Leo, Mia, Sam, Mr Grant, Grandma Rose, Dr Lin, Ada, Officer Bell,
+and the trickster Mr Muddle), and `comic-props.mjs` (53 everyday props).
+The original American adventure-comic treatment uses angular ink contours, flat cel shadows,
+selective halftone, and a restrained red/blue/gold print palette. It is not based on any franchise.
+The 712 question panels, chapter covers, battle scenes, and victory pages are assembled from
+these reusable parts. Vocabulary-to-prop rules retain the shared kit's original keyword order.
+No raster images, remote artwork, new fonts, or dependencies are required. The shared French
+illustrations are unchanged.
 Licensed with the project (MIT).
 
 ## Audio
